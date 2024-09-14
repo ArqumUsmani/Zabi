@@ -1,0 +1,25 @@
+// @import "primeng/resources/themes/lara-light-blue/theme.css";
+// @import "primeng/resources/primeng.css";
+@import "colors.scss";
+
+body {
+  background-color: $bg-white;
+  font-family: var(--font-family);
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+span {
+  color: $fontColorDark;
+}
+i,
+em {
+  color: $iconRed;
+}
+.countryFilter-pill {
+  background-color: $pillColorRed;
+  color: $white;
+}
