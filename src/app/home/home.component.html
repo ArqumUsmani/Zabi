@@ -56,13 +56,59 @@
   </div>
 </div>
 <div id="placesSection" class="col-12">
-    <div class="filter col-4">
-        <p-card header="Filters">
-            <p class="m-0">
+  <div class="filter col-3">
+    <p-card header="Filters">
+      <div class="searchRadius">
+        <h5>Search Radius</h5>
+        <p-slider [(ngModel)]="rangeValues" [range]="true"></p-slider>
+      </div>
+      <div class="HalalFilters">
+        <h5>Halal filters</h5>
+        <div class="filterList">
+          <div class="listItem">
+            <span>Show only fully halal places</span
+            ><p-inputSwitch></p-inputSwitch>
+          </div>
+          <div class="listItem">
+            <span>Hide places that serve/allow alcohol</span
+            ><p-inputSwitch></p-inputSwitch>
+          </div>
+        </div>
+      </div>
+      <div class="rating">
+        <h5>Has rating above</h5>
+        <div class="ratingVisual">
+          <span class="ratingStars">
+            <em class="filledStar"></em>
+            <em class="filledStar"></em>
+            <em class="filledStar"></em>
+            <em class="filledStar"></em>
+            <em class="outlinedStar"></em>
+          </span>
+          <span class="ratingNumber">4.0</span>
+        </div>
+      </div>
+    </p-card>
+  </div>
+  <div class="placesCards col-9">
+    <div class="header">
+        <h4>Featured halal delivery near you</h4>
+        <p-button label="Map View" icon="image"></p-button>
+    </div>
+    <div class="cards">
+        <p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+            </ng-template>
+            <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
                 quas!
             </p>
+            <ng-template pTemplate="footer">
+                <p-button label="Save" icon="pi pi-check"></p-button>
+                <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+            </ng-template>
         </p-card>
     </div>
-    <div class="placesCards col-8"></div>
+  </div>
 </div>

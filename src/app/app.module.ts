@@ -11,6 +11,11 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ChipModule } from 'primeng/chip';
 import { CardModule } from 'primeng/card';
+import { SliderModule } from 'primeng/slider';
+import { FormsModule } from '@angular/forms';
+import { ListboxModule } from 'primeng/listbox';
+import { InputSwitchModule } from 'primeng/inputswitch';
+
 
 
 @NgModule({
@@ -28,7 +33,11 @@ import { CardModule } from 'primeng/card';
     ButtonModule,
     InputTextModule,
     ChipModule,
-    CardModule
+    CardModule,
+    SliderModule,
+    FormsModule,
+    ListboxModule,
+    InputSwitchModule
   ],
   providers: [],
   bootstrap: [AppComponent]
