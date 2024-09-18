@@ -1,19 +1,25 @@
-// @import "primeng/resources/themes/lara-light-blue/theme.css";
-// @import "primeng/resources/primeng.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeflex/primeflex.css";
 @import "colors.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+* {
+  font-family: "Inter";
+  font-size: 16px;
+}
 body {
   background-color: $bg-white;
-  font-family: var(--font-family);
+  margin: 0;
 }
 p,
 h1,
 h2,
 h3,
 h4,
-h5,
-span {
+h5 {
   color: $fontColorDark;
+  font-family: "Poppins", sans-serif;
 }
 i,
 em {
@@ -22,4 +28,45 @@ em {
 .countryFilter-pill {
   background-color: $pillColorRed;
   color: $white;
+}
+.p-button {
+  border-radius: 9px;
+}
+.p-button-success{
+  background: $green-primary!important;
+  border: none!important;
+}
+.p-inputtext{
+  border-radius: 12px;
+}
+// icons
+.home {
+  content: url("/assets/icons/home-24.svg");
+}
+.hilalFood {
+  content: url("/assets/icons/chef-hat-24.svg");
+}
+.pickup {
+  content: url("/assets/icons/scooter-24.svg");
+}
+.prayer {
+  content: url("/assets/icons/masjid-24.svg");
+}
+.location{
+  content: url("/assets/icons/location-24.svg");
+}
+.search{
+  content: url("/assets/icons/search-24.svg");
+}
+.email{
+  content: url("/assets/icons/sms.svg");
+}
+.phone{
+  content: url("/assets/icons/call.svg");
+}
+.facebook{
+  content: url("/assets/icons/social-facebook.svg");
+}
+.apple{
+  content: url("/assets/icons/social-apple.svg");
 }

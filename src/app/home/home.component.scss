@@ -1,0 +1,105 @@
+@import "../../styles.scss";
+@import "../../colors.scss";
+#heroSection {
+  background-color: $red-primary;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+  .backgroundImg {
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+  .mainContent {
+    width: 100%;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .subHeading {
+      font-size: 18px;
+      color: $fontColorLight;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+    .mainHeading {
+      color: $fontColorLight;
+      font-weight: 700;
+      font-size: 43px;
+      margin-top: 5px;
+      .highlightedText {
+        font-weight: 700;
+        font-size: 43px;
+        color: $highlightedText;
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        &::before {
+          content: url(../../assets/curved-line.svg);
+          top: 1.5rem;
+          position: absolute;
+        }
+      }
+    }
+    .filterSection {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+      .inputFields {
+        display: flex;
+        gap: 10px;
+        .p-inputtext {
+          width: 456px;
+        }
+      }
+      .locationChips {
+        display: inline-flex;
+        gap: 10px;
+        .p-chip {
+          background-color: $red-secondary;
+          border-radius: 50px;
+          .p-chip-text {
+            font-size: 14px;
+            font-family: "Inter";
+            font-weight: 500;
+            color: $fontColorLight;
+          }
+        }
+      }
+    }
+    .downloadAppSection {
+      display: inline-flex;
+      gap: 9px;
+      padding-top: 60px;
+    }
+  }
+  .bottomSection {
+    .bottomRightImage {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+    .greenBar {
+        width: 100%;
+        height: 10px;
+        position: absolute;
+        background-color: $green-dark;
+        border: none;
+        bottom: -17px;
+        left: 0;
+    }
+  }
+}
+#placesSection{
+    .filter{
+        .p-card{
+            .p-card-title{
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+    }
+}

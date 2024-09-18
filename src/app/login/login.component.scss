@@ -1,0 +1,112 @@
+// @import "../../styles.scss";
+@import "../../colors.scss";
+:root {
+  .p-menubar {
+    display: none;
+  }
+  body {
+    background-color: $red-login !important;
+    #loginForm {
+      text-align: center;
+      //   justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    //   gap: 30px;
+      position: relative;
+      background-image: url("../../assets/Background-pattern.svg");
+      height: 100vh;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      .logoText {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        width: 100%;
+        margin-top: 105px;
+        .logo {
+          width: 211px;
+        }
+        .slogan {
+          width: 270px;
+          margin-top: 0;
+          font-family: "Roboto";
+          font-weight: 400;
+          font-size: 16px;
+          color: $fontColorLight;
+        }
+      }
+      .form {
+        .formHeading {
+          margin-bottom: 2px;
+          font-size: 24px;
+          font-weight: 600;
+          color: $fontColorLight;
+          font-family: "Inter";
+        }
+        .formSubText {
+          margin-top: 2px;
+          font-family: "Inter";
+          font-weight: 400;
+          font-size: 16px;
+          color: $fontColorLight;
+        }
+        .loginOptions {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          margin-top: 32px;
+          margin-bottom: 32px;
+          .p-button {
+            width: 320px;
+            background-color: $white;
+            border-radius: 8px;
+            color: $fontColorDark;
+            border: 1px solid #d0d5dd;
+          }
+        }
+      }
+      .bottomSection {
+        position: relative;
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0px;
+        .secondaryImage {
+          width: 30%;
+        }
+        .greenBar {
+          width: 100%;
+          height: 10px;
+          //   position: absolute;
+          background-color: $green-dark;
+          border: none;
+          //   bottom: -17px;
+          //   left: 0;
+          margin: 0;
+        }
+        .triangleLineImage {
+          // transform: rotate(180deg);
+          width: 100%;
+          background-color: $green-dark;
+        }
+      }
+      .footer{
+        background-color: $white;
+        text-align: center;
+        width: 100%;
+        padding: 2rem;
+        top: 0;
+        p{
+            font-family: 'Century Gothic';
+            font-size: 12px;
+            font-weight: 400;
+        }
+      }
+    }
+  }
+}

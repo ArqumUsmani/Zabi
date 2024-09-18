@@ -1,0 +1,49 @@
+@import "../styles.scss";
+@import "../colors.scss";
+
+:root {
+  .p-menubar {
+    background-color: $red-secondary;
+    height: 76px;
+    padding: 15px 52px 15px 52px;
+    gap: 11px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0;
+    margin: -1px;
+    .p-menubar-start {
+      img {
+        width: 142.68px;
+        height: 30px;
+      }
+      flex: 1;
+    }
+    .p-menubar-root-list {
+      flex: 1;
+      .p-menuitem {
+        .p-menuitem-link {
+          border-radius: 9px;
+          &:not(.p-disabled):hover {
+            background-color: $red-secondary;
+            .p-menuitem-text {
+              color: $fontColorLight;
+            }
+          }
+          .p-menuitem-text {
+            color: $fontColorLight;
+          }
+        }
+      }
+    }
+    .p-menubar-end {
+      flex: 1;
+      display: flex;
+      justify-content: end;
+      .p-button {
+        .p-button-label {
+          color: $fontColorLight;
+        }
+      }
+    }
+  }
+}

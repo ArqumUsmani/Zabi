@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FilterMatchMode, PrimeNGConfig } from 'primeng/api';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FilterMatchMode, MenuItem, PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'Zabihah';
   constructor(private primengConfig: PrimeNGConfig) {}
-
+  items: MenuItem[] = [];
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.primengConfig.zIndex = {
@@ -42,5 +43,24 @@ export class AppComponent {
         FilterMatchMode.DATE_AFTER,
       ],
     };
+    
+    this.items = [
+      {
+        label: 'Home',
+        icon: 'home',
+      },
+      {
+        label: 'Find hilal food',
+        icon: 'hilalFood',
+      },
+      {
+        label: 'Pickup & delivery',
+        icon: 'pickup',
+      },
+      {
+        label: 'Prayer spaces',
+        icon: 'prayer',
+      },
+    ];
   }
 }
