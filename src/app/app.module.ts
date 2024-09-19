@@ -15,6 +15,8 @@ import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
 import { ListboxModule } from 'primeng/listbox';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { ImageModule } from 'primeng/image';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 
@@ -37,7 +39,9 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     SliderModule,
     FormsModule,
     ListboxModule,
-    InputSwitchModule
+    InputSwitchModule,
+    ImageModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

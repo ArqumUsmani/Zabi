@@ -32,12 +32,27 @@ em {
 .p-button {
   border-radius: 9px;
 }
-.p-button-success{
-  background: $green-primary!important;
-  border: none!important;
+.p-button-success {
+  background: $green-primary !important;
+  border: none !important;
 }
-.p-inputtext{
+.p-inputtext {
   border-radius: 12px;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  li {
+    display: flex!important;
+    flex-direction: column!important;
+    line-height: 24px!important;
+    a {
+      text-decoration: none;
+      color: $grey;
+      font-weight: 500;
+    }
+  }
 }
 // icons
 .home {
@@ -49,33 +64,69 @@ em {
 .pickup {
   content: url("/assets/icons/scooter-24.svg");
 }
+.delivery {
+  content: url("assets/icons/scooter-red-24.svg");
+}
 .prayer {
   content: url("/assets/icons/masjid-24.svg");
 }
-.location{
+.location {
   content: url("/assets/icons/location-24.svg");
 }
-.search{
+.search {
   content: url("/assets/icons/search-24.svg");
 }
-.email{
+.email {
   content: url("/assets/icons/sms.svg");
 }
-.phone{
+.phone {
   content: url("/assets/icons/call.svg");
 }
-.facebook{
+.phoneOutlined {
+  content: url("/assets/icons/phone-outlined-24.svg");
+}
+.facebook {
   content: url("/assets/icons/social-facebook.svg");
 }
-.apple{
+.apple {
   content: url("/assets/icons/social-apple.svg");
 }
-.filledStar{
+.filledStar {
   content: url("/assets/icons/star-filled-24.svg");
 }
-.outlinedStar{
+.outlinedStar {
   content: url("/assets/icons/star-outline-24.svg");
 }
-.image{
+.map {
+  content: url("/assets/icons/map-24.svg");
+}
+.likeHeartFilled {
+  content: url("/assets/icons/heart-filled-24.svg");
+}
+.ratingStarFilled {
+  content: url("/assets/icons/star-secondary-24.svg");
+}
+.comment {
+  content: url("/assets/icons/message-text-24.svg");
+}
+.repeat {
+  content: url("/assets/icons/repeat-24.svg");
+}
+.image {
   content: url("/assets/icons/gallery-24.svg");
+}
+.routing {
+  content: url("/assets/icons/routing-24.svg");
+}
+.twitter{
+  content: url("/assets/icons/social-x-24.svg");
+}
+.facebook{
+  content: url("/assets/icons/social-fb-24.svg");
+}
+.linkedin{
+  content: url("/assets/icons/social-linkedin-24.svg");
+}
+.instagram{
+  content: url("/assets/icons/social-insta-24.svg");
 }
