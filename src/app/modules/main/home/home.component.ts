@@ -9,6 +9,7 @@ import { MenuItem } from 'primeng/api';
 export class HomeComponent {
   items: MenuItem[] = [];
   rangeValues: number[] = [20, 80];
+
   ngOnInit() {
     this.items = [
       {
@@ -135,4 +136,5 @@ export class HomeComponent {
     ];
     
   }
+
 }

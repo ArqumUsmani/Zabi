@@ -2,46 +2,40 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './modules/authentication/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component';
-import { MenubarModule } from 'primeng/menubar';
-import {StyleClassModule} from 'primeng/styleclass';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { ChipModule } from 'primeng/chip';
-import { CardModule } from 'primeng/card';
-import { SliderModule } from 'primeng/slider';
-import { FormsModule } from '@angular/forms';
-import { ListboxModule } from 'primeng/listbox';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { ImageModule } from 'primeng/image';
-import { TooltipModule } from 'primeng/tooltip';
-
-
+import { HomeComponent } from './modules/main/home/home.component';
+import { CommonModule } from '@angular/common';
+import { MenuBarComponent } from './modules/common/menu-bar/menu-bar.component';
+import { FooterComponent } from './modules/common/footer/footer.component';
+import { PrimeNgModule } from './prime-ng.module';
+import { HilalFoodComponent } from './modules/main/hilal-food/hilal-food.component';
+import { PickupAndDeliveryComponent } from './modules/main/pickup-and-delivery/pickup-and-delivery.component';
+import { PrayerSpacesComponent } from './modules/main/prayer-spaces/prayer-spaces.component';
+import { LocationFilterComponent } from './modules/common/location-filter/location-filter.component';
+import { ReviewsComponent } from './modules/main/shared/reviews/reviews.component';
+import { RecentlyAddedComponent } from './modules/main/shared/recently-added/recently-added.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    HilalFoodComponent,
+    PickupAndDeliveryComponent,
+    PrayerSpacesComponent,
+    MenuBarComponent,
+    FooterComponent,
+    LocationFilterComponent,
+    ReviewsComponent,
+    RecentlyAddedComponent
   ],
   imports: [
-    StyleClassModule,
     BrowserModule,
     AppRoutingModule,
-    MenubarModule,
-    ButtonModule,
-    InputTextModule,
-    ChipModule,
-    CardModule,
-    SliderModule,
-    FormsModule,
-    ListboxModule,
-    InputSwitchModule,
-    ImageModule,
-    TooltipModule
+    CommonModule,
+    PrimeNgModule
   ],
   providers: [],
   bootstrap: [AppComponent]

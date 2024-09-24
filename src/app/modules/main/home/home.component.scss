@@ -1,5 +1,5 @@
-@import "../../styles.scss";
-@import "../../colors.scss";
+@import "../../../../styles.scss";
+@import "../../../../colors.scss";
 #heroSection {
   background-color: $red-primary;
   text-align: center;
@@ -36,7 +36,7 @@
         display: inline-flex;
         justify-content: center;
         &::before {
-          content: url(../../assets/curved-line.svg);
+          content: url(../../../../assets/curved-line.svg);
           top: 1.5rem;
           position: absolute;
         }

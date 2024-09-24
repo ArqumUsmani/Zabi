@@ -1,0 +1,17 @@
+<p-menubar [model]="items" class="pt-0">
+    <ng-template pTemplate="start">
+        <img src="../../assets/logo.svg" height="40" class="mr-2" />
+    </ng-template>
+    <ng-template pTemplate="item" let-item>
+        <ng-container *ngIf="item.routerLink">
+            <a [routerLink]="item.routerLink" class="p-menuitem-link">
+                <span [class]="item.icon"></span>
+                <span class="ml-2">{{ item.label }}</span>
+            </a>
+        </ng-container>
+    </ng-template>    
+    <ng-template pTemplate="end">
+        <p-button label="Log in" styleClass="p-button-link" routerLink="login"></p-button>
+        <button pButton pRipple label="Sign up" class="p-button-success"></button>
+    </ng-template>
+</p-menubar>
