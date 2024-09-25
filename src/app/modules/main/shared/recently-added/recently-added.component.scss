@@ -1,0 +1,147 @@
+@import "../../../../../styles.scss";
+@import "../../../../../colors.scss";
+
+#trending {
+  background-color: $white;
+  padding: 48px 116px;
+  display: flex;
+  //   align-items: center;
+  gap: 20px;
+  .trendingResturants {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 940px;
+    // flex: 1 0 0;
+    .heading {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      h4 {
+        font-size: 20px;
+        font-weight: 600;
+        color: $fontColorDark;
+      }
+      span {
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 400;
+        color: $grey;
+        font-family: "Poppins";
+      }
+    }
+    .resturantCards {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      .card {
+        width: 460px;
+        background-color: $grey-50;
+        border: 1px solid $grey-border;
+        padding: 16px;
+        border-radius: 12px;
+        .infoChip {
+            .name {
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                color: $fontColorDark;
+              }
+              .address {
+                font-family: "Inter";
+                font-size: 14px;
+                font-style: italic;
+                font-weight: 400;
+                color: #697586;
+              }
+          .chip {
+            display: flex;
+            padding: 2px 8px;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            border-radius: 50px;
+            border: 1px solid #eaecf0;
+            background: $white;
+            width: max-content;
+            font-family: "Inter";
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 18px;
+          }
+        }
+      }
+    }
+  }
+  .activeHalalFoodies {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    flex: 1 0 0;
+    width: 320px;
+    .heading {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      h4 {
+        font-size: 20px;
+        font-weight: 600;
+        color: $fontColorDark;
+      }
+      span {
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 400;
+        color: $grey;
+        font-family: "Poppins";
+      }
+    }
+    .foodieList {
+        width: 320px; 
+      .p-listbox {
+        border: none;  
+        width: 320px!important;
+        .p-listbox-list-wrapper {
+          .p-listbox-list {
+            .p-listbox-item {
+              align-items: flex-start;
+              border-bottom: 1px solid #E3E8EF;
+              padding-left:0 ;
+              .foodies {
+                display: flex;
+                gap: 12px;
+                .foodieImage {
+                  padding: 10px 12px;
+                  background-color: $grey-50;
+                  border-radius: 50px;
+                  display: flex;
+                  align-items: center;
+                }
+                .info {
+                  display: flex;
+                  flex-direction: column;
+                  .name {
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 600;
+                    color: $fontColorDark;
+                  }
+                  .address {
+                    font-family: "Inter";
+                    font-size: 14px;
+                    font-style: italic;
+                    font-weight: 400;
+                    color: #697586;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -32,7 +32,8 @@ import { SharedModule } from 'primeng/api';
     InputSwitchModule,
     ImageModule,
     TooltipModule,
-    SharedModule
+    SharedModule,
+    ListboxModule
   ],
   exports: [
     StyleClassModule,
