@@ -1,1 +1,94 @@
-<p>recently-added works!</p>
+<div id="trending">
+  <div class="trendingResturants">
+    <div class="heading">
+      <h4>This week’s trending restaurant</h4>
+      <span>based on recent activity by Zabihah users</span>
+    </div>
+    <div class="resturantCards">
+      <div class="card flex gap-2 align-items-start">
+        <img
+          class="photo"
+          src="../../../../../assets/images/trending-image-1.svg"
+          alt=""
+        />
+        <div class="infoChip flex flex-column gap-2">
+          <div class="info flex flex-column gap-1">
+            <h5 class="name">Krispy Krunchy Chicken/Circle K</h5>
+            <span class="address">2492 Whipple Road, Hayward, CA</span>
+          </div>
+          <span class="chip">American</span>
+        </div>
+      </div>
+      <div class="card flex gap-2 align-items-start">
+        <img
+          class="photo"
+          src="../../../../../assets/images/trending-image-1.svg"
+          alt=""
+        />
+        <div class="infoChip flex flex-column gap-2">
+          <div class="info flex flex-column gap-1">
+            <h5 class="name">Krispy Krunchy Chicken/Circle K</h5>
+            <span class="address">2492 Whipple Road, Hayward, CA</span>
+          </div>
+          <span class="chip">American</span>
+        </div>
+      </div>
+      <div class="card flex gap-2 align-items-start">
+        <img
+          class="photo"
+          src="../../../../../assets/images/trending-image-1.svg"
+          alt=""
+        />
+        <div class="infoChip flex flex-column gap-2">
+          <div class="info flex flex-column gap-1">
+            <h5 class="name">Krispy Krunchy Chicken/Circle K</h5>
+            <span class="address">2492 Whipple Road, Hayward, CA</span>
+          </div>
+          <span class="chip">American</span>
+        </div>
+      </div>
+      <div class="card flex gap-2 align-items-start">
+        <img
+          class="photo"
+          src="../../../../../assets/images/trending-image-1.svg"
+          alt=""
+        />
+        <div class="infoChip flex flex-column gap-2">
+          <div class="info flex flex-column gap-1">
+            <h5 class="name">Krispy Krunchy Chicken/Circle K</h5>
+            <span class="address">2492 Whipple Road, Hayward, CA</span>
+          </div>
+          <span class="chip">American</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="activeHalalFoodies">
+    <div class="heading">
+      <h4>Recently active Halal Foodies</h4>
+      <span>based on recent activity by Zabihah users</span>
+    </div>
+    <div class="foodieList">
+      <p-listbox
+        [options]="countries"
+        [(ngModel)]="selectedCountry"
+        optionLabel="name"
+        [style]="{ width: '15rem' }"
+        [multiple]="true"
+        [metaKeySelection]="false"
+      >
+        <ng-template pTemplate="item">
+          <div class="flex align-items-center gap-2 foodies">
+            <div class="foodieImage">
+              <img src="../../../../../assets/icons/person-2.svg" alt="" />
+            </div>
+            <div class="info">
+              <p class="name">Aazan Chaudhary</p>
+              <p class="address">Ottawa, ON</p>
+            </div>
+          </div>
+        </ng-template></p-listbox
+      >
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-@import "../../../../styles.scss";
+// @import "../../../../styles.scss";
 @import "../../../../colors.scss";
 #heroSection {
   background-color: $red-primary;
@@ -66,7 +66,6 @@
   }
 }
 #placesSection {
-  margin-top: 48px;
   display: flex;
   padding: 0 116px;
   .placesCards {
@@ -78,17 +77,19 @@
         font-size: 24px;
         font-family: "Inter";
         font-weight: 600;
-        margin-bottom: 16px;
+        margin-bottom: 0;
       }
-      .p-button {
-        padding: 8px 16px 8px 12px;
-        border-radius: 48px;
-        background: $grey;
-        box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-        color: $fontColorLight;
-        border: none;
-        .p-button-label {
-          font-weight: 600;
+      .viewStyleButton {
+        .p-button {
+          padding: 8px 16px 8px 12px;
+          border-radius: 48px;
+          background: $grey;
+          box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+          border: none;
+          .p-button-label {
+            font-weight: 600;
+            color: $fontColorLight;
+          }
         }
       }
     }
@@ -230,8 +231,23 @@
         }
       }
     }
+    .viewMoreButton {
+      .p-button {
+        // width: 123px;
+        height: 42px;
+        padding: 9px 20px;
+        border-radius: 8px;
+        border: 2px solid $red-primary;
+        background-color: $white;
+        .p-button-label {
+          color: $red-primary;
+          font-weight: 500;
+        }
+      }
+    }
 
-    .halalPlaces, .prayerPlaces {
+    .halalPlaces,
+    .prayerPlaces {
       .foodCategories {
         display: inline-flex;
         gap: 8px;
@@ -262,7 +278,7 @@
         .p-card {
           .p-card-header {
             .cardHeaderCta {
-              .success{
+              .success {
                 .p-chip {
                   background-color: $success;
                 }

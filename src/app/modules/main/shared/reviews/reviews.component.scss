@@ -1,0 +1,105 @@
+@import "../../../../../styles.scss";
+@import "../../../../../colors.scss";
+
+#reviews {
+    border-top: 1px solid #E3E8EF;
+  background-color: $white;
+  padding: 48px 116px;
+  //   display: flex;
+  text-align: center;
+  gap: 20px;
+  .latestReviews {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    // flex: 1 0 0;
+    .heading {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      h4 {
+        font-size: 30px;
+        font-weight: 600;
+        color: $fontColorDark;
+      }
+      span {
+        font-size: 18px;
+        font-style: italic;
+        font-weight: 400;
+        color: $grey;
+        font-family: "Poppins";
+      }
+    }
+    .reviewCards {
+      display: flex;
+      gap: 20px;
+      .card {
+        width: 460px;
+        background-color: $grey-50;
+        border: 1px solid $grey-border;
+        padding: 16px;
+        border-radius: 12px;
+        height: fit-content;
+        .infoChip {
+          .name {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 600;
+            color: $fontColorDark;
+          }
+          .address {
+            font-family: "Inter";
+            font-size: 14px;
+            font-style: italic;
+            font-weight: 400;
+            color: #697586;
+          }
+        }
+        .chip {
+          display: flex;
+          padding: 2px 8px;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
+          border-radius: 50px;
+          border: 1px solid #eaecf0;
+          background: $white;
+          width: max-content;
+          font-family: "Inter";
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 18px;
+        }
+        .reviewer {
+            .reviewerImage {
+              padding: 10px 12px;
+              background-color: #E3E8EF;
+              border-radius: 50px;
+              display: flex;
+              align-items: center;
+            }
+            .info {
+              display: flex;
+              .name {
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                color: $fontColorDark;
+              }
+              .address {
+                font-family: "Inter";
+                font-size: 13px;
+                font-style: italic;
+                font-weight: 400;
+                color: #697586;
+              }
+            }
+          }
+      }
+    }
+  }
+  
+}
