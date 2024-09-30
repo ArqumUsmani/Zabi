@@ -1,0 +1,30 @@
+<p-card header="Filters">
+    <div class="searchRadius">
+        <h5>Search Radius</h5>
+        <p-slider [(ngModel)]="rangeValues" [range]="true"></p-slider>
+    </div>
+    <div class="HalalFilters">
+        <h5>Halal filters</h5>
+        <div class="filterList">
+            <div class="listItem">
+                <span>Show only fully halal places</span><p-inputSwitch></p-inputSwitch>
+            </div>
+            <div class="listItem">
+                <span>Hide places that serve/allow alcohol</span><p-inputSwitch></p-inputSwitch>
+            </div>
+        </div>
+    </div>
+    <div class="rating">
+        <h5>Has rating above</h5>
+        <div class="ratingVisual">
+            <span class="ratingStars">
+                <em class="filledStar"></em>
+                <em class="filledStar"></em>
+                <em class="filledStar"></em>
+                <em class="filledStar"></em>
+                <em class="outlinedStar"></em>
+            </span>
+            <span class="ratingNumber">4.0</span>
+        </div>
+    </div>
+</p-card>
