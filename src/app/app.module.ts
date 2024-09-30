@@ -15,6 +15,7 @@ import { PrayerSpacesComponent } from './modules/main/prayer-spaces/prayer-space
 import { LocationFilterComponent } from './modules/common/location-filter/location-filter.component';
 import { ReviewsComponent } from './modules/main/shared/reviews/reviews.component';
 import { RecentlyAddedComponent } from './modules/main/shared/recently-added/recently-added.component';
+import { FiltersComponent } from './modules/main/shared/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RecentlyAddedComponent } from './modules/main/shared/recently-added/rec
     FooterComponent,
     LocationFilterComponent,
     ReviewsComponent,
-    RecentlyAddedComponent
+    RecentlyAddedComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
