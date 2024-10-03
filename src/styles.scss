@@ -24,22 +24,34 @@ h5{
 }
 .p-button-label {
   color: $fontColorDark;
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 18px;
 }
 i,
 em {
   color: $iconRed;
 }
-.countryFilter-pill {
+.p-chip {
   background-color: $pillColorRed;
   color: $white;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: "Inter";
+  line-height: 20px;
+  border-radius: 50px;
+  padding: 4px 12px;
 }
 .p-button {
   border-radius: 9px;
+
 }
 .p-button-success {
   background: $green-primary !important;
   border: none !important;
+  .p-button-label{
+    color: $white!important;
+  }
 }
 .p-inputtext {
   border-radius: 12px;
