@@ -31,7 +31,7 @@ import { FiltersComponent } from './modules/main/shared/filters/filters.componen
     LocationFilterComponent,
     ReviewsComponent,
     RecentlyAddedComponent,
-    FiltersComponent
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,

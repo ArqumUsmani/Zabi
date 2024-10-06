@@ -1,171 +1,255 @@
 <div id="placesSection" class="col-12">
-    <div class="filter col-3">
-        <app-filters></app-filters>
-    </div>
-    <div class="placesCards col-9">
-        <div class="halalPlaces">
-            <div class="header">
-                <h4>52 halal places near you</h4>
+  <div class="filter col-3">
+    <app-filters></app-filters>
+  </div>
+  <div class="placesCards col-9">
+    <p-carousel
+      [numVisible]="3"
+      [numScroll]="1"
+      [responsiveOptions]="responsiveOptions"
+    >
+      <ng-template pTemplate="header">
+        <p>Header content</p>
+      </ng-template>
+      <ng-template let-product pTemplate="item">
+        <div class="product-item">
+          <div class="product-item-content">
+            <div class="mb-3">
+              <img
+                src="https://primefaces.org/cdn/primeng/images/demo/product/{{
+                  product.image
+                }}"
+                [alt]="product.name"
+                class="product-image"
+              />
             </div>
-            <div class="foodCategories">
-                <div class="category">
-                    <p-image src="../../assets/images/food-image-2.svg" alt="Image" width="100"></p-image>
-                    <!-- <div class="img">
-              <img src="../../assets/images/food-image-2.svg" alt="" />
-            </div> -->
-                    <span class="title">Pakistani</span>
-                </div>
-                <div class="category">
-                    <p-image src="../../assets/images/food-image-2.svg" alt="Image" width="100"></p-image>
-                    <!-- <div class="img">
-              <img src="../../assets/images/food-image-2.svg" alt="" />
-            </div> -->
-                    <span class="title">Turkish</span>
-                </div>
-                <div class="category">
-                    <p-image src="../../assets/images/food-image-2.svg" alt="Image" width="100"></p-image>
-                    <!-- <div class="img">
-              <img src="../../assets/images/food-image-2.svg" alt="" />
-            </div> -->
-                    <span class="title">Chinese</span>
-                </div>
-                <div class="category">
-                    <p-image src="../../assets/images/food-image-2.svg" alt="Image" width="100"></p-image>
-                    <!-- <div class="img">
-              <img src="../../assets/images/food-image-2.svg" alt="" />
-            </div> -->
-                    <span class="title">Middle Eastern</span>
-                </div>
-                <div class="category">
-                    <p-image src="../../assets/images/food-image-2.svg" alt="Image" width="100"></p-image>
-                    <!-- <div class="img">
-              <img src="../../assets/images/food-image-2.svg" alt="" />
-            </div> -->
-                    <span class="title">Steak</span>
-                </div>
+            <div>
+              <h4 class="mb-1">{{ product.name }}</h4>
+              <h6 class="mt-0 mb-3">{{ product.price }}</h6>
+
+              <div class="car-buttons mt-5">
+                <p-button
+                  type="button"
+                  styleClass="p-button p-button-rounded mr-2"
+                  icon="pi pi-search"
+                ></p-button>
+                <p-button
+                  type="button"
+                  styleClass="p-button-success p-button-rounded mr-2"
+                  icon="pi pi-star-fill"
+                ></p-button>
+                <p-button
+                  type="button"
+                  styleClass="p-button-help p-button-rounded"
+                  icon="pi pi-cog"
+                ></p-button>
+              </div>
             </div>
-            <div class="cards">
-                <p-card [style]="{ width: '296px' }">
-                    <ng-template pTemplate="header">
-                        <div class="cardHeaderCta">
-                            <p-chip label="New" class="success"></p-chip>
-                            <em class="likeHeartFilled"></em>
-                        </div>
-                        <img alt="Card" src="../../assets/images/food-image-1.svg" />
-                    </ng-template>
-                    <div class="cardHeader">
-                        <img class="restaurantLogo" src="../../assets/images/restaurant-image.svg" alt="" />
-                        <div class="restaurantInfo">
-                            <h5 class="restaurantName">Burger King</h5>
-                            <p class="restaurantAddress">231 Main Street</p>
-                        </div>
-                        <div class="icons">
-                            <em class="delivery"></em>
-                            <em class="phoneOutlined"></em>
-                        </div>
-                    </div>
-                    <div class="cardBody">
-                        <div class="left">
-                            <div class="ratings">
-                                <em class="ratingStarFilled"></em><span class="orange">4.8</span>
-                            </div>
-                            <div class="ratings">
-                                <em class="comment"></em><span>56</span>
-                            </div>
-                            <div class="ratings">
-                                <em class="repeat"></em><span>56%</span>
-                            </div>
-                            <div class="ratings"><em class="image"></em><span>5</span></div>
-                        </div>
-                        <div class="right"><em class="routing"></em><span>700m</span></div>
-                    </div>
-                    <div class="cardFooter">
-                        <p-chip label="American"></p-chip>
-                        <p-chip label="Middle Eastern"></p-chip>
-                        <p-chip label="Deli"></p-chip>
-                    </div>
-                </p-card>
-                <p-card [style]="{ width: '296px' }">
-                    <ng-template pTemplate="header">
-                        <div class="cardHeaderCta">
-                            <p-chip label="Closed"></p-chip>
-                            <em class="likeHeartFilled"></em>
-                        </div>
-                        <img alt="Card" src="../../assets/images/food-image-2.svg" />
-                    </ng-template>
-                    <div class="cardHeader">
-                        <img class="restaurantLogo" src="../../assets/images/restaurant-image.svg" alt="" />
-                        <div class="restaurantInfo">
-                            <h5 class="restaurantName">Burger King</h5>
-                            <p class="restaurantAddress">231 Main Street</p>
-                        </div>
-                        <div class="icons">
-                            <em class="delivery"></em>
-                            <em class="phoneOutlined"></em>
-                        </div>
-                    </div>
-                    <div class="cardBody">
-                        <div class="left">
-                            <div class="ratings">
-                                <em class="ratingStarFilled"></em><span class="orange">4.8</span>
-                            </div>
-                            <div class="ratings">
-                                <em class="comment"></em><span>56</span>
-                            </div>
-                            <div class="ratings">
-                                <em class="repeat"></em><span>56%</span>
-                            </div>
-                            <div class="ratings"><em class="image"></em><span>5</span></div>
-                        </div>
-                        <div class="right"><em class="routing"></em><span>700m</span></div>
-                    </div>
-                    <div class="cardFooter">
-                        <p-chip label="American"></p-chip>
-                        <p-chip label="Middle Eastern"></p-chip>
-                        <p-chip label="Deli"></p-chip>
-                    </div>
-                </p-card>
-                <p-card [style]="{ width: '296px' }">
-                    <ng-template pTemplate="header">
-                        <div class="cardHeaderCta">
-                            <p-chip label="Order Now"></p-chip>
-                            <em class="likeHeartFilled"></em>
-                        </div>
-                        <img alt="Card" src="../../assets/images/food-image-2.svg" />
-                    </ng-template>
-                    <div class="cardHeader">
-                        <img class="restaurantLogo" src="../../assets/images/restaurant-image.svg" alt="" />
-                        <div class="restaurantInfo">
-                            <h5 class="restaurantName">Burger King</h5>
-                            <p class="restaurantAddress">231 Main Street</p>
-                        </div>
-                        <div class="icons">
-                            <em class="delivery"></em>
-                            <em class="phoneOutlined"></em>
-                        </div>
-                    </div>
-                    <div class="cardBody">
-                        <div class="left">
-                            <div class="ratings">
-                                <em class="ratingStarFilled"></em><span class="orange">4.8</span>
-                            </div>
-                            <div class="ratings">
-                                <em class="comment"></em><span>56</span>
-                            </div>
-                            <div class="ratings">
-                                <em class="repeat"></em><span>56%</span>
-                            </div>
-                            <div class="ratings"><em class="image"></em><span>5</span></div>
-                        </div>
-                        <div class="right"><em class="routing"></em><span>700m</span></div>
-                    </div>
-                    <div class="cardFooter">
-                        <p-chip label="American"></p-chip>
-                        <p-chip label="Middle Eastern"></p-chip>
-                        <p-chip label="Deli"></p-chip>
-                    </div>
-                </p-card>
-            </div>
+          </div>
         </div>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <p>Footer content</p>
+      </ng-template>
+    </p-carousel>
+    <div class="halalPlaces">
+      <div class="header">
+        <h4>52 halal places near you</h4>
+      </div>
+      <div class="foodCategories">
+        <div class="category">
+          <p-image
+            src="../../assets/images/food-image-2.svg"
+            alt="Image"
+            width="100"
+          ></p-image>
+          <!-- <div class="img">
+              <img src="../../assets/images/food-image-2.svg" alt="" />
+            </div> -->
+          <span class="title">Pakistani</span>
+        </div>
+        <div class="category">
+          <p-image
+            src="../../assets/images/food-image-2.svg"
+            alt="Image"
+            width="100"
+          ></p-image>
+          <!-- <div class="img">
+              <img src="../../assets/images/food-image-2.svg" alt="" />
+            </div> -->
+          <span class="title">Turkish</span>
+        </div>
+        <div class="category">
+          <p-image
+            src="../../assets/images/food-image-2.svg"
+            alt="Image"
+            width="100"
+          ></p-image>
+          <!-- <div class="img">
+              <img src="../../assets/images/food-image-2.svg" alt="" />
+            </div> -->
+          <span class="title">Chinese</span>
+        </div>
+        <div class="category">
+          <p-image
+            src="../../assets/images/food-image-2.svg"
+            alt="Image"
+            width="100"
+          ></p-image>
+          <!-- <div class="img">
+              <img src="../../assets/images/food-image-2.svg" alt="" />
+            </div> -->
+          <span class="title">Middle Eastern</span>
+        </div>
+        <div class="category">
+          <p-image
+            src="../../assets/images/food-image-2.svg"
+            alt="Image"
+            width="100"
+          ></p-image>
+          <!-- <div class="img">
+              <img src="../../assets/images/food-image-2.svg" alt="" />
+            </div> -->
+          <span class="title">Steak</span>
+        </div>
+      </div>
+      <div class="cards">
+        <p-card [style]="{ width: '296px' }">
+          <ng-template pTemplate="header">
+            <div class="cardHeaderCta">
+              <p-chip label="New" class="success"></p-chip>
+              <em class="likeHeartFilled"></em>
+            </div>
+            <img alt="Card" src="../../assets/images/food-image-1.svg" />
+          </ng-template>
+          <div class="cardHeader">
+            <img
+              class="restaurantLogo"
+              src="../../assets/images/restaurant-image.svg"
+              alt=""
+            />
+            <div class="restaurantInfo">
+              <h5 class="restaurantName">Burger King</h5>
+              <p class="restaurantAddress">231 Main Street</p>
+            </div>
+            <div class="icons">
+              <em class="delivery"></em>
+              <em class="phoneOutlined"></em>
+            </div>
+          </div>
+          <div class="cardBody">
+            <div class="left">
+              <div class="ratings">
+                <em class="ratingStarFilled"></em
+                ><span class="orange">4.8</span>
+              </div>
+              <div class="ratings">
+                <em class="comment"></em><span>56</span>
+              </div>
+              <div class="ratings">
+                <em class="repeat"></em><span>56%</span>
+              </div>
+              <div class="ratings"><em class="image"></em><span>5</span></div>
+            </div>
+            <div class="right"><em class="routing"></em><span>700m</span></div>
+          </div>
+          <div class="cardFooter">
+            <p-chip label="American"></p-chip>
+            <p-chip label="Middle Eastern"></p-chip>
+            <p-chip label="Deli"></p-chip>
+          </div>
+        </p-card>
+        <p-card [style]="{ width: '296px' }">
+          <ng-template pTemplate="header">
+            <div class="cardHeaderCta">
+              <p-chip label="Closed"></p-chip>
+              <em class="likeHeartFilled"></em>
+            </div>
+            <img alt="Card" src="../../assets/images/food-image-2.svg" />
+          </ng-template>
+          <div class="cardHeader">
+            <img
+              class="restaurantLogo"
+              src="../../assets/images/restaurant-image.svg"
+              alt=""
+            />
+            <div class="restaurantInfo">
+              <h5 class="restaurantName">Burger King</h5>
+              <p class="restaurantAddress">231 Main Street</p>
+            </div>
+            <div class="icons">
+              <em class="delivery"></em>
+              <em class="phoneOutlined"></em>
+            </div>
+          </div>
+          <div class="cardBody">
+            <div class="left">
+              <div class="ratings">
+                <em class="ratingStarFilled"></em
+                ><span class="orange">4.8</span>
+              </div>
+              <div class="ratings">
+                <em class="comment"></em><span>56</span>
+              </div>
+              <div class="ratings">
+                <em class="repeat"></em><span>56%</span>
+              </div>
+              <div class="ratings"><em class="image"></em><span>5</span></div>
+            </div>
+            <div class="right"><em class="routing"></em><span>700m</span></div>
+          </div>
+          <div class="cardFooter">
+            <p-chip label="American"></p-chip>
+            <p-chip label="Middle Eastern"></p-chip>
+            <p-chip label="Deli"></p-chip>
+          </div>
+        </p-card>
+        <p-card [style]="{ width: '296px' }">
+          <ng-template pTemplate="header">
+            <div class="cardHeaderCta">
+              <p-chip label="Order Now"></p-chip>
+              <em class="likeHeartFilled"></em>
+            </div>
+            <img alt="Card" src="../../assets/images/food-image-2.svg" />
+          </ng-template>
+          <div class="cardHeader">
+            <img
+              class="restaurantLogo"
+              src="../../assets/images/restaurant-image.svg"
+              alt=""
+            />
+            <div class="restaurantInfo">
+              <h5 class="restaurantName">Burger King</h5>
+              <p class="restaurantAddress">231 Main Street</p>
+            </div>
+            <div class="icons">
+              <em class="delivery"></em>
+              <em class="phoneOutlined"></em>
+            </div>
+          </div>
+          <div class="cardBody">
+            <div class="left">
+              <div class="ratings">
+                <em class="ratingStarFilled"></em
+                ><span class="orange">4.8</span>
+              </div>
+              <div class="ratings">
+                <em class="comment"></em><span>56</span>
+              </div>
+              <div class="ratings">
+                <em class="repeat"></em><span>56%</span>
+              </div>
+              <div class="ratings"><em class="image"></em><span>5</span></div>
+            </div>
+            <div class="right"><em class="routing"></em><span>700m</span></div>
+          </div>
+          <div class="cardFooter">
+            <p-chip label="American"></p-chip>
+            <p-chip label="Middle Eastern"></p-chip>
+            <p-chip label="Deli"></p-chip>
+          </div>
+        </p-card>
+      </div>
     </div>
+  </div>
 </div>

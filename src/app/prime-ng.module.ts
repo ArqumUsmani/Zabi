@@ -14,6 +14,8 @@ import { SliderModule } from 'primeng/slider';
 import { StyleClassModule } from 'primeng/styleclass';
 import { TooltipModule } from 'primeng/tooltip';
 import { SharedModule } from 'primeng/api';
+import { CarouselModule } from 'primeng/carousel';
+
 
 @NgModule({
   declarations: [],
@@ -33,7 +35,8 @@ import { SharedModule } from 'primeng/api';
     ImageModule,
     TooltipModule,
     SharedModule,
-    ListboxModule
+    ListboxModule,
+    CarouselModule
   ],
   exports: [
     StyleClassModule,
@@ -49,7 +52,8 @@ import { SharedModule } from 'primeng/api';
     InputSwitchModule,
     ImageModule,
     TooltipModule,
-    SharedModule
+    SharedModule,
+    CarouselModule
   ]
 })
 export class PrimeNgModule { }

@@ -35,8 +35,9 @@
     .reviewCards {
       display: flex;
       gap: 20px;
+      flex-wrap: wrap;
       .card {
-        width: 460px;
+        width: 405px;
         background-color: $grey-50;
         border: 1px solid $grey-border;
         padding: 16px;
