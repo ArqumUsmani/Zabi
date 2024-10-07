@@ -1,17 +1,131 @@
 <p-menubar [model]="items" class="pt-0">
-    <ng-template pTemplate="start">
-        <img src="../../assets/logo.svg" height="40" class="mr-2" />
-    </ng-template>
-    <ng-template pTemplate="item" let-item>
-        <ng-container *ngIf="item.routerLink">
-            <a [routerLink]="item.routerLink" class="p-menuitem-link">
-                <span [class]="item.icon"></span>
-                <span class="ml-2">{{ item.label }}</span>
-            </a>
-        </ng-container>
-    </ng-template>    
-    <ng-template pTemplate="end">
-        <p-button label="Log in" styleClass="p-button-link" routerLink="login"></p-button>
-        <button pButton pRipple label="Sign up" class="p-button-success"></button>
-    </ng-template>
+  <ng-template pTemplate="start">
+    <img src="../../assets/logo.svg" height="40" class="mr-2" />
+  </ng-template>
+  <ng-template pTemplate="item" let-item>
+    <ng-container *ngIf="item.routerLink">
+      <a [routerLink]="item.routerLink" class="p-menuitem-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    </ng-container>
+  </ng-template>
+  <ng-template pTemplate="end">
+    <p-button
+      label="Log in"
+      styleClass="p-button-link"
+      (click)="showSignInDialog()"
+    ></p-button>
+    <button pButton pRipple label="Sign up" class="p-button-success"></button>
+  </ng-template>
 </p-menubar>
+
+<p-dialog
+  [(visible)]="signInDialog"
+  [style]="{ width: '532px' }"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+>
+  <div id="loginForm">
+    <div class="logoText">
+      <img class="logo" src="../../../../assets/images/logo-red.svg" alt="" />
+      <h5 class="slogan">
+        The original guide to Halal restaurants, markets and more
+      </h5>
+    </div>
+    <div class="form">
+      <div class="loginOptions">
+        <p-button
+          label="Sign in with email"
+          icon="email"
+          (click)="showEmailSignInDialog()"
+        ></p-button>
+        <p-button label="Sign in with phone " icon="phone"></p-button>
+        <p-button label="Continue with Facebook" icon="facebook"></p-button>
+        <p-button label="Continue with Apple" icon="apple"></p-button>
+      </div>
+      <a routerLink="signup" class="formSubText">Don’t have an account?</a>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog
+  [(visible)]="emailSignInDialog"
+  [style]="{ width: '532px' }"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+>
+  <div id="loginForm">
+    <div class="logoText">
+      <img class="logoIcon" src="../../../../assets/icons/sms.svg" alt="" />
+    </div>
+    <div class="form">
+      <h4 class="formHeading">Sign in with email</h4>
+      <p class="formSubText">We will send you code to login in</p>
+      <div class="emailLoginForm">
+        <span class="p-input-icon-left">
+          <i class="email" style="top: 21px;"></i>
+          <input
+            type="text"
+            pInputText
+            placeholder="Enter your email address"
+          />
+        </span>
+        <p-button label="Send verification code"></p-button>
+      </div>
+      <a class="formSubText">Don’t have an account? <span routerLink="signup" class="redFont">Signup</span></a>
+    </div>
+  </div>
+</p-dialog>
+<p-dialog
+  [(visible)]="phoneSignInDialog"
+  [style]="{ width: '532px' }"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+>
+  <div id="loginForm">
+    <div class="logoText">
+      <img class="logo" src="../../../../assets/images/logo-red.svg" alt="" />
+      <h5 class="slogan">
+        The original guide to Halal restaurants, markets and more
+      </h5>
+    </div>
+    <div class="form">
+      <div class="loginOptions">
+        <p-button label="Sign in with email" icon="email"></p-button>
+        <p-button label="Sign in with phone " icon="phone"></p-button>
+        <p-button label="Continue with Facebook" icon="facebook"></p-button>
+        <p-button label="Continue with Apple" icon="apple"></p-button>
+      </div>
+      <a routerLink="signup" class="formSubText">Don’t have an account?</a>
+    </div>
+  </div>
+</p-dialog>
+<p-dialog
+  [(visible)]="signUpDialog"
+  [style]="{ width: '532px' }"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+>
+  <div id="loginForm">
+    <div class="logoText">
+      <img class="logo" src="../../../../assets/images/logo-red.svg" alt="" />
+      <h5 class="slogan">
+        The original guide to Halal restaurants, markets and more
+      </h5>
+    </div>
+    <div class="form">
+      <div class="loginOptions">
+        <p-button label="Sign in with email" icon="email"></p-button>
+        <p-button label="Sign in with phone " icon="phone"></p-button>
+        <p-button label="Continue with Facebook" icon="facebook"></p-button>
+        <p-button label="Continue with Apple" icon="apple"></p-button>
+      </div>
+      <a routerLink="signup" class="formSubText">Don’t have an account?</a>
+    </div>
+  </div>
+</p-dialog>

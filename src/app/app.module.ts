@@ -16,6 +16,7 @@ import { LocationFilterComponent } from './modules/common/location-filter/locati
 import { ReviewsComponent } from './modules/main/shared/reviews/reviews.component';
 import { RecentlyAddedComponent } from './modules/main/shared/recently-added/recently-added.component';
 import { FiltersComponent } from './modules/main/shared/filters/filters.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FiltersComponent } from './modules/main/shared/filters/filters.componen
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    PrimeNgModule
+    PrimeNgModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

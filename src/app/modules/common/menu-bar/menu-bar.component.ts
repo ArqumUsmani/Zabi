@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FilterMatchMode, MenuItem, PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-menu-bar',
   templateUrl: './menu-bar.component.html',
-  styleUrls: ['./menu-bar.component.scss']
+  styleUrls: ['./menu-bar.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MenuBarComponent {
   title = 'Zabihah';
   constructor(private primengConfig: PrimeNGConfig) {}
   items: MenuItem[] = [];
+  signInDialog: boolean = false;
+  emailSignInDialog: boolean = false;
+  phoneSignInDialog: boolean = false;
+  signUpDialog: boolean = false; 
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.primengConfig.zIndex = {
@@ -65,5 +70,20 @@ export class MenuBarComponent {
         routerLink: 'prayer-spaces',
       },
     ];
+  }
+
+  
+  showSignInDialog() {
+      this.signInDialog = true;
+  }
+  showEmailSignInDialog() {
+      this.emailSignInDialog = true;
+      this.signInDialog = false;
+  }
+  showPhoneSignInDialog() {
+      this.phoneSignInDialog = true;
+  }
+  showSignUpDialog() {
+      this.signUpDialog = true;
   }
 }
