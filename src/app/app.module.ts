@@ -17,6 +17,8 @@ import { ReviewsComponent } from './modules/main/shared/reviews/reviews.componen
 import { RecentlyAddedComponent } from './modules/main/shared/recently-added/recently-added.component';
 import { FiltersComponent } from './modules/main/shared/filters/filters.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GeolocationService } from './common/services/geolocation.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     CommonModule,
     PrimeNgModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
