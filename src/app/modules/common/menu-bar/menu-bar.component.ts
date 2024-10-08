@@ -13,8 +13,10 @@ export class MenuBarComponent {
   items: MenuItem[] = [];
   signInDialog: boolean = false;
   emailSignInDialog: boolean = false;
-  phoneSignInDialog: boolean = false;
+  confirmPhoneDialog: boolean = false;
   signUpDialog: boolean = false; 
+  confirmEmailDialog: boolean = false; 
+  signInPhoneDialog: boolean = false; 
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.primengConfig.zIndex = {
@@ -80,10 +82,21 @@ export class MenuBarComponent {
       this.emailSignInDialog = true;
       this.signInDialog = false;
   }
-  showPhoneSignInDialog() {
-      this.phoneSignInDialog = true;
+  showConfirmPhoneDialog() {
+      this.confirmPhoneDialog = true;
+      this.signUpDialog = false;
+      this.signInPhoneDialog = false
+    this.confirmEmailDialog = false
   }
   showSignUpDialog() {
       this.signUpDialog = true;
+  }
+  showConfirmEmailDialog(){
+    this.emailSignInDialog = false;
+    this.confirmEmailDialog = true
+  }
+  showPhoneSigninDialog(){
+    this.signInPhoneDialog = true;
+    this.signInDialog = false
   }
 }

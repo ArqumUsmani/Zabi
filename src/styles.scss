@@ -18,20 +18,23 @@ h1,
 h2,
 h3,
 h4,
-h5{
+h5 {
   color: $fontColorDark;
   font-family: "Poppins", sans-serif;
   margin: 0px;
 }
-.p-button-label {
-  color: $fontColorDark;
-  font-family: "Inter";
-  font-weight: 700;
-  font-size: 18px;
-}
+
 i,
 em {
   color: $iconRed;
+}
+a{
+  text-decoration: none;
+  color: $fontColorDark;
+  &:hover{
+    text-decoration: none;
+    color: $red-primary;
+  }
 }
 .p-chip {
   background-color: $pillColorRed;
@@ -45,13 +48,28 @@ em {
 }
 .p-button {
   border-radius: 9px;
-
+  .p-button-label {
+    color: $fontColorDark;
+    font-family: "Inter";
+    font-weight: 700;
+    font-size: 18px;
+  }
 }
+
 .p-button-success {
   background: $green-primary !important;
   border: none !important;
-  .p-button-label{
-    color: $white!important;
+  .p-button-label {
+    color: $white !important;
+  }
+}
+.p-disabled {
+  background-color: $disabled;
+  border: none !important;
+  .p-button-label {
+    color: $white !important;
+    font-weight: 600;
+    font-size: 16px;
   }
 }
 .p-inputtext {
@@ -62,9 +80,9 @@ ul {
   padding-left: 0;
   margin: 0;
   li {
-    display: flex!important;
-    flex-direction: column!important;
-    line-height: 24px!important;
+    display: flex !important;
+    flex-direction: column !important;
+    line-height: 24px !important;
     a {
       text-decoration: none;
       color: $grey;
@@ -136,15 +154,15 @@ ul {
 .routing {
   content: url("/assets/icons/routing-24.svg");
 }
-.twitter{
+.twitter {
   content: url("/assets/icons/social-x-24.svg");
 }
-.facebook{
+.facebook {
   content: url("/assets/icons/social-fb-24.svg");
 }
-.linkedin{
+.linkedin {
   content: url("/assets/icons/social-linkedin-24.svg");
 }
-.instagram{
+.instagram {
   content: url("/assets/icons/social-insta-24.svg");
 }

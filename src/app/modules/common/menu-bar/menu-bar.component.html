@@ -27,25 +27,34 @@
   [modal]="true"
   [resizable]="false"
 >
-  <div id="loginForm">
-    <div class="logoText">
+  <div id="authDialog">
+    <div class="iconHeader">
       <img class="logo" src="../../../../assets/images/logo-red.svg" alt="" />
       <h5 class="slogan">
         The original guide to Halal restaurants, markets and more
       </h5>
     </div>
-    <div class="form">
-      <div class="loginOptions">
-        <p-button
-          label="Sign in with email"
-          icon="email"
-          (click)="showEmailSignInDialog()"
-        ></p-button>
-        <p-button label="Sign in with phone " icon="phone"></p-button>
-        <p-button label="Continue with Facebook" icon="facebook"></p-button>
-        <p-button label="Continue with Apple" icon="apple"></p-button>
+    <div class="mainForm">
+      <div class="form">
+        <div class="authOptions">
+          <p-button
+            label="Sign in with email"
+            icon="email"
+            (click)="showEmailSignInDialog()"
+          ></p-button>
+          <p-button
+            label="Sign in with phone "
+            icon="phone"
+            (onClick)="showPhoneSigninDialog()"
+          ></p-button>
+          <p-button label="Continue with Facebook" icon="facebook"></p-button>
+          <p-button label="Continue with Apple" icon="apple"></p-button>
+        </div>
       </div>
-      <a routerLink="signup" class="formSubText">Don’t have an account?</a>
+      <span class="subText"
+        >Don’t have an account?
+        <a (click)="showSignUpDialog()" class="redFont">Sign up</a></span
+      >
     </div>
   </div>
 </p-dialog>
@@ -57,53 +66,85 @@
   [modal]="true"
   [resizable]="false"
 >
-  <div id="loginForm">
-    <div class="logoText">
-      <img class="logoIcon" src="../../../../assets/icons/sms.svg" alt="" />
+  <div id="authDialog">
+    <div class="iconHeader">
+      <em class="icon email"></em>
     </div>
-    <div class="form">
-      <h4 class="formHeading">Sign in with email</h4>
-      <p class="formSubText">We will send you code to login in</p>
-      <div class="emailLoginForm">
-        <span class="p-input-icon-left">
-          <i class="email" style="top: 21px;"></i>
-          <input
-            type="text"
-            pInputText
-            placeholder="Enter your email address"
-          />
-        </span>
-        <p-button label="Send verification code"></p-button>
+    <div class="mainForm">
+      <div class="content">
+        <h4 class="heading">Sign in with email</h4>
+        <p class="supportingText">We will send you code to login in</p>
       </div>
-      <a class="formSubText">Don’t have an account? <span routerLink="signup" class="redFont">Signup</span></a>
+      <div class="form">
+        <div class="authOptions">
+          <span class="p-input-icon-left">
+            <i class="email" style="top: 21px"></i>
+            <input
+              type="text"
+              pInputText
+              class="emailInput"
+              placeholder="Enter your email address"
+            />
+          </span>
+        </div>
+        <div class="actionButtons">
+          <p-button
+            label="Send verification code"
+            class="cta"
+            (onClick)="showConfirmEmailDialog()"
+          ></p-button>
+        </div>
+      </div>
+      <span class="subText"
+        >Don’t have an account?
+        <a (click)="showSignUpDialog()" class="redFont">Signup</a></span
+      >
     </div>
   </div>
 </p-dialog>
 <p-dialog
-  [(visible)]="phoneSignInDialog"
+  [(visible)]="confirmEmailDialog"
   [style]="{ width: '532px' }"
   [draggable]="false"
   [modal]="true"
   [resizable]="false"
 >
-  <div id="loginForm">
-    <div class="logoText">
-      <img class="logo" src="../../../../assets/images/logo-red.svg" alt="" />
-      <h5 class="slogan">
-        The original guide to Halal restaurants, markets and more
-      </h5>
+  <div id="authDialog">
+    <div class="iconHeader">
+      <em class="icon email"></em>
     </div>
-    <div class="form">
-      <div class="loginOptions">
-        <p-button label="Sign in with email" icon="email"></p-button>
-        <p-button label="Sign in with phone " icon="phone"></p-button>
-        <p-button label="Continue with Facebook" icon="facebook"></p-button>
-        <p-button label="Continue with Apple" icon="apple"></p-button>
+    <div class="mainForm">
+      <div class="content">
+        <h4 class="heading">Confirm your email</h4>
+        <p class="supportingText">Enter the code we sent to</p>
+        <a type="email" href="to:email@domain.com" class="redFont"
+          >email@domain.com</a
+        >
       </div>
-      <a routerLink="signup" class="formSubText">Don’t have an account?</a>
+      <div class="form">
+        <div class="otpInputs">
+          <input type="text" pInputText placeholder="0" />
+          <input type="text" pInputText placeholder="0" />
+          <input type="text" pInputText placeholder="0" />
+          <input type="text" pInputText placeholder="0" />
+        </div>
+        <div class="actionButtons flex flex-column gap-2">
+          <p-button label="Continue" class="cta"></p-button>
+          <p-button
+            label="Resend in 50 seconds"
+            class="cta"
+            [disabled]="true"
+          ></p-button>
+        </div>
+      </div>
+      <span class="subText"
+        >Don’t have an account?
+        <a (click)="showSignUpDialog()" class="redFont">Signup</a></span
+      >
     </div>
   </div>
 </p-dialog>
+
 <p-dialog
   [(visible)]="signUpDialog"
   [style]="{ width: '532px' }"
@@ -111,21 +152,143 @@
   [modal]="true"
   [resizable]="false"
 >
-  <div id="loginForm">
-    <div class="logoText">
-      <img class="logo" src="../../../../assets/images/logo-red.svg" alt="" />
+  <div id="authDialog">
+    <div class="iconHeader">
+      <h4 class="heading">Welcome to Zabihah</h4>
       <h5 class="slogan">
-        The original guide to Halal restaurants, markets and more
+        Please add the following information to complete your account.
       </h5>
     </div>
-    <div class="form">
-      <div class="loginOptions">
-        <p-button label="Sign in with email" icon="email"></p-button>
-        <p-button label="Sign in with phone " icon="phone"></p-button>
-        <p-button label="Continue with Facebook" icon="facebook"></p-button>
-        <p-button label="Continue with Apple" icon="apple"></p-button>
+    <div class="mainForm">
+      <div class="content">
+        <div class="avatar">
+          <p-avatar
+            image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+            shape="circle"
+          >
+          </p-avatar>
+          <p-button icon="email"></p-button>
+        </div>
       </div>
-      <a routerLink="signup" class="formSubText">Don’t have an account?</a>
+      <div class="form">
+        <div class="signupForm">
+          <div class="flex gap-3">
+            <div class="flex flex-column gap-2">
+              <label htmlFor="firstName">First name</label>
+              <input pInputText id="firstName" />
+            </div>
+            <div class="flex flex-column gap-2">
+              <label htmlFor="lastName">Last name</label>
+              <input pInputText id="lastName" />
+            </div>
+          </div>
+          <div class="flex flex-column gap-2">
+            <label htmlFor="phoneNumber">Phone number</label>
+            <input
+              class="phoneNumberInput"
+              pInputText
+              id="phoneNumber"
+              placeholder="+1 (555) 000-0000"
+            />
+          </div>
+        </div>
+        <p-checkbox
+          style="width: 100%"
+          name="groupname"
+          value="val1"
+          label="I agree to terms and conditions."
+        ></p-checkbox>
+        <div class="actionButtons flex flex-column gap-2">
+          <p-button
+            label="Continue"
+            (onClick)="showConfirmPhoneDialog()"
+            class="cta"
+          ></p-button>
+        </div>
+      </div>
+      <span class="subText"
+        >If you have an account?
+        <a (click)="showSignInDialog()" class="redFont">Sign In</a></span
+      >
+    </div>
+  </div>
+</p-dialog>
+<p-dialog
+  [(visible)]="confirmPhoneDialog"
+  [style]="{ width: '532px' }"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+>
+  <div id="authDialog">
+    <div class="iconHeader">
+      <em class="icon email"></em>
+    </div>
+    <div class="mainForm">
+      <div class="content">
+        <h4 class="heading">Confirm your phone</h4>
+        <p class="supportingText">Enter the code we sent to</p>
+        <a type="email" href="to:email@domain.com" class="redFont"
+          >+1 (555) 0000000</a
+        >
+      </div>
+      <div class="form">
+        <div class="otpInputs">
+          <input type="text" pInputText placeholder="0" />
+          <input type="text" pInputText placeholder="0" />
+          <input type="text" pInputText placeholder="0" />
+          <input type="text" pInputText placeholder="0" />
+        </div>
+        <div class="actionButtons flex flex-column gap-2">
+          <p-button label="Continue" class="cta"></p-button>
+          <p-button
+            label="Resend in 50 seconds"
+            class="cta"
+            [disabled]="true"
+          ></p-button>
+        </div>
+      </div>
+      <!-- <span class="subText"
+        >Don’t have an account?
+        <a (click)="showSignUpDialog()" class="redFont">Signup</a></span
+      > -->
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog
+  [(visible)]="signInPhoneDialog"
+  [style]="{ width: '532px' }"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+>
+  <div id="authDialog">
+    <div class="iconHeader">
+      <em class="icon phone"></em>
+    </div>
+    <div class="mainForm">
+      <div class="content">
+        <h4 class="heading">Sign in with phone</h4>
+        <p class="supportingText">We will send you a code to log in</p>
+      </div>
+      <div class="form">
+        <div class="authOptions">
+          <input
+            type="text"
+            pInputText
+            class="phoneInput"
+            placeholder="+1 (555) 000-0000"
+          />
+        </div>
+        <div class="actionButtons flex flex-column gap-2">
+          <p-button label="Send verification code" (onClick)="showConfirmPhoneDialog()" class="cta"></p-button>
+        </div>
+      </div>
+      <span class="subText"
+        >Don’t have an account?
+        <a (click)="showSignUpDialog()" class="redFont">Signup</a></span
+      >
     </div>
   </div>
 </p-dialog>

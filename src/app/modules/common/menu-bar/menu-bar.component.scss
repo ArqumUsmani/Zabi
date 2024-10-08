@@ -5,26 +5,25 @@
     padding-bottom: 0 !important;
   }
 }
-#loginForm {
+#authDialog {
   text-align: center;
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: 19px;
-  .logoText {
+  .iconHeader {
     display: flex;
     flex-direction: column;
     gap: 12px;
     align-items: center;
-    width: 100%;
+    width: 320px;
     .logo {
       width: 164.32px;
     }
-    .logoIcon {
+    .icon {
       width: 80px;
     }
     .slogan {
-      width: 237px;
       margin-top: 0;
       font-family: "Roboto", sans-serif;
       font-weight: 400;
@@ -32,103 +31,122 @@
       color: $grey;
     }
   }
-  .form {
-    .formHeading {
-      margin-bottom: 2px;
-      font-size: 24px;
-      font-weight: 600;
-      color: $grey;
-      font-family: "Inter";
+  .mainForm {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      .heading {
+        font-size: 24px;
+        font-weight: 600;
+        color: $grey;
+        font-family: "Inter";
+      }
+      .supportingText {
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 16px;
+        color: $grey;
+      }
+      .redFont {
+        color: $red-primary !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+      }
+      .avatar {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        .p-avatar {
+          width: 130px;
+          height: 130px;
+        }
+        .p-button {
+          position: absolute;
+          z-index: 1;
+          border: 1px solid #d0d5dd;
+          background-color: $white;
+          height: 48px;
+          width: 48px;
+          border-radius: 8px;
+          bottom: -20px;
+          left: 43%;      
+        //   right: 43px;
+        }
+      }
     }
-    .formSubText {
-      margin-top: 2px;
+    .subText {
       font-family: "Inter";
       font-weight: 400;
       font-size: 16px;
       color: $grey;
-      .redFont {
-        color: $red-primary!important;
-        text-decoration: none!important;
-        font-weight: 600!important;
+      a {
+        color: $red-primary !important;
+        font-weight: 600 !important;
       }
     }
-    
-    .loginOptions {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 32px;
-      margin-bottom: 32px;
-      input {
-        width: 320px;
-      }
-      .p-button {
-        width: 320px;
-        background-color: $white;
-        border-radius: 8px;
-        color: $fontColorDark;
-        border: 1px solid #d0d5dd;
-      }
-    }
-    .emailLoginForm {
+    .form {
       display: flex;
       flex-direction: column;
       gap: 32px;
-      margin-top: 32px;
-      margin-bottom: 32px;
-      input {
-        width: 320px;
-      }
-      .p-button {
-        width: 320px;
-        border-radius: 8px;
-        background-color: $grey !important;
-        text-align: center;
-        height: 48px;
-        border: none;
-        .p-button-label{
-            color: $fontColorLight !important;
+      align-items: center;
+      .authOptions {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        input {
+          width: 320px;
+        }
+        .p-button {
+          width: 320px;
+          background-color: transparent;
+          border: 1px solid $grey-border;
         }
       }
-    }
-  }
-  .bottomSection {
-    position: relative;
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0px;
-    .secondaryImage {
-      width: 30%;
-    }
-    .greenBar {
-      width: 100%;
-      height: 10px;
-      //   position: absolute;
-      background-color: $green-dark;
-      border: none;
-      //   bottom: -17px;
-      //   left: 0;
-      margin: 0;
-    }
-    .triangleLineImage {
-      // transform: rotate(180deg);
-      width: 100%;
-      background-color: $green-dark;
-    }
-  }
-  .footer {
-    background-color: $white;
-    text-align: center;
-    width: 100%;
-    padding: 2rem;
-    top: 0;
-    p {
-      font-family: "Century Gothic";
-      font-size: 12px;
-      font-weight: 400;
+      .otpInputs {
+        display: flex;
+        gap: 8px;
+        .p-inputtext {
+          width: 57px;
+          height: 64px;
+          border-radius: 8px;
+          font-family: "Inter";
+          font-weight: 500;
+          font-size: 48px;
+        }
+      }
+      .signupForm{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: left;
+        input{
+            width: 216px;
+        }
+        .phoneNumberInput{
+            width: 456px;
+        }
+      }
+      .actionButtons {
+        width: 320px;
+        .cta {
+          .p-button {
+            background-color: $dark-grey;
+            border: none;
+            width: 100%;
+            .p-button-label {
+              color: $fontColorLight;
+              font-size: 16px;
+              font-weight: 600;
+              font-family: "Inter";
+            }
+          }
+        }
+      }
     }
   }
 }
