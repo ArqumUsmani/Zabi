@@ -4,10 +4,10 @@
     </div>
     <div class="mainForm">
         <div class="content">
-            <h4 class="heading">Confirm your {{otpRequest?.type}}</h4>
+            <h4 class="heading">Confirm your {{_otpRequest?.type}}</h4>
             <p class="supportingText">Enter the code we sent to</p>
             <a type="email" href="to:email@domain.com" class="redFont">
-                {{ otpRequest?.type === this.signInOptions.EMAIL ? otpRequest?.email: otpRequest?.phone}}
+                {{ _otpRequest?.type === this.signInOptions.EMAIL ? _otpRequest?.email: _otpRequest?.phone}}
             </a>
         </div>
         <div class="form">

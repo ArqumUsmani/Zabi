@@ -1,10 +1,10 @@
 export interface User {
-    id: string
-    createdBy: string
-    createdOn: string
-    updatedBy: string
-    updatedOn: string
-    isDeleted: boolean
+    id?: string
+    createdBy?: string
+    createdOn?: string
+    updatedBy?: string
+    updatedOn?: string
+    isDeleted?: boolean
     firstName: string
     lastName: string
     email: string
@@ -14,7 +14,7 @@ export interface User {
     isSubscribedToHalalOffersNotification: boolean
     isSubscribedToHalalEventsNewsletter: boolean
     profilePictureWebUrl: string
-    addresses: any
+    addresses?: any
 }
 
 export const defaultUser: User = {

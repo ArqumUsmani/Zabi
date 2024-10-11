@@ -12,7 +12,7 @@ export class HttpService {
 
   private handleError(error: any) {
     console.error('An error occurred:', error); // Log to console for debugging
-    return throwError(() => new Error(error.message || 'Server error'));
+    return throwError(() => error.error || new Error('Server error'));
   }
 
   // GET request

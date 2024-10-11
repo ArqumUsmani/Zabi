@@ -13,22 +13,25 @@ export class VerifySignInComponent {
   signInOptions = SignInOptions;
   email: string = '';
   phone: string = '';
-  @Input() signInOption: string | null = null;
+  @Input() signInOption: string | undefined;
   @Output() sendTokenConfirmationReq = new EventEmitter();
 
   constructor(private authenticationService: AuthenticationService) { }
 
-  sendVerificationCode() {
-    const otpRequest: OtpRequest = {} as OtpRequest
-    if (this.email) {
-      otpRequest.type = this.signInOptions.EMAIL
-      otpRequest.email = this.email
+  sendVerificationCode(otpRequestSignup?: OtpRequest) {
+    let otpRequest: OtpRequest = {} as OtpRequest
+    if(otpRequestSignup) {
+      otpRequest = otpRequestSignup
+    } else {
+      if (this.email) {
+        otpRequest.type = this.signInOptions.EMAIL
+        otpRequest.email = this.email
+      }
+      else if (this.phone) {
+        otpRequest.type = this.signInOptions.PHONE
+        otpRequest.phone = this.phone
+      }
     }
-    else if (this.phone) {
-      otpRequest.type = this.signInOptions.PHONE
-      otpRequest.phone = this.phone
-    }
-
     this.authenticationService.requestOtp(otpRequest).subscribe({
       next: (response) => {
         this.sendTokenConfirmationReq.emit(otpRequest)

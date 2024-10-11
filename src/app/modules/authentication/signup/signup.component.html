@@ -8,12 +8,16 @@
     <div class="mainForm">
         <div class="content">
             <div class="avatar">
-                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle">
+                <p-avatar *ngIf="!filePreview"
+                    image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle">
                 </p-avatar>
-                <p-button icon="email"></p-button>
+                <div *ngIf="filePreview" class="image-preview">
+                    <img [src]="filePreview" alt="File Preview" *ngIf="isImageFile" />
+                </div>
+                <input type="file" (change)="onFileSelected($event)" />
             </div>
         </div>
-        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <form *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()">
             <div class="form">
 
                 <div class="signupForm">
@@ -36,14 +40,15 @@
                     <div *ngIf="!_userData?.isEmailVerified" class="flex flex-column gap-2">
                         <span class="p-input-icon-left">
                             <i class="email" style="top: 21px"></i>
-                            <input type="text" pInputText class="emailInput w-100" placeholder="Enter your email address"
-                                formControlName="email" />
+                            <input type="text" pInputText class="emailInput w-100"
+                                placeholder="Enter your email address" formControlName="email" />
                         </span>
                     </div>
 
                 </div>
-                <p-checkbox class="p-checkbox w-100" name="groupname" value="val1" label="I agree to terms and conditions."
-                    formControlName="termsAndConditions" [binary]="true"></p-checkbox>
+                <p-checkbox class="p-checkbox w-100" name="groupname" value="val1"
+                    label="I agree to terms and conditions." formControlName="termsAndConditions"
+                    [binary]="true"></p-checkbox>
                 <div class="actionButtons flex flex-column gap-2">
                     <p-button [disabled]="!userForm.valid || !userForm.get('termsAndConditions')?.value"
                         label="Continue" class="cta" type="submit"></p-button>
@@ -54,3 +59,15 @@
             <a (click)="showSignInDialog()" class="redFont">Sign In</a></span> -->
     </div>
 </div>
+
+<!-- <p-dialog [(visible)]="getOtpDialog" [style]="{ width: '532px' }" [draggable]="false" [modal]="true" [resizable]="false"
+  (onClose)="signInDialog = true;">
+  <app-request-otp *ngIf="getOtpDialog" [signInOption]="otpRequest?.type"
+    (sendTokenConfirmationReq)="getTokenConfirmationReq($event)" />
+</p-dialog>
+
+<p-dialog [(visible)]="verifyOtpDialog" [style]="{ width: '532px' }" [draggable]="false" [modal]="true"
+  [resizable]="false" (onClose)="getOtpDialog = true;">
+  <app-verify-otp *ngIf="verifyOtpDialog" [otpRequest]="otpRequest" (sendUserData)="getUserData($event)"
+    (triggerResendOtp)="getTriggerResendOtpEvent($event)" />
+</p-dialog> -->

@@ -4,6 +4,7 @@ import { SignInOptions } from 'src/app/common/constants/enums';
 import { OtpRequest } from 'src/app/common/models/otpRequest';
 import { User } from 'src/app/common/models/user';
 import { VerifySignInComponent } from '../../authentication/signin/request-otp/verify-sign-in.component';
+import { SignupComponent } from '../../authentication/signup/signup.component';
 
 @Component({
   selector: 'app-menu-bar',
@@ -17,13 +18,14 @@ export class MenuBarComponent {
   phoneNumber: string = '';
   items: MenuItem[] = [];
   signInOption: string = '';
-  otpRequest: any = {};
+  otpRequest: OtpRequest | undefined;
   user: User | undefined;
   signInDialog: boolean = false;
   getOtpDialog: boolean = false;
   signUpDialog: boolean = false;
-  confirmationDialog: boolean = false;
+  verifyOtpDialog: boolean = false;
   @ViewChild(VerifySignInComponent) requestOtpComponent!: VerifySignInComponent;
+  @ViewChild(SignupComponent) signupComponent!: SignupComponent;
   constructor(private primengConfig: PrimeNGConfig) { }
 
   ngOnInit() {
@@ -100,18 +102,39 @@ export class MenuBarComponent {
 
   getTokenConfirmationReq(event: OtpRequest) {
     this.getOtpDialog = false;
-    this.confirmationDialog = true;
+    this.verifyOtpDialog = true;
     this.otpRequest = event;
   }
 
   getUserData(userData: User) {
     this.user = userData;
-    this.confirmationDialog = false;
-    if(!userData.isPhoneVerified || !(userData.isEmailVerified) && !userData.firstName)
+    this.verifyOtpDialog = false;
+    if(userData.isPhoneVerified && userData.isEmailVerified && !userData.firstName) {
+     this.signupComponent.updateUser(this.user)
+    }
+    else if(!userData.isPhoneVerified || !userData.isEmailVerified || !userData.firstName)
       this.signUpDialog = true;
   }
 
-  getTriggerResendOtpEvent(event: OtpRequest){
-    this.requestOtpComponent?.sendVerificationCode()
+  getResendOtpEvent(event: OtpRequest){
+    if(this.otpRequest)
+      this.requestOtpComponent?.sendVerificationCode(this.otpRequest)
+    else
+      this.requestOtpComponent?.sendVerificationCode()
+  }
+
+  getRequestOptEvent(event: {signinOption: string, userData: User}) {
+    this.signUpDialog = false;
+    this.user = event.userData;
+    this.signInOption
+    this.otpRequest = {
+      type: event.signinOption,
+    };
+    if(event.signinOption === SignInOptions.EMAIL) 
+      this.otpRequest.email = event.userData.email
+    if(event.signinOption === SignInOptions.PHONE) 
+      this.otpRequest.phone = event.userData.phone
+    this.verifyOtpDialog = true;
+    this.requestOtpComponent?.sendVerificationCode(this.otpRequest)
   }
 }

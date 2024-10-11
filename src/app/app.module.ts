@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { MenuBarComponent } from './modules/common/menu-bar/menu-bar.component';
 import { FooterComponent } from './modules/common/footer/footer.component';
 import { PrimeNgModule } from './prime-ng.module';
+import { MessageService } from 'primeng/api';
 import { HilalFoodComponent } from './modules/main/hilal-food/hilal-food.component';
 import { PickupAndDeliveryComponent } from './modules/main/pickup-and-delivery/pickup-and-delivery.component';
 import { PrayerSpacesComponent } from './modules/main/prayer-spaces/prayer-spaces.component';
@@ -25,6 +26,7 @@ import { VerifySignInComponent } from './modules/authentication/signin/request-o
 import { VerifyOtpComponent } from './modules/authentication/signin/verify-otp/verify-otp.component';
 import { AuthInterceptor } from './common/interceptors/auth-interceptor';
 import { OtpInputComponent } from './modules/authentication/signin/otp-input/otp-input.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -54,13 +56,16 @@ import { OtpInputComponent } from './modules/authentication/signin/otp-input/otp
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }],
+  },
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

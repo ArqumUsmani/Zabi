@@ -6,6 +6,7 @@ import { defaultUser, User } from 'src/app/common/models/user';
 import { Utils } from 'src/app/common/Helper/utility';
 import { OtpRequest } from 'src/app/common/models/otpRequest';
 import { SignInOptions } from 'src/app/common/constants/enums';
+import { ToastService } from 'src/app/common/services/toast.service';
 
 @Component({
   selector: 'app-verify-otp',
@@ -17,16 +18,21 @@ export class VerifyOtpComponent implements OnInit {
   resendDisabled: boolean = true;  // Disable resend button initially
   interval: any;  // Variable to store the interval for countdown
   signInOptions = SignInOptions;
-  @Input() otpRequest: OtpRequest | null = null;
+  _otpRequest: OtpRequest | undefined;
+  @Input()
+  set otpRequest(value: OtpRequest | undefined) {
+    this._otpRequest = value;
+  }
+
   @Output() sendUserData = new EventEmitter();
   @Output() triggerResendOtp = new EventEmitter();
   @ViewChild(OtpInputComponent) otpInputComponent!: OtpInputComponent;
 
-  constructor(private authenticationService: AuthenticationService,
-    private userService: UserService
-  ) {
-
-  }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private userService: UserService,
+    private toastService: ToastService
+  ) { }
 
   ngOnInit() {
     this.startTimer();
@@ -54,12 +60,12 @@ export class VerifyOtpComponent implements OnInit {
   }
 
   resendOtp() {
-    this.triggerResendOtp.emit(this.otpRequest)
+    this.otpInputComponent.inputValues = ['', '', '', ''];
+    this.triggerResendOtp.emit(this._otpRequest)
     this.startTimer();
   }
 
   getContinueBtnDisableState() {
-    console.log(this.otpInputComponent?.getOtpValue()?.length)
     if (!this.otpInputComponent?.getOtpValue() || this.otpInputComponent?.getOtpValue()?.length !== 4)
       return true
     else
@@ -67,15 +73,20 @@ export class VerifyOtpComponent implements OnInit {
   }
 
   verifyOtp() {
-    this.authenticationService.verifytOtp({ code: this.otpInputComponent.getOtpValue(), createJwt: true }).subscribe({
+    this.authenticationService.verifytOtp({ code: this.otpInputComponent.getOtpValue(), 
+      createJwt: localStorage.getItem('accessToken') ? false : true }).subscribe({
       next: (response) => {
-        if (response) {
+        if(response && response?.token)
           localStorage.setItem('accessToken', response.token);
-          this.getUser()
-        }
+        this.getUser()
       },
       error: (error) => {
-
+        if(error.title === 'OtpNotFoundException')
+          this.toastService.showError('Invalid OTP')
+        else if(error.title === 'PhoneAlreadyExistsException')
+          this.toastService.showError('Phone Number already exists')
+        else
+          this.toastService.showError('Server Error')
       }
     })
   }
