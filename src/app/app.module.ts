@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './modules/authentication/login/login.component';
+import { LoginComponent } from './modules/authentication/signin/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './modules/main/home/home.component';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,13 @@ import { RecentlyAddedComponent } from './modules/main/shared/recently-added/rec
 import { FiltersComponent } from './modules/main/shared/filters/filters.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GeolocationService } from './common/services/geolocation.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { SignupComponent } from './modules/authentication/signup/signup.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VerifySignInComponent } from './modules/authentication/signin/request-otp/verify-sign-in.component';
+import { VerifyOtpComponent } from './modules/authentication/signin/verify-otp/verify-otp.component';
+import { AuthInterceptor } from './common/interceptors/auth-interceptor';
+import { OtpInputComponent } from './modules/authentication/signin/otp-input/otp-input.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +41,10 @@ import { HttpClientModule } from '@angular/common/http';
     ReviewsComponent,
     RecentlyAddedComponent,
     FiltersComponent,
+    SignupComponent,
+    VerifySignInComponent,
+    VerifyOtpComponent,
+    OtpInputComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +52,15 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     PrimeNgModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,9 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FilterMatchMode, MenuItem, PrimeNGConfig } from 'primeng/api';
+import { SignInOptions } from 'src/app/common/constants/enums';
+import { OtpRequest } from 'src/app/common/models/otpRequest';
+import { User } from 'src/app/common/models/user';
+import { VerifySignInComponent } from '../../authentication/signin/request-otp/verify-sign-in.component';
 
 @Component({
   selector: 'app-menu-bar',
@@ -9,14 +13,19 @@ import { FilterMatchMode, MenuItem, PrimeNGConfig } from 'primeng/api';
 })
 export class MenuBarComponent {
   title = 'Zabihah';
-  constructor(private primengConfig: PrimeNGConfig) {}
+  email: string = '';
+  phoneNumber: string = '';
   items: MenuItem[] = [];
+  signInOption: string = '';
+  otpRequest: any = {};
+  user: User | undefined;
   signInDialog: boolean = false;
-  emailSignInDialog: boolean = false;
-  confirmPhoneDialog: boolean = false;
-  signUpDialog: boolean = false; 
-  confirmEmailDialog: boolean = false; 
-  signInPhoneDialog: boolean = false; 
+  getOtpDialog: boolean = false;
+  signUpDialog: boolean = false;
+  confirmationDialog: boolean = false;
+  @ViewChild(VerifySignInComponent) requestOtpComponent!: VerifySignInComponent;
+  constructor(private primengConfig: PrimeNGConfig) { }
+
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.primengConfig.zIndex = {
@@ -49,7 +58,7 @@ export class MenuBarComponent {
         FilterMatchMode.DATE_AFTER,
       ],
     };
-    
+
     this.items = [
       {
         label: 'Home',
@@ -74,29 +83,35 @@ export class MenuBarComponent {
     ];
   }
 
-  
   showSignInDialog() {
-      this.signInDialog = true;
+    this.signInDialog = true;
   }
-  showEmailSignInDialog() {
-      this.emailSignInDialog = true;
-      this.signInDialog = false;
+
+  onDialogClose() {
+    this.email = '';
+    this.phoneNumber = '';
   }
-  showConfirmPhoneDialog() {
-      this.confirmPhoneDialog = true;
-      this.signUpDialog = false;
-      this.signInPhoneDialog = false
-    this.confirmEmailDialog = false
+
+  setSignInOption(event: string) {
+    this.signInDialog = false;
+    this.getOtpDialog = true;
+    this.signInOption = event;
   }
-  showSignUpDialog() {
+
+  getTokenConfirmationReq(event: OtpRequest) {
+    this.getOtpDialog = false;
+    this.confirmationDialog = true;
+    this.otpRequest = event;
+  }
+
+  getUserData(userData: User) {
+    this.user = userData;
+    this.confirmationDialog = false;
+    if(!userData.isPhoneVerified || !(userData.isEmailVerified) && !userData.firstName)
       this.signUpDialog = true;
   }
-  showConfirmEmailDialog(){
-    this.emailSignInDialog = false;
-    this.confirmEmailDialog = true
-  }
-  showPhoneSigninDialog(){
-    this.signInPhoneDialog = true;
-    this.signInDialog = false
+
+  getTriggerResendOtpEvent(event: OtpRequest){
+    this.requestOtpComponent?.sendVerificationCode()
   }
 }

@@ -1,0 +1,29 @@
+<div id="authDialog">
+    <div class="iconHeader">
+        <em class="icon email"></em>
+    </div>
+    <div class="mainForm">
+        <div class="content">
+            <h4 class="heading">Sign in with {{signInOption}}</h4>
+            <p class="supportingText">We will send you code to login in</p>
+        </div>
+        <div class="form">
+            <div class="authOptions">
+                <span *ngIf="signInOption === signInOptions.EMAIL" class="p-input-icon-left">
+                    <i class="email" style="top: 21px"></i>
+                    <input type="text" pInputText class="emailInput" placeholder="Enter your email address"
+                        [(ngModel)]="email" />
+                </span>
+                <span *ngIf="signInOption === signInOptions.PHONE">
+                    <input type="text" pInputText class="phoneInput" placeholder="+1 (555) 000-0000"
+                        [(ngModel)]="phone" />
+                </span>
+            </div>
+            <div class="actionButtons">
+                <p-button label="Send verification code" class="cta" (onClick)="sendVerificationCode()"></p-button>
+            </div>
+        </div>
+        <span class="subText">Don’t have an account?
+            <a class="redFont">Signup</a></span>
+    </div>
+</div>

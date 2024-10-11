@@ -1,4 +1,4 @@
-import { LoginComponent } from './modules/authentication/login/login.component';
+import { LoginComponent } from './modules/authentication/signin/login.component';
 import { HilalFoodComponent } from './modules/main/hilal-food/hilal-food.component';
 import { HomeComponent } from './modules/main/home/home.component';
 import { PickupAndDeliveryComponent } from './modules/main/pickup-and-delivery/pickup-and-delivery.component';

@@ -1,0 +1,12 @@
+<div class="input-group">
+    <input class="otp-input" pInputText #input1 type="text" [(ngModel)]="inputValues[0]"
+        (input)="onInputChange(1, input2)" />
+
+    <input class="otp-input" pInputText #input2 type="text" [(ngModel)]="inputValues[1]"
+        (input)="onInputChange(2, input3)" />
+
+    <input class="otp-input" pInputText #input3 type="text" [(ngModel)]="inputValues[2]"
+        (input)="onInputChange(3, input4)" />
+
+    <input class="otp-input" pInputText #input4 type="text" [(ngModel)]="inputValues[3]" (input)="onInputChange(4)" />
+</div>

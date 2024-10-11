@@ -1,0 +1,28 @@
+<div id="authDialog">
+    <div class="iconHeader">
+        <em class="icon email"></em>
+    </div>
+    <div class="mainForm">
+        <div class="content">
+            <h4 class="heading">Confirm your {{otpRequest?.type}}</h4>
+            <p class="supportingText">Enter the code we sent to</p>
+            <a type="email" href="to:email@domain.com" class="redFont">
+                {{ otpRequest?.type === this.signInOptions.EMAIL ? otpRequest?.email: otpRequest?.phone}}
+            </a>
+        </div>
+        <div class="form">
+            <div class="otpInputs">
+                <app-otp-input />
+            </div>
+            <div class="actionButtons flex flex-column gap-2">
+                <p-button [disabled]="getContinueBtnDisableState()" label="Continue" (onClick)="verifyOtp()"
+                    class="cta"></p-button>
+                <p-button [label]="resendDisabled ? 'Resend in ' + timer + ' seconds' : 'Resend OTP'" class="cta"
+                    [disabled]="resendDisabled" (onClick)="resendOtp()"></p-button>
+            </div>
+        </div>
+        <!-- <span class="subText">Don’t have an account?
+            <a class="redFont" style="cursor: pointer;" (click)="triggerOpenSignUp.emit()">Sign up</a>
+        </span> -->
+    </div>
+</div>
