@@ -36,5 +36,6 @@
 
 <p-dialog [(visible)]="signUpDialog" [style]="{ width: '532px' }" [draggable]="false" [modal]="true"
   [resizable]="false">
-  <app-signup [userData]="user" (triggerRequestOptEvent)="getRequestOptEvent($event)"/>
+  <app-signup [userData]="user" (triggerRequestOptEvent)="getRequestOptEvent($event)"
+  (triggerCloseSignUp)="signUpDialog = false"/>
 </p-dialog>

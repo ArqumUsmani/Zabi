@@ -20,11 +20,13 @@ export class SignupComponent implements OnInit {
   filePreview: string | ArrayBuffer | null = null;
   isImageFile: boolean = false;
   @Output() triggerRequestOptEvent = new EventEmitter();
+  @Output() triggerCloseSignUp = new EventEmitter();
   @ViewChild(VerifySignInComponent) requestOtpComponent!: VerifySignInComponent;
 
   @Input()
   set userData(value: User | undefined) {
     this._userData = value;
+    this.initForm()
   }
 
   constructor(private formBuilder: FormBuilder,
@@ -33,6 +35,10 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.initForm()
+  }
+
+  initForm() {
     this.userForm = this.formBuilder.group({
       firstName: [this._userData?.firstName ?? '', Validators.required],
       lastName: [this._userData?.lastName ?? '', Validators.required],
@@ -61,6 +67,7 @@ export class SignupComponent implements OnInit {
     this.userService.updateUser(this.userForm?.value as User).subscribe({
       next: (response) => {
         this.toastService.showSuccess('Profile created successfully')
+        this.triggerCloseSignUp.emit(true)
       },
       error: (error) => {
         this.toastService.showError('Error creating user profile')

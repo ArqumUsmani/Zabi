@@ -5,6 +5,7 @@ import { OtpRequest } from 'src/app/common/models/otpRequest';
 import { User } from 'src/app/common/models/user';
 import { VerifySignInComponent } from '../../authentication/signin/request-otp/verify-sign-in.component';
 import { SignupComponent } from '../../authentication/signup/signup.component';
+import { ToastService } from 'src/app/common/services/toast.service';
 
 @Component({
   selector: 'app-menu-bar',
@@ -26,7 +27,8 @@ export class MenuBarComponent {
   verifyOtpDialog: boolean = false;
   @ViewChild(VerifySignInComponent) requestOtpComponent!: VerifySignInComponent;
   @ViewChild(SignupComponent) signupComponent!: SignupComponent;
-  constructor(private primengConfig: PrimeNGConfig) { }
+
+  constructor(private primengConfig: PrimeNGConfig, private toastService: ToastService) { }
 
   ngOnInit() {
     this.primengConfig.ripple = true;
@@ -109,11 +111,10 @@ export class MenuBarComponent {
   getUserData(userData: User) {
     this.user = userData;
     this.verifyOtpDialog = false;
-    if(userData.isPhoneVerified && userData.isEmailVerified && !userData.firstName) {
-     this.signupComponent.updateUser(this.user)
-    }
-    else if(!userData.isPhoneVerified || !userData.isEmailVerified || !userData.firstName)
+    if (!userData.isPhoneVerified || !userData.isEmailVerified || !userData.firstName)
       this.signUpDialog = true;
+    else if (userData.isPhoneVerified && userData.isEmailVerified && !userData.firstName)
+     this.signupComponent.updateUser(this.user)
   }
 
   getResendOtpEvent(event: OtpRequest){
