@@ -1,111 +1,109 @@
 @import "../../../../../colors.scss";
 
 :host ::ng-deep {
-    .filter {
-        .p-card {
-            border-radius: 16px;
+  .p-card {
+    border-radius: 16px;
 
-            .p-card-content {
-                padding-top: 0;
-            }
-
-            .p-card-title {
-                text-align: center;
-                font-size: 18px;
-                font-weight: 600;
-            }
-
-            .searchRadius {
-                display: flex;
-                flex-direction: column;
-
-                h5 {
-                    margin-bottom: 8px;
-                    margin-top: 16px;
-                    font-family: "Inter";
-                    font-weight: 600;
-                    font-size: 16px;
-                    color: $grey;
-                }
-
-                .p-slider {
-                    .p-slider-range {
-                        background: $red-login;
-                    }
-
-                    .p-slider-handle {
-                        border-color: $red-login;
-
-                        &:hover {
-                            background: $red-login;
-                            border-color: $red-login;
-                        }
-                    }
-                }
-            }
-
-            .HalalFilters {
-                h5 {
-                    margin-bottom: 8px;
-                    margin-top: 28px;
-                    font-family: "Inter";
-                    font-weight: 600;
-                    font-size: 16px;
-                    color: $grey;
-                }
-
-                .filterList {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 8px;
-
-                    .listItem {
-                        padding: 12px 16px 16px 12px;
-                        background-color: $disabled;
-                        border-radius: 8px;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-
-                        .p-inputswitch {
-                            .p-inputswitch-checked {
-                                .p-inputswitch-slider {
-                                    background: $red-primary !important;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                .p-inputswitch-checked {
-                    .p-inputswitch-slider {
-                        background: $red-login !important;
-                    }
-                }
-            }
-
-            .rating {
-                h5 {
-                    margin-bottom: 8px;
-                    margin-top: 28px;
-                    font-family: "Inter";
-                    font-weight: 600;
-                    font-size: 16px;
-                    color: $grey;
-                }
-
-                .ratingVisual {
-                    display: flex;
-                    justify-content: space-between;
-
-                    .ratingNumber {
-                        font-family: "Inter";
-                        font-size: 16px;
-                        font-weight: 600;
-                        color: $red-login;
-                    }
-                }
-            }
-        }
+    .p-card-content {
+      padding-top: 0;
     }
+
+    .p-card-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .searchRadius {
+      display: flex;
+      flex-direction: column;
+
+      h5 {
+        margin-bottom: 8px;
+        margin-top: 16px;
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 16px;
+        color: $grey;
+      }
+
+      .p-slider {
+        .p-slider-range {
+          background: $red-login;
+        }
+
+        .p-slider-handle {
+          border-color: $red-login;
+
+          &:hover {
+            background: $red-login;
+            border-color: $red-login;
+          }
+        }
+      }
+    }
+
+    .HalalFilters {
+      h5 {
+        margin-bottom: 8px;
+        margin-top: 28px;
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 16px;
+        color: $grey;
+      }
+
+      .filterList {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .listItem {
+          padding: 12px 16px 16px 12px;
+          background-color: $grey-border;
+          border-radius: 8px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .p-inputswitch {
+            .p-inputswitch-checked {
+              .p-inputswitch-slider {
+                background: $red-primary !important;
+              }
+            }
+          }
+        }
+      }
+
+      .p-inputswitch-checked {
+        .p-inputswitch-slider {
+          background: $red-login !important;
+        }
+      }
+    }
+
+    .rating {
+      h5 {
+        margin-bottom: 8px;
+        margin-top: 28px;
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 16px;
+        color: $grey;
+      }
+
+      .ratingVisual {
+        display: flex;
+        justify-content: space-between;
+
+        .ratingNumber {
+          font-family: "Inter";
+          font-size: 16px;
+          font-weight: 600;
+          color: $red-login;
+        }
+      }
+    }
+  }
 }

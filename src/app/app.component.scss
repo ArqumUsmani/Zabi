@@ -1,6 +1,10 @@
 @import "../styles.scss";
 @import "../colors.scss";
-
+// * {
+//   background: #000 !important;
+//   color: #0f0 !important;
+//   outline: solid #f00 1px !important;
+// }
 :root {
   .p-menubar {
     background-color: $red-secondary;
@@ -44,53 +48,6 @@
           color: $fontColorLight;
         }
       }
-    }
-  }
-  #footer{
-    height: 460px;
-    background-color: rgba(245, 242, 242, 1);
-    // padding: 116px 64px 116px 168px;
-    display: flex;
-    flex-direction: column;
-    gap: 64px;
-    .links{
-        display: flex;
-        gap: 32px;
-        padding: 64px 116px 0px 116px;
-        .section{
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 320px;
-            p{
-                margin-top: 0;
-            }
-            h5{
-                margin-top: 0;
-                margin-bottom: 0;
-                font-family: "Inter";
-                font-weight: 600;
-                font-size: 14px;
-                color: $red-login;
-            }
-        }
-    }
-    .copyright{
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        padding: 0px 116px 48px 116px;
-        align-items: flex-end;
-        p{
-            font-family: "Inter";
-            font-size: 16px;
-            font-weight: 400;
-            color: $grey;
-        }
-        .socials{
-            display: inline-flex;
-            gap: 24px;
-        }
     }
   }
 }

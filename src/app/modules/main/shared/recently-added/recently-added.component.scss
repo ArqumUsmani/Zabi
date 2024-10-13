@@ -5,13 +5,16 @@
   padding: 48px 116px;
   display: flex;
   gap: 20px;
+  width: auto;
+  flex-wrap: wrap;
   .trendingResturants {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
-    width: 940px;
+    // width: 940px;
     flex: 1;
+    width: auto;
     .heading {
       display: flex;
       flex-direction: column;
@@ -34,7 +37,7 @@
       gap: 20px;
       flex-wrap: wrap;
       .card {
-        width: 420px;
+        width: max-content;
         background-color: $grey-50;
         border: 1px solid $grey-border;
         padding: 16px;
@@ -78,7 +81,8 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
-    width: 320px;
+    // width: 320px;
+    width: inherit;
     .heading {
       display: flex;
       flex-direction: column;
@@ -140,5 +144,10 @@
         }
       }
     }
+  }
+}
+@media screen and (min-width: 376px) {
+  #trending {
+    padding: 40px !important;
   }
 }

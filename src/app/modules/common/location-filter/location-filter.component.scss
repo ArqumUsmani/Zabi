@@ -61,6 +61,7 @@
       .inputFields {
         display: flex;
         gap: 10px;
+        flex-wrap: wrap;
         .p-inputtext {
           width: 456px;
         }
@@ -74,11 +75,12 @@
       gap: 10px;
       justify-content: center;
       width: 100%;
+      flex-wrap: wrap;
     }
     .downloadAppSection {
       display: inline-flex;
       gap: 10px;
-      margin-top: 60px;
+      margin: 60px 0px;
     }
   }
 
@@ -100,3 +102,9 @@
     }
   }
 }
+
+  @media screen and (min-width: 376px) {
+    .p-inputtext {
+        width: 350px!important;
+      }
+  }
