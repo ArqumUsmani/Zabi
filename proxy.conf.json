@@ -1,8 +1,8 @@
 {
-    "/api": {
-        "target": "https://zabihahdev1.centralindia.cloudapp.azure.com:81",
-        "secure": false,
-        "changeOrigin": true,
-        "logLevel": "debug"
-    }
+    "/": {
+    "target": "https://zabihahdev1.centralindia.cloudapp.azure.com:81/v1",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/": "" }
+  }
 }

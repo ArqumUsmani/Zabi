@@ -36,6 +36,6 @@ export class LocationFilterComponent implements OnInit {
   }
 
   findplaces() {
-    this.httpService.post('https://zabihahdev1.centralindia.cloudapp.azure.com:81/v1/Restaurant/search', {}).subscribe()
+    this.placesService.searchRestaurants({}).subscribe()
   }
 }

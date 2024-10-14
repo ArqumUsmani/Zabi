@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SignInOptions } from 'src/app/common/constants/enums';
-import { AuthenticationService } from '../../authentication.service';
+import { AuthenticationService } from '../../../../common/services/authentication.service';
 import { OtpRequest } from 'src/app/common/models/otpRequest';
 
 @Component({

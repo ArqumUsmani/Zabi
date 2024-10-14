@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../user.service';
+import { UserService } from '../../../common/services/user.service';
 import { User } from 'src/app/common/models/user';
 import { OtpRequest } from 'src/app/common/models/otpRequest';
 import { VerifySignInComponent } from '../signin/request-otp/verify-sign-in.component';

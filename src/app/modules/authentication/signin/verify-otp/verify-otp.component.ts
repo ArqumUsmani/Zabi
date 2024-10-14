@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { AuthenticationService } from '../../authentication.service';
-import { UserService } from '../../user.service';
+import { AuthenticationService } from '../../../../common/services/authentication.service';
+import { UserService } from '../../../../common/services/user.service';
 import { OtpInputComponent } from '../otp-input/otp-input.component';
 import { defaultUser, User } from 'src/app/common/models/user';
 import { Utils } from 'src/app/common/Helper/utility';

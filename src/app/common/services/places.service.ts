@@ -15,4 +15,8 @@ export class PlacesService {
         const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&keyword=${keyword}&key=${this.apiKey}`;
         return this.http.get(url);
     }
+
+    searchRestaurants(payload: any) {
+        return this.http.post('/v1/Restaurant/search', payload)
+    }
 }
