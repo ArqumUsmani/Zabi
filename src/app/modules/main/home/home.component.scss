@@ -3,6 +3,11 @@
 #placesSection {
   display: flex;
   padding: 48px 116px;
+  width: fit-content;
+  .filter{
+    height: fit-content;
+    width: fit-content;
+  }
   .placesCards {
     .header {
       display: flex;
@@ -189,6 +194,7 @@
       .foodCategories {
         display: inline-flex;
         gap: 8px;
+        flex-wrap: wrap ;
         .category {
           display: flex;
           flex-direction: column;
@@ -226,5 +232,15 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 412px) and (min-width: 376px) {
+  #placesSection{
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+  }
+  .p-card{
+    width: 96vw!important;
   }
 }
