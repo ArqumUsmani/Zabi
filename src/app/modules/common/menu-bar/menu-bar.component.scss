@@ -65,6 +65,10 @@
         .p-avatar {
           width: 130px;
           height: 130px;
+          em{
+            color: #9AA4B2;
+            font-size: 65px;
+          }
         }
         .p-button {
           position: absolute;
@@ -124,13 +128,13 @@
         margin-top: 10px;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 5px;
         text-align: left;
         input{
-            width: 216px;
+            // width: 216px;
         }
         .phoneNumberInput{
-            width: 456px;
+            // width: 456px;
         }
       }
       .actionButtons {

@@ -1,63 +1,86 @@
 <div id="authDialog">
-    <div class="iconHeader">
-        <h4 class="heading">Welcome to Zabihah</h4>
-        <h5 class="slogan">
-            Please add the following information to complete your account.
-        </h5>
+  <div class="iconHeader">
+    <h4 class="heading">Welcome to Zabihah</h4>
+    <h5 class="slogan">
+      Please add the following information to complete your account.
+    </h5>
+  </div>
+  <div class="mainForm">
+    <div class="content">
+      <div class="avatar">
+        <p-avatar *ngIf="!filePreview" shape="circle">
+          <em class="pi pi-user"></em>
+        </p-avatar>
+        <p-avatar *ngIf="filePreview" class="image-preview" shape="circle">
+          <img [src]="filePreview" alt="File Preview" *ngIf="isImageFile" />
+        </p-avatar>
+        <em class="pi pi-pen-to-square editButton"></em>
+        <!-- <input type="file" (change)="onFileSelected($event)" /> -->
+      </div>
     </div>
-    <div class="mainForm">
-        <div class="content">
-            <div class="avatar">
-                <p-avatar *ngIf="!filePreview"
-                    image="../../assets/images/images.png" shape="circle">
-                </p-avatar>
-                <div *ngIf="filePreview" class="image-preview">
-                    <img [src]="filePreview" alt="File Preview" *ngIf="isImageFile" />
-                </div>
-                <input type="file" (change)="onFileSelected($event)" />
+    <form *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form">
+        <div class="signupForm">
+          <div class="flex gap-3 col-12">
+            <div class="flex flex-column gap-2 col-6">
+              <label htmlFor="firstName">First name</label>
+              <input pInputText id="firstName" formControlName="firstName" />
             </div>
+            <div class="flex flex-column gap-2 col-6">
+              <label htmlFor="lastName">Last name</label>
+              <input pInputText id="lastName" formControlName="lastName" />
+            </div>
+          </div>
+          <div
+            *ngIf="!_userData?.isPhoneVerified"
+            class="flex flex-column gap-2 col-12"
+          >
+            <label htmlFor="phoneNumber">Phone number</label>
+            <input
+              class="phoneNumberInput"
+              pInputText
+              id="phoneNumber"
+              placeholder="+1 (555) 000-0000"
+              formControlName="phone"
+            />
+          </div>
+          <div
+            *ngIf="!_userData?.isEmailVerified"
+            class="flex flex-column gap-2 col-12"
+          >
+            <label htmlFor="emailAddress">Email address</label>
+            <input
+              class="emailInput"
+              pInputText
+              id="emailAddress"
+              placeholder="Enter your email address"
+              formControlName="email"
+            />
+          </div>
         </div>
-        <form *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-            <div class="form">
-
-                <div class="signupForm">
-                    <div class="flex gap-3">
-                        <div class="flex flex-column gap-2">
-                            <label htmlFor="firstName">First name</label>
-                            <input pInputText id="firstName" formControlName="firstName" />
-                        </div>
-                        <div class="flex flex-column gap-2">
-                            <label htmlFor="lastName">Last name</label>
-                            <input pInputText id="lastName" formControlName="lastName" />
-                        </div>
-                    </div>
-                    <div *ngIf="!_userData?.isPhoneVerified" class="flex flex-column gap-2">
-                        <label htmlFor="phoneNumber">Phone number</label>
-                        <input class="phoneNumberInput" pInputText id="phoneNumber" placeholder="+1 (555) 000-0000"
-                            formControlName="phone" />
-                    </div>
-
-                    <div *ngIf="!_userData?.isEmailVerified" class="flex flex-column gap-2">
-                        <span class="p-input-icon-left">
-                            <i class="email" style="top: 21px"></i>
-                            <input type="text" pInputText class="emailInput w-100"
-                                placeholder="Enter your email address" formControlName="email" />
-                        </span>
-                    </div>
-
-                </div>
-                <p-checkbox class="p-checkbox w-100" name="groupname" value="val1"
-                    label="I agree to terms and conditions." formControlName="termsAndConditions"
-                    [binary]="true"></p-checkbox>
-                <div class="actionButtons flex flex-column gap-2">
-                    <p-button [disabled]="!userForm.valid || !userForm.get('termsAndConditions')?.value"
-                        label="Continue" class="cta" type="submit"></p-button>
-                </div>
-            </div>
-        </form>
-        <!-- <span class="subText">If you have an account?
+        <p-checkbox
+          class="p-checkbox col-12"
+          name="groupname"
+          value="val1"
+          label="I agree to terms and conditions."
+          formControlName="termsAndConditions"
+          [binary]="true"
+        ></p-checkbox>
+        <div class="actionButtons flex flex-column gap-2">
+          <p-button
+            [disabled]="
+              !userForm.valid || !userForm.get('termsAndConditions')?.value
+            "
+            label="Continue"
+            class="cta"
+            type="submit"
+          ></p-button>
+        </div>
+      </div>
+    </form>
+    <!-- <span class="subText">If you have an account?
             <a (click)="showSignInDialog()" class="redFont">Sign In</a></span> -->
-    </div>
+  </div>
 </div>
 
 <!-- <p-dialog [(visible)]="getOtpDialog" [style]="{ width: '532px' }" [draggable]="false" [modal]="true" [resizable]="false"
