@@ -28,8 +28,11 @@ export class HttpService {
   }
 
   // PUT request
-  put<T>(endpoint: string, body: any): Observable<T> {
-    return this.http.put<T>(`${endpoint}`, body)
+  put<T>(endpoint: string, body: any, headers?: HttpHeaders): Observable<T> {
+    const httpOptions = {
+      headers: headers || new HttpHeaders(), // Use provided headers or create an empty HttpHeaders object
+    };
+    return this.http.put<T>(`${endpoint}`, body, httpOptions)
       .pipe(catchError(this.handleError));
   }
 

@@ -14,8 +14,8 @@
         <p-avatar *ngIf="filePreview" class="image-preview" shape="circle">
           <img [src]="filePreview" alt="File Preview" *ngIf="isImageFile" />
         </p-avatar>
-        <em class="pi pi-pen-to-square editButton"></em>
-        <!-- <input type="file" (change)="onFileSelected($event)" /> -->
+        <em class="pi pi-pen-to-square editButton" (click)="fileInput.click()" style="cursor: pointer;"></em>
+        <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" accept="image/*" />
       </div>
     </div>
     <form *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()">
@@ -31,50 +31,22 @@
               <input pInputText id="lastName" formControlName="lastName" />
             </div>
           </div>
-          <div
-            *ngIf="!_userData?.isPhoneVerified"
-            class="flex flex-column gap-2 col-12"
-          >
+          <div *ngIf="!_userData?.isPhoneVerified" class="flex flex-column gap-2 col-12">
             <label htmlFor="phoneNumber">Phone number</label>
-            <input
-              class="phoneNumberInput"
-              pInputText
-              id="phoneNumber"
-              placeholder="+1 (555) 000-0000"
-              formControlName="phone"
-            />
+            <input class="phoneNumberInput" pInputText id="phoneNumber" placeholder="+1 (555) 000-0000"
+              formControlName="phone" />
           </div>
-          <div
-            *ngIf="!_userData?.isEmailVerified"
-            class="flex flex-column gap-2 col-12"
-          >
+          <div *ngIf="!_userData?.isEmailVerified" class="flex flex-column gap-2 col-12">
             <label htmlFor="emailAddress">Email address</label>
-            <input
-              class="emailInput"
-              pInputText
-              id="emailAddress"
-              placeholder="Enter your email address"
-              formControlName="email"
-            />
+            <input class="emailInput" pInputText id="emailAddress" placeholder="Enter your email address"
+              formControlName="email" />
           </div>
         </div>
-        <p-checkbox
-          class="p-checkbox col-12"
-          name="groupname"
-          value="val1"
-          label="I agree to terms and conditions."
-          formControlName="termsAndConditions"
-          [binary]="true"
-        ></p-checkbox>
+        <p-checkbox class="p-checkbox col-12" name="groupname" value="val1" label="I agree to terms and conditions."
+          formControlName="termsAndConditions" [binary]="true"></p-checkbox>
         <div class="actionButtons flex flex-column gap-2">
-          <p-button
-            [disabled]="
-              !userForm.valid || !userForm.get('termsAndConditions')?.value
-            "
-            label="Continue"
-            class="cta"
-            type="submit"
-          ></p-button>
+          <p-button [disabled]="!userForm.valid || !userForm.get('termsAndConditions')?.value" label="Continue"
+            class="cta" type="submit"></p-button>
         </div>
       </div>
     </form>
@@ -82,15 +54,3 @@
             <a (click)="showSignInDialog()" class="redFont">Sign In</a></span> -->
   </div>
 </div>
-
-<!-- <p-dialog [(visible)]="getOtpDialog" [style]="{ width: '532px' }" [draggable]="false" [modal]="true" [resizable]="false"
-  (onClose)="signInDialog = true;">
-  <app-request-otp *ngIf="getOtpDialog" [signInOption]="otpRequest?.type"
-    (sendTokenConfirmationReq)="getTokenConfirmationReq($event)" />
-</p-dialog>
-
-<p-dialog [(visible)]="verifyOtpDialog" [style]="{ width: '532px' }" [draggable]="false" [modal]="true"
-  [resizable]="false" (onClose)="getOtpDialog = true;">
-  <app-verify-otp *ngIf="verifyOtpDialog" [otpRequest]="otpRequest" (sendUserData)="getUserData($event)"
-    (triggerResendOtp)="getTriggerResendOtpEvent($event)" />
-</p-dialog> -->

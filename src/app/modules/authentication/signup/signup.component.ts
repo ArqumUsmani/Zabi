@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit {
   }
 
   updateUser(user: User) {
-    this.userService.updateUser(this.userForm?.value as User).subscribe({
+    this.userService.updateUser(user).subscribe({
       next: (response) => {
         this.toastService.showSuccess('Profile created successfully')
         this.triggerCloseSignUp.emit(true)
@@ -79,8 +79,9 @@ export class SignupComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
-      this.isImageFile = file.type.startsWith('image/');
+      this.getImageURI();
 
+      this.isImageFile = file.type.startsWith('image/');
       const reader = new FileReader();
 
       // Check if the file is an image
@@ -98,6 +99,32 @@ export class SignupComponent implements OnInit {
         console.error('Error reading file:', error);
       };
     }
+  }
+
+  private getImageURI() {
+    this.userService.getProfilePictureUploadURI().subscribe({
+      next: (response) => {
+        this.uploadProfileImageToUser(response?.uri)
+      },
+      error: (error) => {
+        console.error('Error while getting the profile image upload URI', error)
+        this.toastService.showError('Error while uploading profile image')
+      }
+    })
+  }
+
+  private async uploadProfileImageToUser(uri: string) {
+    this.userService.uploadProfilePicture(uri, this.selectedFile).subscribe({
+      next: (response) => {
+        const user: User = this.userForm?.value()
+        user.profilePictureWebUrl = uri;
+        this.updateUser(user)
+      },
+      error: (error) => {
+        console.error('Error while uploading profile image to azure blob', error)
+        this.toastService.showError('Error while uploading profile image')
+      }
+    })
   }
 }
 

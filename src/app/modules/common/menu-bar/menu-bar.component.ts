@@ -2,10 +2,12 @@ import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FilterMatchMode, MenuItem, PrimeNGConfig } from 'primeng/api';
 import { SignInOptions } from 'src/app/common/constants/enums';
 import { OtpRequest } from 'src/app/common/models/otpRequest';
-import { User } from 'src/app/common/models/user';
+import { defaultUser, User } from 'src/app/common/models/user';
 import { VerifySignInComponent } from '../../authentication/signin/request-otp/verify-sign-in.component';
 import { SignupComponent } from '../../authentication/signup/signup.component';
 import { ToastService } from 'src/app/common/services/toast.service';
+import { Utils } from 'src/app/common/Helper/utility';
+import { UserService } from 'src/app/common/services/user.service';
 
 @Component({
   selector: 'app-menu-bar',
@@ -28,7 +30,9 @@ export class MenuBarComponent {
   @ViewChild(VerifySignInComponent) requestOtpComponent!: VerifySignInComponent;
   @ViewChild(SignupComponent) signupComponent!: SignupComponent;
 
-  constructor(private primengConfig: PrimeNGConfig, private toastService: ToastService) { }
+  constructor(private primengConfig: PrimeNGConfig, private toastService: ToastService,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.primengConfig.ripple = true;
@@ -137,5 +141,19 @@ export class MenuBarComponent {
       this.otpRequest.phone = event.userData.phone
     this.verifyOtpDialog = true;
     this.requestOtpComponent?.sendVerificationCode(this.otpRequest)
+  }
+
+  opSignUpForm() {
+    this.signUpDialog = true
+    this.userService.getUser().subscribe({
+      next: (response: User) => {
+        if (response) {
+          this.user = Utils.applyDefaults<User>(response, defaultUser)
+        }
+      },
+      error: (error) => {
+          this.toastService.showError('Error fetching user info')
+      }
+    })
   }
 }
