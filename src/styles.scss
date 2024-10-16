@@ -28,10 +28,10 @@ i,
 em {
   color: $iconRed;
 }
-a{
+a {
   text-decoration: none;
   color: $fontColorDark;
-  &:hover{
+  &:hover {
     text-decoration: none;
     color: $red-primary;
   }
@@ -47,12 +47,16 @@ a{
   padding: 4px 12px;
 }
 .p-button {
-  border-radius: 9px;
+  border-radius: 8px;
   .p-button-label {
     color: $fontColorDark;
     font-family: "Inter";
     font-weight: 700;
     font-size: 18px;
+    text-decoration: none!important;
+  }
+  &:hover {
+    border-color: $red-primary !important;
   }
 }
 
@@ -73,7 +77,16 @@ a{
   }
 }
 .p-inputtext {
-  border-radius: 12px;
+  border-radius: 8px;
+  &:hover {
+    border-color: $red-primary !important;
+  }
+  &:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem #6900015c;
+    border-color: $red-primary;
+  }
 }
 ul {
   list-style: none;
@@ -87,6 +100,47 @@ ul {
       text-decoration: none;
       color: $grey;
       font-weight: 500;
+    }
+  }
+}
+.p-checkbox:not(.p-checkbox-disabled), .p-dropdown:not(.p-disabled){
+  &:hover{
+    border-color: $red-primary!important;
+  }
+  &.p-focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem #6900015c;
+      border-color: $red-primary;
+}
+  .p-checkbox-box {
+    &.p-focus{
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0 0.2rem #6900015c;
+      border-color: $red-primary;
+    }
+    &:hover {
+      border-color: $red-primary;
+    }
+    &.p-highlight {
+      border-color: #6900015c;
+      background: $red-primary;
+      &:hover {
+        border-color: #6900015c;
+        background: $red-primary;
+        color: $fontColorLight;
+      }
+    }
+  }
+}
+.p-dropdown-panel {
+  .p-dropdown-items {
+    .p-dropdown-item{
+      &.p-highlight {
+        color: $red-primary;
+        background: #69000121;
+      }
     }
   }
 }

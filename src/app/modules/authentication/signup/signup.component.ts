@@ -6,12 +6,16 @@ import { OtpRequest } from 'src/app/common/models/otpRequest';
 import { VerifySignInComponent } from '../signin/request-otp/verify-sign-in.component';
 import { SignInOptions } from 'src/app/common/constants/enums';
 import { ToastService } from 'src/app/common/services/toast.service';
-
+interface Country {
+  name: string;
+  code: string;
+}
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
+
 export class SignupComponent implements OnInit {
 
   userForm: FormGroup | undefined;
@@ -19,6 +23,9 @@ export class SignupComponent implements OnInit {
   selectedFile: File | null = null;
   filePreview: string | ArrayBuffer | null = null;
   isImageFile: boolean = false;
+  countries: Country[] =[];
+  selectedCountry!: Country;
+  
   @Output() triggerRequestOptEvent = new EventEmitter();
   @Output() triggerCloseSignUp = new EventEmitter();
   @ViewChild(VerifySignInComponent) requestOtpComponent!: VerifySignInComponent;
@@ -35,6 +42,13 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.countries = [
+      { name: 'United States', code: 'US' },
+      { name: 'Canada', code: 'CA' },
+      { name: 'United Kingdom', code: 'UK' },
+      { name: 'Pakistan', code: 'PK' },
+      { name: 'India', code: 'IN' }
+  ];
     this.initForm()
   }
 
