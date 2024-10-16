@@ -3,7 +3,7 @@
     <app-filters></app-filters>
   </div>
   <div class="placesCards col-12 md:col-9">
-    <div class="flex flex-column gap-4">
+    <!-- <div class="flex flex-column gap-4">
     <div class="header">
       <h4>Featured halal delivery near you</h4>
       <p-button label="Map View" icon="map" class="viewStyleButton"></p-button>
@@ -147,12 +147,12 @@
         </p-card>
       </div>
       <p-button label="View More" class="viewMoreButton text-center"></p-button>
-    </div>
+    </div> -->
 
     <div class="halalPlaces mt-5">
       <div class="flex flex-column gap-4">
         <div class="header">
-          <h4>52 halal places near you</h4>
+          <h4>{{totalRestaurants}} halal places near you</h4>
         </div>
         <div class="foodCategories">
           <div class="category">
@@ -212,26 +212,27 @@
           </div>
         </div>
         <div class="cards">
-          <p-card [style]="{ width: '296px' }">
+          <p-card *ngFor="let item of restaurants" [style]="{ width: '296px' }">
             <ng-template pTemplate="header">
               <div class="cardHeaderCta">
-                <p-chip label="New" class="success"></p-chip>
+                <!-- <p-chip label="New" class="success"></p-chip> -->
                 <em class="likeHeartFilled"></em>
               </div>
-              <img alt="Card" src="../../assets/images/food-image-1.svg" />
+              <img alt="Restaurant Cover" [src]="item.coverImageWebUrl"  (error)="onCoverImageError(item)" />
             </ng-template>
             <div class="cardHeader">
               <img
                 class="restaurantLogo"
-                src="../../assets/images/restaurant-image.svg"
-                alt=""
+                [src]="item.iconImageWebUrl"
+                (error)="onLogoImageError(item)"
+                alt="Restaurant logo"
               />
               <div class="restaurantInfo">
-                <h5 class="restaurantName">Burger King</h5>
-                <p class="restaurantAddress">231 Main Street</p>
+                <h5 class="restaurantName">{{item.name}}</h5>
+                <p class="restaurantAddress">{{item.address}}</p>
               </div>
               <div class="icons">
-                <em class="delivery"></em>
+                <em *ngIf="item.offersDelivery" class="delivery"></em>
                 <em class="phoneOutlined"></em>
               </div>
             </div>
@@ -239,166 +240,25 @@
               <div class="left">
                 <div class="ratings">
                   <em class="ratingStarFilled"></em
-                  ><span class="orange">4.8</span>
+                  ><span class="orange">{{item.averageRating}}</span>
                 </div>
                 <div class="ratings">
-                  <em class="comment"></em><span>56</span>
+                  <em class="comment"></em><span>{{item.totalReviews}}</span>
                 </div>
                 <div class="ratings">
-                  <em class="repeat"></em><span>56%</span>
+                  <em class="repeat"></em><span>{{item.willReturnPercentage}}%</span>
                 </div>
-                <div class="ratings"><em class="image"></em><span>5</span></div>
+                <div class="ratings"><em class="image"></em><span>{{item.totalPhotos}}</span></div>
               </div>
               <div class="right">
-                <em class="routing"></em><span>700m</span>
+                <em class="routing"></em><span>{{item.distance?.distance | number: "1.0-0"}}m</span>
               </div>
             </div>
-            <div class="cardFooter">
+            <!-- <div class="cardFooter">
               <p-chip label="American"></p-chip>
               <p-chip label="Middle Eastern"></p-chip>
               <p-chip label="Deli"></p-chip>
-            </div>
-          </p-card>
-          <p-card [style]="{ width: '296px' }">
-            <ng-template pTemplate="header">
-              <div class="cardHeaderCta">
-                <p-chip label="Closed"></p-chip>
-                <em class="likeHeartFilled"></em>
-              </div>
-              <img alt="Card" src="../../assets/images/food-image-2.svg" />
-            </ng-template>
-            <div class="cardHeader">
-              <img
-                class="restaurantLogo"
-                src="../../assets/images/restaurant-image.svg"
-                alt=""
-              />
-              <div class="restaurantInfo">
-                <h5 class="restaurantName">Burger King</h5>
-                <p class="restaurantAddress">231 Main Street</p>
-              </div>
-              <div class="icons">
-                <em class="delivery"></em>
-                <em class="phoneOutlined"></em>
-              </div>
-            </div>
-            <div class="cardBody">
-              <div class="left">
-                <div class="ratings">
-                  <em class="ratingStarFilled"></em
-                  ><span class="orange">4.8</span>
-                </div>
-                <div class="ratings">
-                  <em class="comment"></em><span>56</span>
-                </div>
-                <div class="ratings">
-                  <em class="repeat"></em><span>56%</span>
-                </div>
-                <div class="ratings"><em class="image"></em><span>5</span></div>
-              </div>
-              <div class="right">
-                <em class="routing"></em><span>700m</span>
-              </div>
-            </div>
-            <div class="cardFooter">
-              <p-chip label="American"></p-chip>
-              <p-chip label="Middle Eastern"></p-chip>
-              <p-chip label="Deli"></p-chip>
-            </div>
-          </p-card>
-          <p-card [style]="{ width: '296px' }">
-            <ng-template pTemplate="header">
-              <div class="cardHeaderCta">
-                <p-chip label="Order Now"></p-chip>
-                <em class="likeHeartFilled"></em>
-              </div>
-              <img alt="Card" src="../../assets/images/food-image-2.svg" />
-            </ng-template>
-            <div class="cardHeader">
-              <img
-                class="restaurantLogo"
-                src="../../assets/images/restaurant-image.svg"
-                alt=""
-              />
-              <div class="restaurantInfo">
-                <h5 class="restaurantName">Burger King</h5>
-                <p class="restaurantAddress">231 Main Street</p>
-              </div>
-              <div class="icons">
-                <em class="delivery"></em>
-                <em class="phoneOutlined"></em>
-              </div>
-            </div>
-            <div class="cardBody">
-              <div class="left">
-                <div class="ratings">
-                  <em class="ratingStarFilled"></em
-                  ><span class="orange">4.8</span>
-                </div>
-                <div class="ratings">
-                  <em class="comment"></em><span>56</span>
-                </div>
-                <div class="ratings">
-                  <em class="repeat"></em><span>56%</span>
-                </div>
-                <div class="ratings"><em class="image"></em><span>5</span></div>
-              </div>
-              <div class="right">
-                <em class="routing"></em><span>700m</span>
-              </div>
-            </div>
-            <div class="cardFooter">
-              <p-chip label="American"></p-chip>
-              <p-chip label="Middle Eastern"></p-chip>
-              <p-chip label="Deli"></p-chip>
-            </div>
-          </p-card>
-          <p-card [style]="{ width: '296px' }">
-            <ng-template pTemplate="header">
-              <div class="cardHeaderCta">
-                <p-chip label="New" class="success"></p-chip>
-                <em class="likeHeartFilled"></em>
-              </div>
-              <img alt="Card" src="../../assets/images/food-image-1.svg" />
-            </ng-template>
-            <div class="cardHeader">
-              <img
-                class="restaurantLogo"
-                src="../../assets/images/restaurant-image.svg"
-                alt=""
-              />
-              <div class="restaurantInfo">
-                <h5 class="restaurantName">Burger King</h5>
-                <p class="restaurantAddress">231 Main Street</p>
-              </div>
-              <div class="icons">
-                <em class="delivery"></em>
-                <em class="phoneOutlined"></em>
-              </div>
-            </div>
-            <div class="cardBody">
-              <div class="left">
-                <div class="ratings">
-                  <em class="ratingStarFilled"></em
-                  ><span class="orange">4.8</span>
-                </div>
-                <div class="ratings">
-                  <em class="comment"></em><span>56</span>
-                </div>
-                <div class="ratings">
-                  <em class="repeat"></em><span>56%</span>
-                </div>
-                <div class="ratings"><em class="image"></em><span>5</span></div>
-              </div>
-              <div class="right">
-                <em class="routing"></em><span>700m</span>
-              </div>
-            </div>
-            <div class="cardFooter">
-              <p-chip label="American"></p-chip>
-              <p-chip label="Middle Eastern"></p-chip>
-              <p-chip label="Deli"></p-chip>
-            </div>
+            </div> -->
           </p-card>
         </div>
         <p-button label="View More" class="viewMoreButton text-center"></p-button>
@@ -407,35 +267,30 @@
     <div class="prayerPlaces mt-5">
       <div class="flex flex-column gap-4">
         <div class="header">
-          <h4>12 prayer spaces near you</h4>
+          <h4>{{totalMosques}} prayer spaces near you</h4>
         </div>
         <div class="cards">
-          <p-card [style]="{ width: '296px' }">
+          <p-card *ngFor="let item of mosques" [style]="{ width: '296px' }">
             <ng-template pTemplate="header">
               <div class="cardHeaderCta">
-                <p-chip label="New" class="success"></p-chip>
+                <!-- <p-chip label="New" class="success"></p-chip> -->
                 <em class="likeHeartFilled"></em>
               </div>
-              <img alt="Card" src="../../assets/images/mosque.svg" />
+              <img alt="Mosque Cover" [src]="item.coverImageWebUrl" (error)="onCoverImageError(item)" />
             </ng-template>
             <div class="cardHeader">
               <img
                 class="restaurantLogo"
-                src="../../assets/images/restaurant-image.svg"
-                alt=""
+                [src]="item.iconImageWebUrl"
+                (error)="onLogoImageError(item)" 
+                alt="Mosque Logo"
               />
               <div class="restaurantInfo">
-                <h5 class="restaurantName">Dar al-Hijrah Masjid</h5>
-                <p
-                  class="restaurantAddress"
-                  pTooltip="11234 Broad Street, Falls Church, VA"
-                  tooltipPosition="top"
-                >
-                  11234 Broad Street, Falls Church, VA
-                </p>
+                <h5 class="restaurantName">{{item.name}}</h5>
+                <p class="restaurantAddress">{{item.address}}</p>
               </div>
               <div class="icons">
-                <!-- <em class="delivery"></em> -->
+                <em *ngIf="item.offersDelivery" class="delivery"></em>
                 <em class="phoneOutlined"></em>
               </div>
             </div>
@@ -443,176 +298,25 @@
               <div class="left">
                 <div class="ratings">
                   <em class="ratingStarFilled"></em
-                  ><span class="orange">4.8</span>
+                  ><span class="orange">{{item.averageRating}}</span>
                 </div>
                 <div class="ratings">
-                  <em class="comment"></em><span>56</span>
+                  <em class="comment"></em><span>{{item.totalReviews}}</span>
                 </div>
                 <div class="ratings">
-                  <em class="repeat"></em><span>56%</span>
+                  <em class="repeat"></em><span>{{item.willReturnPercentage}}%</span>
                 </div>
-                <div class="ratings"><em class="image"></em><span>5</span></div>
+                <div class="ratings"><em class="image"></em><span>{{item.totalPhotos}}</span></div>
               </div>
               <div class="right">
-                <em class="routing"></em><span>700m</span>
+                <em class="routing"></em><span>{{item.distance?.distance | number: "1.0-0"}}m</span>
               </div>
             </div>
-            <div class="cardFooter">
-              <p-chip label="Sunni (Traditional)"></p-chip>
-            </div>
-          </p-card>
-          <p-card [style]="{ width: '296px' }">
-            <ng-template pTemplate="header">
-              <div class="cardHeaderCta">
-                <p-chip label="Closed" class=""></p-chip>
-                <em class="likeHeartFilled"></em>
-              </div>
-              <img alt="Card" src="../../assets/images/mosque.svg" />
-            </ng-template>
-            <div class="cardHeader">
-              <img
-                class="restaurantLogo"
-                src="../../assets/images/restaurant-image.svg"
-                alt=""
-              />
-              <div class="restaurantInfo">
-                <h5 class="restaurantName">Dar al-Hijrah Masjid</h5>
-                <p
-                  class="restaurantAddress"
-                  pTooltip="11234 Broad Street, Falls Church, VA"
-                  tooltipPosition="top"
-                >
-                  11234 Broad Street, Falls Church, VA
-                </p>
-              </div>
-              <div class="icons">
-                <!-- <em class="delivery"></em> -->
-                <em class="phoneOutlined"></em>
-              </div>
-            </div>
-            <div class="cardBody">
-              <div class="left">
-                <div class="ratings">
-                  <em class="ratingStarFilled"></em
-                  ><span class="orange">4.8</span>
-                </div>
-                <div class="ratings">
-                  <em class="comment"></em><span>56</span>
-                </div>
-                <div class="ratings">
-                  <em class="repeat"></em><span>56%</span>
-                </div>
-                <div class="ratings"><em class="image"></em><span>5</span></div>
-              </div>
-              <div class="right">
-                <em class="routing"></em><span>700m</span>
-              </div>
-            </div>
-            <div class="cardFooter">
-              <p-chip label="Sunni (Traditional)"></p-chip>
-            </div>
-          </p-card>
-          <p-card [style]="{ width: '296px' }">
-            <ng-template pTemplate="header">
-              <div class="cardHeaderCta">
-                <p-chip label="Closed" class=""></p-chip>
-                <em class="likeHeartFilled"></em>
-              </div>
-              <img alt="Card" src="../../assets/images/mosque.svg" />
-            </ng-template>
-            <div class="cardHeader">
-              <img
-                class="restaurantLogo"
-                src="../../assets/images/restaurant-image.svg"
-                alt=""
-              />
-              <div class="restaurantInfo">
-                <h5 class="restaurantName">Dar al-Hijrah Masjid</h5>
-                <p
-                  class="restaurantAddress"
-                  pTooltip="11234 Broad Street, Falls Church, VA"
-                  tooltipPosition="top"
-                >
-                  11234 Broad Street, Falls Church, VA
-                </p>
-              </div>
-              <div class="icons">
-                <!-- <em class="delivery"></em> -->
-                <em class="phoneOutlined"></em>
-              </div>
-            </div>
-            <div class="cardBody">
-              <div class="left">
-                <div class="ratings">
-                  <em class="ratingStarFilled"></em
-                  ><span class="orange">4.8</span>
-                </div>
-                <div class="ratings">
-                  <em class="comment"></em><span>56</span>
-                </div>
-                <div class="ratings">
-                  <em class="repeat"></em><span>56%</span>
-                </div>
-                <div class="ratings"><em class="image"></em><span>5</span></div>
-              </div>
-              <div class="right">
-                <em class="routing"></em><span>700m</span>
-              </div>
-            </div>
-            <div class="cardFooter">
-              <p-chip label="Sunni (Traditional)"></p-chip>
-            </div>
-          </p-card>
-          <p-card [style]="{ width: '296px' }">
-            <ng-template pTemplate="header">
-              <div class="cardHeaderCta">
-                <p-chip label="New" class="success"></p-chip>
-                <em class="likeHeartFilled"></em>
-              </div>
-              <img alt="Card" src="../../assets/images/mosque.svg" />
-            </ng-template>
-            <div class="cardHeader">
-              <img
-                class="restaurantLogo"
-                src="../../assets/images/restaurant-image.svg"
-                alt=""
-              />
-              <div class="restaurantInfo">
-                <h5 class="restaurantName">Dar al-Hijrah Masjid</h5>
-                <p
-                  class="restaurantAddress"
-                  pTooltip="11234 Broad Street, Falls Church, VA"
-                  tooltipPosition="top"
-                >
-                  11234 Broad Street, Falls Church, VA
-                </p>
-              </div>
-              <div class="icons">
-                <!-- <em class="delivery"></em> -->
-                <em class="phoneOutlined"></em>
-              </div>
-            </div>
-            <div class="cardBody">
-              <div class="left">
-                <div class="ratings">
-                  <em class="ratingStarFilled"></em
-                  ><span class="orange">4.8</span>
-                </div>
-                <div class="ratings">
-                  <em class="comment"></em><span>56</span>
-                </div>
-                <div class="ratings">
-                  <em class="repeat"></em><span>56%</span>
-                </div>
-                <div class="ratings"><em class="image"></em><span>5</span></div>
-              </div>
-              <div class="right">
-                <em class="routing"></em><span>700m</span>
-              </div>
-            </div>
-            <div class="cardFooter">
-              <p-chip label="Sunni (Traditional)"></p-chip>
-            </div>
+            <!-- <div class="cardFooter">
+              <p-chip label="American"></p-chip>
+              <p-chip label="Middle Eastern"></p-chip>
+              <p-chip label="Deli"></p-chip>
+            </div> -->
           </p-card>
         </div>
         <p-button label="View More" class="viewMoreButton text-center"></p-button>

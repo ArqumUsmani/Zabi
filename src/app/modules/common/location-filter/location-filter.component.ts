@@ -1,51 +1,45 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnInit } from '@angular/core';
-import { GeolocationService } from '../../../../app/common/services/geolocation.service';
-import { PlacesService } from 'src/app/common/services/places.service';
-import { HttpService } from 'src/app/common/services/http.service';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { RestaurantService } from 'src/app/common/services/restaurants.service';
+import { MosqueService } from 'src/app/common/services/mosque.service';
+import { Location } from 'src/app/common/constants/interfaces';
+import { CommonPubSubService } from 'src/app/common/Helper/common-pub-sub.service';
 
 @Component({
   selector: 'app-location-filter',
   templateUrl: './location-filter.component.html',
   styleUrls: ['./location-filter.component.scss']
 })
-export class LocationFilterComponent implements OnInit {
+export class LocationFilterComponent implements AfterViewInit {
+  @ViewChild('searchInput') searchInput!: ElementRef;
+  autocomplete!: google.maps.places.Autocomplete;
+  selectedPlace: Location = {} as Location;
+  keyword: string | undefined;
 
-  constructor(private geolocationService: GeolocationService,
-    private placesService: PlacesService,
-    private httpService: HttpService) { }
+  constructor(private commonPubSubService: CommonPubSubService) { }
 
-  ngOnInit(): void {
-    this.initNearbyPlacesService()
+  ngAfterViewInit(): void {
+    this.initializeAutocomplete();
   }
 
-  initNearbyPlacesService(): void {
-    const service = new google.maps.places.PlacesService(document.createElement('div'));
+  initializeAutocomplete() {
+    // Initialize the autocomplete object
+    this.autocomplete = new google.maps.places.Autocomplete(this.searchInput.nativeElement, {
+      types: ['establishment'], // You can also use 'geocode' or 'address' depending on your use case
+    });
 
-    const request = {
-      location: new google.maps.LatLng(33.6461432,73.0523224), // Replace with actual lat/lng
-      radius: 5000, // 5km radius
-      type: 'restaurant', // Only get restaurants
-    };
-
-    service.nearbySearch(request, (results: any, status: string) => {
-      if (status === 'OK' && results) {
-        results.forEach((place: any) => {
-          console.log(place.name); // List restaurant names in the console
-        });
+    // Listen for place selection
+    this.autocomplete.addListener('place_changed', () => {
+      const place = this.autocomplete.getPlace();
+      if (place.geometry && place.geometry.location) {
+        this.selectedPlace = { name: place.name, lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }
+      } else {
+        console.error("No details available for the input: '" + place.name + "'");
       }
     });
   }
 
-  onKey(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      // this.geolocationService.getPosition().subscribe((coords) => {
-      //   this.searchNearbyPlaces(coords.latitude, coords.longitude);
-      // });
-    }
-  }
-
-  findplaces() {
-    this.placesService.searchRestaurants({}).subscribe()
+  setLocationFilter(selectedPlace: Location, keyword: string | undefined) {
+    this.commonPubSubService.setLocationFilterOpts({ location: selectedPlace, keyword: keyword })
   }
 }

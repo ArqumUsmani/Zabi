@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { Location } from 'src/app/common/constants/interfaces';
+import { CommonPubSubService } from 'src/app/common/Helper/common-pub-sub.service';
+import { MosqueService } from 'src/app/common/services/mosque.service';
+import { RestaurantService } from 'src/app/common/services/restaurants.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,6 +11,35 @@ import { MenuItem } from 'primeng/api';
 })
 export class HomeComponent {
   responsiveOptions: any[] = [];
+  totalRestaurants: number | null = null;
+  restaurants: any = [];
+  totalMosques: number | null = null;
+  mosques: any = [];
+
+  fallbackImageUrl: string = '../../assets/images/image-placeholder.svg';
+
+  onCoverImageError(item: any) {
+    item.coverImageWebUrl = this.fallbackImageUrl; // Change to the fallback image if the main image fails to load
+  }
+
+  onLogoImageError(item: any) {
+    item.iconImageWebUrl = this.fallbackImageUrl; // Change to the fallback image if the main image fails to load
+  }
+
+  constructor(private commonPubSubService: CommonPubSubService,
+    private restaurantService: RestaurantService,
+    private mosqueService: MosqueService
+  ) {
+    this.commonPubSubService.locationFilterOpts$.subscribe({
+      next: (response) => {
+        if (response?.location) {
+          this.searchRestaurants(response?.location, response?.keyword)
+          this.searchMosques(response?.location, response?.keyword)
+        }
+      }
+    })
+  }
+
   ngOnInit() {
     this.responsiveOptions = [
       {
@@ -26,5 +58,43 @@ export class HomeComponent {
         numScroll: 1,
       },
     ];
+  }
+
+  searchRestaurants(selectedPlace: Location | undefined, keyword: string | undefined) {
+    const payload = {
+      keyword: keyword,
+      location: {
+        latitude: selectedPlace?.lat,
+        longitude: selectedPlace?.lng,
+      },
+    }
+    this.restaurantService.searchRestaurants(payload).subscribe({
+      next: (response) => {
+        this.restaurants = response.items;
+        this.totalRestaurants = response.totalRecords;
+      },
+      error: (error) => {
+        console.error('Error getting restaurants list')
+      }
+    })
+  }
+
+  searchMosques(selectedPlace: Location | undefined, keyword: string | undefined) {
+    const payload = {
+      keyword: keyword,
+      location: {
+        latitude: selectedPlace?.lat,
+        longitude: selectedPlace?.lng,
+      },
+    }
+    this.mosqueService.searchMosques(payload).subscribe({
+      next: (response) => {
+        this.mosques = response?.items;
+        this.totalMosques = response.totalRecords;
+      },
+      error: (error) => {
+        console.error('Error getting mosques list')
+      }
+    })
   }
 }

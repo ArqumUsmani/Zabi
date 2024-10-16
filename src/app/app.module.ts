@@ -27,6 +27,7 @@ import { VerifyOtpComponent } from './modules/authentication/signin/verify-otp/v
 import { AuthInterceptor } from './common/interceptors/auth-interceptor';
 import { OtpInputComponent } from './modules/authentication/signin/otp-input/otp-input.component';
 import { ToastModule } from 'primeng/toast';
+import { CommonPubSubService } from './common/Helper/common-pub-sub.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ToastModule } from 'primeng/toast';
     useClass: AuthInterceptor,
     multi: true
   },
-    MessageService
+    MessageService,
+    CommonPubSubService
   ],
   bootstrap: [AppComponent]
 })
