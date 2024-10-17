@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SignInOptions } from 'src/app/common/constants/enums';
 import { AuthenticationService } from '../../../../common/services/authentication.service';
 import { OtpRequest } from 'src/app/common/models/otpRequest';
+import { countryCodes } from 'src/app/common/constants/countryCodes';
 
 @Component({
   selector: 'app-request-otp',
@@ -11,7 +12,9 @@ import { OtpRequest } from 'src/app/common/models/otpRequest';
 
 export class VerifySignInComponent {
   signInOptions = SignInOptions;
+  countryCodes = countryCodes;
   email: string = '';
+  countryCode: string = '+1';
   phone: string = '';
   @Input() signInOption: string | undefined;
   @Output() sendTokenConfirmationReq = new EventEmitter();
@@ -29,7 +32,7 @@ export class VerifySignInComponent {
       }
       else if (this.phone) {
         otpRequest.type = this.signInOptions.PHONE
-        otpRequest.phone = this.phone
+        otpRequest.phone = this.countryCode + this.phone
       }
     }
     this.authenticationService.requestOtp(otpRequest).subscribe({

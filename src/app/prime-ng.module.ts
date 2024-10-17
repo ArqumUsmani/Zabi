@@ -19,6 +19,7 @@ import { DialogModule } from 'primeng/dialog';
 import { AvatarModule } from 'primeng/avatar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [],
@@ -43,7 +44,8 @@ import { ToastModule } from 'primeng/toast';
     DialogModule,
     AvatarModule,
     CheckboxModule,
-    ToastModule
+    ToastModule,
+    DropdownModule
   ],
   exports: [
     StyleClassModule,
@@ -63,7 +65,8 @@ import { ToastModule } from 'primeng/toast';
     CarouselModule,
     DialogModule,
     AvatarModule,
-    CheckboxModule
+    CheckboxModule,
+    DropdownModule
   ]
 })
 export class PrimeNgModule { }

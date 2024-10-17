@@ -15,6 +15,16 @@
                         [(ngModel)]="email" />
                 </span>
                 <span *ngIf="signInOption === signInOptions.PHONE">
+                    <p-dropdown 
+                    id="country-code" 
+                    [options]="countryCodes" 
+                    [(ngModel)]="countryCode" 
+                       [filter]="true" 
+                        [filterPlaceholder]="'Search...'"
+                    optionLabel="acronym"
+                    optionValue="code"
+                    appendTo="body" >
+                  </p-dropdown>
                     <input type="text" pInputText class="phoneInput" placeholder="+1 (555) 000-0000"
                         [(ngModel)]="phone" />
                 </span>
