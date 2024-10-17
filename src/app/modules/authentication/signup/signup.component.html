@@ -50,9 +50,11 @@
             <!-- </span> -->
             <div class="flex">
               <p-dropdown
-                [options]="countries"
-                [(ngModel)]="selectedCountry"
-                optionLabel="code" class="countryCode"
+                [options]="countryCodes"
+                [(ngModel)]="countryCode"
+                class="countryCode"
+                optionLabel="acronym"
+                optionValue="code"
               ></p-dropdown>
               <input
                 class="phoneNumberInput"
