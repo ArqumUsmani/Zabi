@@ -1,0 +1,24 @@
+:host ::ng-deep {
+  .countryCode {
+    .p-dropdown {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-right: none;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      span {
+        box-shadow: none;
+        padding-right: 0;
+      }
+      .p-dropdown-trigger {
+        width: 2rem;
+      }
+    }
+  }
+  .phoneNumberInput {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    // width: -webkit-fill-available;
+    border-left: none;
+  }
+}
