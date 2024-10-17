@@ -62,7 +62,8 @@ export class SignupComponent implements OnInit {
       email: [this._userData?.email ?? ''],
       isSubscribedToHalalOffersNotification: [this._userData?.isSubscribedToHalalOffersNotification ?? false],
       isSubscribedToHalalEventsNewsletter: [this._userData?.isSubscribedToHalalEventsNewsletter ?? false],
-      termsAndConditions: [false, Validators.required]
+      termsAndConditions: [false, Validators.required],
+      countryCodes : [countryCodes]
     });
   }
 
