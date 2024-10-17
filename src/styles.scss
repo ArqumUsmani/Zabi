@@ -55,9 +55,9 @@ a {
     font-size: 18px;
     text-decoration: none!important;
   }
-  &:hover {
-    border-color: $red-primary !important;
-  }
+  // &:hover {
+  //   border-color: $red-primary !important;
+  // }
 }
 
 .p-button-success {
@@ -79,13 +79,13 @@ a {
 .p-inputtext {
   border-radius: 8px;
   &:hover {
-    border-color: $red-primary !important;
+    border-color: #ced4da !important;
   }
   &:enabled:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem #6900015c;
-    border-color: $red-primary;
+    box-shadow: none;
+    border-color: #ced4da !important;
   }
 }
 ul {
@@ -105,13 +105,13 @@ ul {
 }
 .p-checkbox:not(.p-checkbox-disabled), .p-dropdown:not(.p-disabled){
   &:hover{
-    border-color: $red-primary!important;
+    border-color: #ced4da !important;
   }
   &.p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem #6900015c;
-      border-color: $red-primary;
+    box-shadow: none;
+      border-color: #ced4da !important;
 }
   .p-checkbox-box {
     &.p-focus{
