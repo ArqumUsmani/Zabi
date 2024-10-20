@@ -6,6 +6,7 @@ import { OtpRequest } from 'src/app/common/models/otpRequest';
 import { VerifySignInComponent } from '../signin/request-otp/verify-sign-in.component';
 import { SignInOptions } from 'src/app/common/constants/enums';
 import { ToastService } from 'src/app/common/services/toast.service';
+import { countryCodes } from 'src/app/common/constants/countryCodes';
 interface Country {
   name: string;
   code: string;
@@ -17,7 +18,8 @@ interface Country {
 })
 
 export class SignupComponent implements OnInit {
-
+  countryCodes = countryCodes;
+  countryCode: string = '+1';
   userForm: FormGroup | undefined;
   _userData: User | undefined;
   selectedFile: File | null = null;
@@ -25,7 +27,7 @@ export class SignupComponent implements OnInit {
   isImageFile: boolean = false;
   countries: Country[] =[];
   selectedCountry!: Country;
-  
+
   @Output() triggerRequestOptEvent = new EventEmitter();
   @Output() triggerCloseSignUp = new EventEmitter();
   @ViewChild(VerifySignInComponent) requestOtpComponent!: VerifySignInComponent;
@@ -60,7 +62,8 @@ export class SignupComponent implements OnInit {
       email: [this._userData?.email ?? ''],
       isSubscribedToHalalOffersNotification: [this._userData?.isSubscribedToHalalOffersNotification ?? false],
       isSubscribedToHalalEventsNewsletter: [this._userData?.isSubscribedToHalalEventsNewsletter ?? false],
-      termsAndConditions: [false, Validators.required]
+      termsAndConditions: [false, Validators.required],
+      countryCodes : [countryCodes]
     });
   }
 
