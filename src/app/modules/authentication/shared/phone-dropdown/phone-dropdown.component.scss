@@ -1,25 +1,35 @@
 :host ::ng-deep {
-    .countryCode {
-      .p-dropdown {
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
-        border-right: none;
-        border-top-left-radius: 8px;
-        border-bottom-left-radius: 8px;
-        span {
-          box-shadow: none;
-          padding-right: 0;
-        }
-        .p-dropdown-trigger {
-          width: 2rem;
-        }
+  .countryCode {
+    .p-dropdown {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-right: none;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      height: -webkit-fill-available;
+      span {
+        box-shadow: none;
+        padding-right: 0;
+      }
+      .p-dropdown-trigger {
+        width: 2rem;
+      }
+      .p-dropdown-label {
+        width: 80px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
+  }
+  .phoneDropdown {
     .phoneNumberInput {
       border-top-left-radius: 0px;
       border-bottom-left-radius: 0px;
       // width: -webkit-fill-available;
       border-left: none;
+      width: 180px !important;
+      flex: 1;
     }
   }
-  
+}
