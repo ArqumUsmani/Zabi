@@ -7,8 +7,7 @@ import { environment } from 'src/environments/environment';
 export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        //TO DO: to be removed
-        console.log('testing the enviroment', environment.production)
+        const isAzureBlobRequest = req.url.includes('.blob.core.windows.net');
         // appending the base url if the build is for prod
         let apiReq = req;
         if (environment.production) {
@@ -20,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
         const token = localStorage.getItem('accessToken');
 
         // Clone the request to add the new header
-        if (token) {
+        if (token && !isAzureBlobRequest) {
             const cloned = req.clone({
                 setHeaders: {
                     Authorization: `Bearer ${token}`

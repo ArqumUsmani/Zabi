@@ -1,13 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { SignInOptions } from 'src/app/common/constants/enums';
 import { AuthenticationService } from '../../../../common/services/authentication.service';
 import { OtpRequest } from 'src/app/common/models/otpRequest';
-import { countryCodes } from 'src/app/common/constants/countryCodes';
-
-interface Country {
-  name: string;
-  code: string;
-}
+import { PhoneDropdownComponent } from '../../shared/phone-dropdown/phone-dropdown.component';
 
 @Component({
   selector: 'app-request-otp',
@@ -17,24 +12,15 @@ interface Country {
 
 export class VerifySignInComponent {
   signInOptions = SignInOptions;
-  countryCodes = countryCodes;
   email: string = '';
   countryCode: string = '+1';
   phone: string = '';
   @Input() signInOption: string | undefined;
   @Output() sendTokenConfirmationReq = new EventEmitter();
-  countries: Country[] =[];
-  selectedCountry!: Country;
+  @ViewChild(PhoneDropdownComponent) phoneDropdownComponent!: PhoneDropdownComponent;
+
   constructor(private authenticationService: AuthenticationService) { }
-  ngOnInit(){
-    this.countries = [
-      { name: 'United States', code: 'US' },
-      { name: 'Canada', code: 'CA' },
-      { name: 'United Kingdom', code: 'UK' },
-      { name: 'Pakistan', code: 'PK' },
-      { name: 'India', code: 'IN' }
-  ];
-  }
+
   sendVerificationCode(otpRequestSignup?: OtpRequest) {
     let otpRequest: OtpRequest = {} as OtpRequest
     if(otpRequestSignup) {
@@ -44,9 +30,9 @@ export class VerifySignInComponent {
         otpRequest.type = this.signInOptions.EMAIL
         otpRequest.email = this.email
       }
-      else if (this.phone) {
+      else if (this.phoneDropdownComponent.phone) {
         otpRequest.type = this.signInOptions.PHONE
-        otpRequest.phone = this.countryCode + this.phone
+        otpRequest.phone = this.phoneDropdownComponent.phone
       }
     }
     this.authenticationService.requestOtp(otpRequest).subscribe({

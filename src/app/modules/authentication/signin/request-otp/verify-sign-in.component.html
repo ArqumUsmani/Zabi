@@ -14,11 +14,7 @@
           <input type="text" pInputText class="emailInput" placeholder="Enter your email address" [(ngModel)]="email" />
         </span>
         <span *ngIf="signInOption === signInOptions.PHONE">
-          <div class="flex" *ngIf="signInOption === signInOptions.PHONE">
-            <p-dropdown id="country-code" [options]="countryCodes" [(ngModel)]="countryCode" class="countryCode" optionLabel="acronym" optionValue="code">
-            </p-dropdown>
-            <input type="text" pInputText class="phoneInput phoneNumberInput" placeholder="000-0000" [(ngModel)]="phone" />
-          </div>
+            <app-phone-dropdown></app-phone-dropdown>
         </span>
       </div>
       <div class="actionButtons">

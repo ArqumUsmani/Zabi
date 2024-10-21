@@ -1,16 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../../common/services/user.service';
 import { User } from 'src/app/common/models/user';
-import { OtpRequest } from 'src/app/common/models/otpRequest';
 import { VerifySignInComponent } from '../signin/request-otp/verify-sign-in.component';
 import { SignInOptions } from 'src/app/common/constants/enums';
 import { ToastService } from 'src/app/common/services/toast.service';
-import { countryCodes } from 'src/app/common/constants/countryCodes';
-interface Country {
-  name: string;
-  code: string;
-}
+import { PhoneDropdownComponent } from '../shared/phone-dropdown/phone-dropdown.component';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -18,19 +14,16 @@ interface Country {
 })
 
 export class SignupComponent implements OnInit {
-  countryCodes = countryCodes;
-  countryCode: string = '+1';
   userForm: FormGroup | undefined;
   _userData: User | undefined;
   selectedFile: File | null = null;
   filePreview: string | ArrayBuffer | null = null;
   isImageFile: boolean = false;
-  countries: Country[] =[];
-  selectedCountry!: Country;
 
   @Output() triggerRequestOptEvent = new EventEmitter();
   @Output() triggerCloseSignUp = new EventEmitter();
   @ViewChild(VerifySignInComponent) requestOtpComponent!: VerifySignInComponent;
+  @ViewChild(PhoneDropdownComponent) phoneDropdownComponent!: PhoneDropdownComponent;
 
   @Input()
   set userData(value: User | undefined) {
@@ -44,17 +37,12 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.countries = [
-      { name: 'United States', code: 'US' },
-      { name: 'Canada', code: 'CA' },
-      { name: 'United Kingdom', code: 'UK' },
-      { name: 'Pakistan', code: 'PK' },
-      { name: 'India', code: 'IN' }
-  ];
     this.initForm()
   }
 
   initForm() {
+    if(this.phoneDropdownComponent) 
+      this.phoneDropdownComponent.phone = this._userData?.phone;
     this.userForm = this.formBuilder.group({
       firstName: [this._userData?.firstName ?? '', Validators.required],
       lastName: [this._userData?.lastName ?? '', Validators.required],
@@ -62,12 +50,13 @@ export class SignupComponent implements OnInit {
       email: [this._userData?.email ?? ''],
       isSubscribedToHalalOffersNotification: [this._userData?.isSubscribedToHalalOffersNotification ?? false],
       isSubscribedToHalalEventsNewsletter: [this._userData?.isSubscribedToHalalEventsNewsletter ?? false],
-      termsAndConditions: [false, Validators.required],
-      countryCodes : [countryCodes]
+      termsAndConditions: [false, Validators.required]
     });
   }
 
   onSubmit() {
+    if(this.phoneDropdownComponent) 
+      this.userForm?.get('phone')?.setValue( this.phoneDropdownComponent.phone = this._userData?.phone);
     if (this.userForm?.valid && this.userForm.get('termsAndConditions')?.value) {
       if (!this._userData?.isEmailVerified && this.userForm?.value.email)
         this.triggerRequestOptEvent.emit({signinOption: SignInOptions.EMAIL, userData: this.userForm?.value})

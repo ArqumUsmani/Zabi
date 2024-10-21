@@ -1,0 +1,19 @@
+<div class="flex">
+    <p-dropdown id="country-code" class="countryCode" [options]="countries" [(ngModel)]="selectedCountry"
+        optionLabel="name" [filter]="true" filterBy="name" appendTo="body" (onChange)="onCountrySelect($event)">
+        <ng-template pTemplate="selectedItem" let-selectedOption>
+            <div class="flex align-items-center gap-2">
+                <img [src]="selectedCountry.flag" [class]="'flag flag-' + selectedCountry.dialCode.toLowerCase()"
+                    style="width: 18px" />
+                <div>{{ selectedOption.name }}</div>
+            </div>
+        </ng-template>
+        <ng-template let-country pTemplate="item">
+            <div class="flex align-items-center gap-2">
+                <img [src]="country.flag" [class]="'flag flag-' + country.dialCode.toLowerCase()" style="width: 18px" />
+                <div>{{ country.name }}</div>
+            </div>
+        </ng-template>
+    </p-dropdown>
+    <input type="text" pInputText appNumeric class="phoneInput phoneNumberInput" [(ngModel)]="phone"  pattern="^[0-9]*$"/>
+</div>

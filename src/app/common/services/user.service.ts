@@ -25,9 +25,10 @@ export class UserService {
     }
 
     uploadProfilePicture(sasURI: string, image: any): Observable<any> {
-        const blob = new Blob([image], { type: 'text/csv' });
+        const blob = new Blob([image], { type: image.type });
         let headers = new HttpHeaders()
-            .set('Content-Type', image.type);
+            .set('Content-Type', image.type)
+            .set('x-ms-blob-type', 'Blockblob');
         return this.httpService.put(sasURI, blob, headers)
     }
 }

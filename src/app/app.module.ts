@@ -28,6 +28,8 @@ import { AuthInterceptor } from './common/interceptors/auth-interceptor';
 import { OtpInputComponent } from './modules/authentication/signin/otp-input/otp-input.component';
 import { ToastModule } from 'primeng/toast';
 import { CommonPubSubService } from './common/Helper/common-pub-sub.service';
+import { PhoneDropdownComponent } from './modules/authentication/shared/phone-dropdown/phone-dropdown.component';
+import { NumericDirective } from './common/directives/numeric.directive';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { CommonPubSubService } from './common/Helper/common-pub-sub.service';
     SignupComponent,
     VerifySignInComponent,
     VerifyOtpComponent,
-    OtpInputComponent
+    OtpInputComponent,
+    PhoneDropdownComponent,
+    NumericDirective
   ],
   imports: [
     BrowserModule,

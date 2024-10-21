@@ -8,3 +8,10 @@ export interface locationsOpts {
     location: Location | undefined,
     keyword: string | undefined
 }
+
+export interface Country {
+    name: string;
+    iso2: string;
+    dialCode: string;
+    flag: string;
+}

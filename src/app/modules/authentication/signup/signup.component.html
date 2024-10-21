@@ -14,18 +14,8 @@
         <p-avatar *ngIf="filePreview" class="image-preview" shape="circle">
           <img [src]="filePreview" alt="File Preview" *ngIf="isImageFile" />
         </p-avatar>
-        <em
-          class="pi pi-pen-to-square editButton"
-          (click)="fileInput.click()"
-          style="cursor: pointer"
-        ></em>
-        <input
-          type="file"
-          #fileInput
-          (change)="onFileSelected($event)"
-          style="display: none"
-          accept="image/*"
-        />
+        <em class="pi pi-pen-to-square editButton" (click)="fileInput.click()" style="cursor: pointer"></em>
+        <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none" accept="image/*" />
       </div>
     </div>
     <form *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()">
@@ -41,80 +31,27 @@
               <input pInputText id="lastName" formControlName="lastName" />
             </div>
           </div>
-          <div
-            class="flex flex-column gap-2 col-12"
-            *ngIf="!_userData?.isPhoneVerified"
-          >
+          <div class="flex flex-column gap-2 col-12" *ngIf="!_userData?.isPhoneVerified">
             <label htmlFor="phoneNumber">Phone number</label>
-            <!-- <span class="p-inputgroup-addon"> -->
-            <!-- </span> -->
-            <div class="flex">
-              <p-dropdown
-                [options]="countryCodes"
-                class="countryCode"
-                optionLabel="acronym"
-                optionValue="code"
-                formControlName="countryCodes"
-              ></p-dropdown>
-              <input
-                class="phoneNumberInput"
-                pInputText
-                id="phoneNumber"
-                placeholder="+1 (555) 000-0000"
-                formControlName="phone"
-              />
-            </div>
+            <span>
+              <app-phone-dropdown></app-phone-dropdown>
+            </span>
           </div>
-          <!-- <div
-            *ngIf="!_userData?.isPhoneVerified"
-            class="flex flex-column gap-2 col-12"
-          >
-            <label htmlFor="phoneNumber">Phone number</label>
-            <input
-              class="phoneNumberInput"
-              pInputText
-              id="phoneNumber"
-              placeholder="+1 (555) 000-0000"
-              formControlName="phone"
-            />
-          </div> -->
-          <div
-            *ngIf="!_userData?.isEmailVerified"
-            class="flex flex-column gap-2 col-12"
-          >
+          <div *ngIf="!_userData?.isEmailVerified" class="flex flex-column gap-2 col-12">
             <label htmlFor="emailAddress">Email address</label>
-            <input
-              class="emailInput"
-              pInputText
-              id="emailAddress"
-              placeholder="Enter your email address"
-              formControlName="email"
-            />
+            <input class="emailInput" pInputText id="emailAddress" placeholder="Enter your email address"
+              formControlName="email" />
           </div>
           <div class="flex gap-2 align-items-center col-12 mb-3">
-            <p-checkbox
-              class="p-checkbox"
-              name="groupname"
-              value="val1"
-              formControlName="termsAndConditions"
-              [binary]="true"
-              [inputId]="'termsAndConditions'"
-            ></p-checkbox
-            ><label for="termsAndConditions"
-              >I agree to
-              <span class="redFont">terms and conditions.</span></label
-            >
+            <p-checkbox class="p-checkbox" name="groupname" value="val1" formControlName="termsAndConditions"
+              [binary]="true" [inputId]="'termsAndConditions'"></p-checkbox><label for="termsAndConditions">I agree to
+              <span class="redFont">terms and conditions.</span></label>
           </div>
         </div>
         <div class="actionButtons flex flex-column gap-2">
-          <p-button
-            [disabled]="
+          <p-button [disabled]="
               !userForm.valid || !userForm.get('termsAndConditions')?.value
-            "
-            label="Continue"
-            class="cta"
-            type="submit"
-          ></p-button>
+            " label="Continue" class="cta" type="submit"></p-button>
         </div>
       </div>
     </form>
