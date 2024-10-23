@@ -1,4 +1,6 @@
 export interface Address {
+    id?: string,
+    name: string,
     physicalAddress: string,
     locationInstructions: string,
     deliveryInstructions: string,

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { MenuBarComponent } from './modules/common/menu-bar/menu-bar.component';
 import { FooterComponent } from './modules/common/footer/footer.component';
 import { PrimeNgModule } from './prime-ng.module';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { HilalFoodComponent } from './modules/main/hilal-food/hilal-food.component';
 import { PickupAndDeliveryComponent } from './modules/main/pickup-and-delivery/pickup-and-delivery.component';
 import { PrayerSpacesComponent } from './modules/main/prayer-spaces/prayer-spaces.component';
@@ -71,7 +71,7 @@ import { AddAddressComponent } from './modules/settings/addresses/add-address/ad
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -79,7 +79,8 @@ import { AddAddressComponent } from './modules/settings/addresses/add-address/ad
     multi: true
   },
     MessageService,
-    CommonPubSubService
+    CommonPubSubService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

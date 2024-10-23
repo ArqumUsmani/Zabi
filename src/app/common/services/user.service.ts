@@ -41,7 +41,7 @@ export class UserService {
         return this.httpService.put(Endpoints.ADDRESS, payload)
     }
 
-    deleteAddress(id: string): Observable<any> {
-        return this.httpService.delete(`${Endpoints.ADDRESS}/id`)
+    deleteAddress(id: string | undefined): Observable<any> {
+        return this.httpService.delete(`${Endpoints.ADDRESS}/${id}`)
     }
 }

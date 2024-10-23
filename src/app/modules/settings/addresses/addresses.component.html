@@ -16,7 +16,7 @@
     </div>
     <ng-template #addressListing>
         <div class="flex flex-column">
-            <div *ngFor="let item of addressesList">
+            <div *ngFor="let item of addressesList; let i = index">
                 <div class="flex flex-row justify-content-between">
                     <div class="flex align-items-center gap-2">
                         <span>icon</span>
@@ -27,18 +27,19 @@
                     </div>
                     <div class="flex flex-row align-items-center gap-2">
                         <span (click)="editAddress(item)">Edit</span>
-                        <span (click)="DeleteAddress(item)">Delete</span>
+                        <span (click)="OpenAddressdeletionConfirmDialog(item, i)">Delete</span>
                     </div>
                 </div>
             </div>
         </div>
     </ng-template>
     <span>
-        <p-button label="Add new address" (onClick)="openAddAddressForm = true"></p-button>
+        <p-button label="Add new address" (onClick)="openAddAddressForm = true; addressDetails = undefined"></p-button>
     </span>
 </div>
 
 <p-dialog [(visible)]="openAddAddressForm" [style]="{ width: '532px' }" [draggable]="false" [modal]="true"
-    [resizable]="false">
-    <app-add-address (triggerCloseDialog)="getCloseDialogTrigger()"></app-add-address>
+    [resizable]="false" [header]="!addressDetails ? 'Add new address' : 'Edit address'">
+    <app-add-address *ngIf="openAddAddressForm" [addressDetails]="addressDetails"
+    (triggerCloseDialog)="getCloseDialogTrigger()"></app-add-address>
 </p-dialog>

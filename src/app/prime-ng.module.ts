@@ -21,6 +21,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenuModule } from 'primeng/menu';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [],
@@ -48,6 +49,7 @@ import { MenuModule } from 'primeng/menu';
     ToastModule,
     DropdownModule,
     MenuModule,
+    ConfirmDialogModule
   ],
   exports: [
     StyleClassModule,
@@ -70,6 +72,7 @@ import { MenuModule } from 'primeng/menu';
     CheckboxModule,
     DropdownModule,
     MenuModule,
+    ConfirmDialogModule
   ]
 })
 export class PrimeNgModule { }
