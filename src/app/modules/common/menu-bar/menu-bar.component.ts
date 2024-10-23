@@ -76,8 +76,7 @@ export class MenuBarComponent {
       {
         label: 'Find hilal food',
         icon: 'hilalFood',
-        routerLink: 'hilal-food',
-        disabled:true
+        routerLink: 'hilal-food'
       },
       {
         label: 'Pickup & delivery',
