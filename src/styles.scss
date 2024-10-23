@@ -147,6 +147,10 @@ ul {
 .p-inputtext.ng-dirty.ng-invalid {
   border-color: #ced4da!important;
 }
+.p-disabled {
+  background-color: transparent!important;
+  border: none!important;
+}
 // icons
 .home {
   content: url("/assets/icons/home-24.svg");

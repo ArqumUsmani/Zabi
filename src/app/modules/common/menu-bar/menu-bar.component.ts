@@ -77,11 +77,13 @@ export class MenuBarComponent {
         label: 'Find hilal food',
         icon: 'hilalFood',
         routerLink: 'hilal-food',
+        disabled:true
       },
       {
         label: 'Pickup & delivery',
         icon: 'pickup',
         routerLink: 'pickup-and-delivery',
+        disabled:true
       },
       {
         label: 'Prayer spaces',
