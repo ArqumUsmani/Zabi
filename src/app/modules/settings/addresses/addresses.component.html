@@ -1,0 +1,44 @@
+<div>
+    <h4>
+        Addresses
+    </h4>
+    <div *ngIf="addressesList.length === 0; else addressListing" class="flex flex-column gap-2"
+        style="align-items: center;">
+        <span>
+            <img />
+        </span>
+        <span>
+            <h3>No delivery addresses available</h3>
+        </span>
+        <span>
+            Feel free to add one below
+        </span>
+    </div>
+    <ng-template #addressListing>
+        <div class="flex flex-column">
+            <div *ngFor="let item of addressesList">
+                <div class="flex flex-row justify-content-between">
+                    <div class="flex align-items-center gap-2">
+                        <span>icon</span>
+                        <div class="flex flex-column">
+                            <span>{{item.label}}</span>
+                            <span>{{item.physicalAddress}}</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-row align-items-center gap-2">
+                        <span (click)="editAddress(item)">Edit</span>
+                        <span (click)="DeleteAddress(item)">Delete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <span>
+        <p-button label="Add new address" (onClick)="openAddAddressForm = true"></p-button>
+    </span>
+</div>
+
+<p-dialog [(visible)]="openAddAddressForm" [style]="{ width: '532px' }" [draggable]="false" [modal]="true"
+    [resizable]="false">
+    <app-add-address (triggerCloseDialog)="getCloseDialogTrigger()"></app-add-address>
+</p-dialog>

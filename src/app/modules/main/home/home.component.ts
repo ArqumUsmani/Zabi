@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { fallbackImageUrl } from 'src/app/common/constants/constants';
 import { Location } from 'src/app/common/constants/interfaces';
 import { CommonPubSubService } from 'src/app/common/Helper/common-pub-sub.service';
 import { MosqueService } from 'src/app/common/services/mosque.service';
@@ -16,14 +17,12 @@ export class HomeComponent {
   totalMosques: number | null = null;
   mosques: any = [];
 
-  fallbackImageUrl: string = '../../assets/images/image-placeholder.svg';
-
   onCoverImageError(item: any) {
-    item.coverImageWebUrl = this.fallbackImageUrl; // Change to the fallback image if the main image fails to load
+    item.coverImageWebUrl = fallbackImageUrl; // Change to the fallback image if the main image fails to load
   }
 
   onLogoImageError(item: any) {
-    item.iconImageWebUrl = this.fallbackImageUrl; // Change to the fallback image if the main image fails to load
+    item.iconImageWebUrl = fallbackImageUrl; // Change to the fallback image if the main image fails to load
   }
 
   constructor(private commonPubSubService: CommonPubSubService,

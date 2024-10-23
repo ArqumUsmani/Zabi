@@ -18,7 +18,6 @@ import { ReviewsComponent } from './modules/main/shared/reviews/reviews.componen
 import { RecentlyAddedComponent } from './modules/main/shared/recently-added/recently-added.component';
 import { FiltersComponent } from './modules/main/shared/filters/filters.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GeolocationService } from './common/services/geolocation.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './modules/authentication/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,6 +29,11 @@ import { ToastModule } from 'primeng/toast';
 import { CommonPubSubService } from './common/Helper/common-pub-sub.service';
 import { PhoneDropdownComponent } from './modules/authentication/shared/phone-dropdown/phone-dropdown.component';
 import { NumericDirective } from './common/directives/numeric.directive';
+import { SettingsComponent } from './modules/settings/settings/settings.component';
+import { ProfileComponent } from './modules/settings/profile/profile.component';
+import { AddressesComponent } from './modules/settings/addresses/addresses.component';
+import { SideMenuComponent } from './modules/settings/side-menu/side-menu.component';
+import { AddAddressComponent } from './modules/settings/addresses/add-address/add-address.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +55,11 @@ import { NumericDirective } from './common/directives/numeric.directive';
     VerifyOtpComponent,
     OtpInputComponent,
     PhoneDropdownComponent,
+    SettingsComponent,
+    ProfileComponent,
+    AddressesComponent,
+    SideMenuComponent,
+    AddAddressComponent,
     NumericDirective
   ],
   imports: [

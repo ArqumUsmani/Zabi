@@ -11,8 +11,26 @@
     </ng-container>
   </ng-template>
   <ng-template pTemplate="end">
-    <p-button label="Log in" styleClass="p-button-link" (click)="showSignInDialog()"></p-button>
-    <button (click)="signInDialog = true" pButton pRipple label="Sign up" class="p-button-success"></button>
+  
+    <div *ngIf="user; else signIn" class="card flex justify-content-center">
+      <span class="round-image" (click)="menu.toggle($event)">
+        <img [src]="user.profilePictureWebUrl" (error)="onCoverImageError(user)">
+      </span>
+  
+      <p-menu #menu [model]="profileItems" [popup]="true">
+        <ng-template pTemplate="item" let-item>
+          <a [routerLink]="item.route" class="p-menuitem-link">
+            <span [class]="item.icon"></span>
+            <span class="ml-2">{{ item.label }}</span>
+          </a>
+        </ng-template>
+      </p-menu>
+    </div>
+  
+    <ng-template #signIn>
+      <p-button label="Log in" styleClass="p-button-link" (click)="showSignInDialog()"></p-button>
+      <button (click)="signInDialog = true" pButton pRipple label="Sign up" class="p-button-success"></button>
+    </ng-template>
   </ng-template>
 </p-menubar>
 

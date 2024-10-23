@@ -7,6 +7,7 @@ import { Utils } from 'src/app/common/Helper/utility';
 import { OtpRequest } from 'src/app/common/models/otpRequest';
 import { SignInOptions } from 'src/app/common/constants/enums';
 import { ToastService } from 'src/app/common/services/toast.service';
+import { localStorageKeys } from 'src/app/common/constants/constants';
 
 @Component({
   selector: 'app-verify-otp',
@@ -74,10 +75,10 @@ export class VerifyOtpComponent implements OnInit {
 
   verifyOtp() {
     this.authenticationService.verifytOtp({ code: this.otpInputComponent.getOtpValue(), 
-      createJwt: localStorage.getItem('accessToken') ? false : true }).subscribe({
+      createJwt: localStorage.getItem(localStorageKeys.accessToken) ? false : true }).subscribe({
       next: (response) => {
         if(response && response?.token)
-          localStorage.setItem('accessToken', response.token);
+          localStorage.setItem(localStorageKeys.accessToken, response.token);
         this.getUser()
       },
       error: (error) => {
@@ -96,6 +97,7 @@ export class VerifyOtpComponent implements OnInit {
       next: (response: User) => {
         if (response) {
           this.sendUserData.emit(Utils.applyDefaults<User>(response, defaultUser))
+          localStorage.setItem(localStorageKeys.user, JSON.stringify(response))
         }
       },
       error: (error) => {

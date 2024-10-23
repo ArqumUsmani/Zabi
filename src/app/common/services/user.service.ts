@@ -4,6 +4,7 @@ import { User } from 'src/app/common/models/user';
 import { HttpService } from 'src/app/common/services/http.service';
 import { Endpoints } from '../constants/endpoints';
 import { HttpHeaders } from '@angular/common/http';
+import { Address } from '../models/address';
 
 @Injectable({
     providedIn: 'root',
@@ -30,5 +31,17 @@ export class UserService {
             .set('Content-Type', image.type)
             .set('x-ms-blob-type', 'Blockblob');
         return this.httpService.put(sasURI, blob, headers)
+    }
+
+    addAddress(payload: Address): Observable<any> {
+        return this.httpService.post(Endpoints.ADDRESS, payload)
+    }
+    
+    updateAddress(payload: Address): Observable<any> {
+        return this.httpService.put(Endpoints.ADDRESS, payload)
+    }
+
+    deleteAddress(id: string): Observable<any> {
+        return this.httpService.delete(`${Endpoints.ADDRESS}/id`)
     }
 }

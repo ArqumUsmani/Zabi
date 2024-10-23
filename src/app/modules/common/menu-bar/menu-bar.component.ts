@@ -8,6 +8,7 @@ import { SignupComponent } from '../../authentication/signup/signup.component';
 import { ToastService } from 'src/app/common/services/toast.service';
 import { Utils } from 'src/app/common/Helper/utility';
 import { UserService } from 'src/app/common/services/user.service';
+import { fallbackImageUrl, localStorageKeys } from 'src/app/common/constants/constants';
 
 @Component({
   selector: 'app-menu-bar',
@@ -20,6 +21,7 @@ export class MenuBarComponent {
   email: string = '';
   phoneNumber: string = '';
   items: MenuItem[] = [];
+  profileItems: MenuItem[] = [];
   signInOption: string = '';
   otpRequest: OtpRequest | undefined;
   user: User | undefined;
@@ -27,6 +29,7 @@ export class MenuBarComponent {
   getOtpDialog: boolean = false;
   signUpDialog: boolean = false;
   verifyOtpDialog: boolean = false;
+  isUserLoggedIn: boolean = false;
   @ViewChild(VerifySignInComponent) requestOtpComponent!: VerifySignInComponent;
   @ViewChild(SignupComponent) signupComponent!: SignupComponent;
 
@@ -35,6 +38,7 @@ export class MenuBarComponent {
   ) { }
 
   ngOnInit() {
+    this.fetchUserInfo();
     this.primengConfig.ripple = true;
     this.primengConfig.zIndex = {
       modal: 1100, // dialog, sidebar
@@ -66,6 +70,18 @@ export class MenuBarComponent {
         FilterMatchMode.DATE_AFTER,
       ],
     };
+    this.profileItems = [
+      {
+        label: 'Your Profile',
+        icon: 'home',
+        routerLink: 'settings', 
+      },
+      {
+        label: 'Your Address',
+        icon: 'home',
+        routerLink: 'settings', 
+      }
+    ]
 
     this.items = [
       {
@@ -90,6 +106,18 @@ export class MenuBarComponent {
         routerLink: 'prayer-spaces',
       },
     ];
+  }
+
+  fetchUserInfo() {
+    this.userService.getUser().subscribe({
+      next: (response) => {
+        this.user = Utils.applyDefaults<User>(response, defaultUser);
+        localStorage.setItem(localStorageKeys.user, JSON.stringify(this.user))
+      },
+      error: (error) => { 
+        console.error('err', error);
+      }
+    })
   }
 
   showSignInDialog() {
@@ -156,5 +184,10 @@ export class MenuBarComponent {
           this.toastService.showError('Error fetching user info')
       }
     })
+  }
+
+  onCoverImageError(user: User | undefined) {
+    if(user)
+      user.profilePictureWebUrl = fallbackImageUrl; // Change to the fallback image if the main image fails to load
   }
 }
