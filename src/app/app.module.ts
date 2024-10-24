@@ -34,6 +34,8 @@ import { ProfileComponent } from './modules/settings/profile/profile.component';
 import { AddressesComponent } from './modules/settings/addresses/addresses.component';
 import { SideMenuComponent } from './modules/settings/side-menu/side-menu.component';
 import { AddAddressComponent } from './modules/settings/addresses/add-address/add-address.component';
+import { MapComponent } from './modules/common/map/map.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { AddAddressComponent } from './modules/settings/addresses/add-address/ad
     AddressesComponent,
     SideMenuComponent,
     AddAddressComponent,
+    MapComponent,
     NumericDirective
   ],
   imports: [
@@ -72,6 +75,7 @@ import { AddAddressComponent } from './modules/settings/addresses/add-address/ad
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
+    GoogleMapsModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
