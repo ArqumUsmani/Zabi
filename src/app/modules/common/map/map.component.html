@@ -1,1 +1,8 @@
-<p>map works!</p>
+<div style="position: relative;">
+  <input #search id="search" type="text" placeholder="Search for places"
+    style="width: 300px; height: 40px; margin: 10px;" />
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" style="height: 400px; width: 465px;" mapDraggable="true">
+    <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true"
+      (dragEnd)="onMarkerDragEnd($event)"></agm-marker>
+  </agm-map>
+</div>

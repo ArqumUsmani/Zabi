@@ -1,0 +1,13 @@
+#search {
+    position: absolute;
+    left: 10px;   
+    z-index: 5;   /* Ensures it stays on top of the map */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    height: 40px;
+  }
+  
