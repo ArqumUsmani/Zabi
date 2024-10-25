@@ -75,4 +75,8 @@ export class AddAddressComponent {
       }
     })
   }
+
+  getAddress(address: string) {
+    this.addressForm?.get('physicalAddress')?.setValue(address)
+  }
 }

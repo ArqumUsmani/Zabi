@@ -35,7 +35,7 @@ import { AddressesComponent } from './modules/settings/addresses/addresses.compo
 import { SideMenuComponent } from './modules/settings/side-menu/side-menu.component';
 import { AddAddressComponent } from './modules/settings/addresses/add-address/add-address.component';
 import { MapComponent } from './modules/common/map/map.component';
-import { GoogleMapsModule } from '@angular/google-maps';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -75,7 +75,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
-    GoogleMapsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyClWqdvljOC6yPv4LkxJXRsmldaJZwbciI'
+    })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

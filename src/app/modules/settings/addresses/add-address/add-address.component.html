@@ -1,5 +1,6 @@
 <div id="authDialog">
     <div class="mainForm w-100">
+        <app-map (sendAddress)="getAddress($event)"></app-map>
         <form *ngIf="addressForm" [formGroup]="addressForm" (ngSubmit)="onSubmit()">
             <div class="form">
                 <div class="signupForm w-100">

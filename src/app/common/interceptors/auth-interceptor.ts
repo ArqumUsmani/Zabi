@@ -9,7 +9,8 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         const isAzureBlobRequest = req.url.includes('.blob.core.windows.net');
-        // appending the base url if the build is for prod
+        
+        // appending the base url 
         let apiReq = req;
         const apiUrl = environment.apiUrl;
         apiReq = req.clone({ url: `${apiUrl}${req.url}` });
@@ -29,6 +30,6 @@ export class AuthInterceptor implements HttpInterceptor {
         }
 
         // If there's no token, just pass the request along
-        return next.handle(req);
+        return next.handle(apiReq);
     }
 }

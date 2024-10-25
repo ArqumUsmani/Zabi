@@ -24,6 +24,10 @@ h5 {
   margin: 0px;
 }
 
+.pac-container {
+  z-index: 10000 !important;  /* Make sure it's higher than your dialog box's z-index */
+}
+
 .w-100 {
   width: 100%;
 }

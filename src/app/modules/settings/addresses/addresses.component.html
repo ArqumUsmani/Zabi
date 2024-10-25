@@ -27,7 +27,7 @@
                     </div>
                     <div class="flex flex-row align-items-center gap-2">
                         <span (click)="editAddress(item)">Edit</span>
-                        <span (click)="OpenAddressdeletionConfirmDialog(item, i)">Delete</span>
+                        <span *ngIf="addressesList.length > 1" (click)="OpenAddressdeletionConfirmDialog(item, i)">Delete</span>
                     </div>
                 </div>
             </div>

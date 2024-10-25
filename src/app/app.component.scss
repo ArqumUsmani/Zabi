@@ -41,7 +41,7 @@
     .p-menubar-end {
       flex: 1;
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       .p-button {
         .p-button-label {
           color: $fontColorLight;
