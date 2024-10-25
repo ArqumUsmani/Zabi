@@ -151,8 +151,18 @@ ul {
 .p-inputtext.ng-dirty.ng-invalid {
   border-color: #ced4da!important;
 }
+.p-inputswitch {
+  &.p-inputswitch-checked {
+    .p-inputswitch-slider {
+      background: $red-primary !important;
+    }
+  }
+}
 
 // icons
+.user{
+  content:url("/assets/icons/user-24.svg");
+}
 .home {
   content: url("/assets/icons/home-24.svg");
 }
@@ -227,4 +237,21 @@ ul {
 }
 .instagram {
   content: url("/assets/icons/social-insta-24.svg");
+}
+
+// redIcons
+.location-red{
+  content:url("/assets/icons/location-red-24.svg")
+}
+.user-red{
+  content:url("/assets/icons/user-red-24.svg");
+}
+.restart-red{
+  content:url("/assets/icons/restart-red-24.svg");
+}
+.payment-red{
+  content:url("/assets/icons/payment-red-24.svg");
+}
+.reviews-red{
+  content:url("/assets/icons/reviews-red-24.svg");
 }

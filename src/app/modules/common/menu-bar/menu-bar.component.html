@@ -13,10 +13,9 @@
   <ng-template pTemplate="end">
   
     <div *ngIf="user; else signIn" class="card flex justify-content-center">
-      <span class="round-image" (click)="menu.toggle($event)">
+      <p-avatar (click)="menu.toggle($event)" shape="circle" size="large">
         <img [src]="user.profilePictureWebUrl" (error)="onCoverImageError(user)">
-      </span>
-  
+      </p-avatar>
       <p-menu #menu [model]="profileItems" [popup]="true">
         <ng-template pTemplate="item" let-item>
           <a [routerLink]="item.route" class="p-menuitem-link">

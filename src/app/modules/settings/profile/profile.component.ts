@@ -10,7 +10,8 @@ import { defaultUser, User } from 'src/app/common/models/user';
 })
 export class ProfileComponent {
   user: User = Utils.applyDefaults<User>(JSON.parse(localStorage.getItem(localStorageKeys.user) ?? '') , defaultUser);
-
+  checked: boolean = true;
+  unchecked: boolean = false;
   onProfileImageError(user: User | undefined) {
     if(user)
       user.profilePictureWebUrl = fallbackImageUrl; // Change to the fallback image if the main image fails to load

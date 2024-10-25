@@ -1,14 +1,182 @@
-.round-image {
-    display: inline-block;
-    overflow: hidden;
-    width: 150px; /* Adjust size as needed */
-    height: 150px; /* Adjust size as needed */
-    border-radius: 50%; /* Makes it round */
-    cursor: pointer;
+@import "../../../../colors.scss";
+
+:host ::ng-deep {
+  #profile {
+    display: flex;
+    width: 800px;
+    padding: 20px 30px;
+    flex-direction: column;
+    gap: 16px;
+    h4 {
+      color: $fontColorDark;
+      font-family: "Inter";
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 38px;
+    }
+    .innerSection {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+      align-self: stretch;
+
+      .userImage {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        align-self: stretch;
+        .p-avatar {
+          width: 92px !important;
+          height: 92px !important;
+          border: 2.3px solid #fff;
+          box-shadow: 0px 6.9px 9.2px -2.3px rgba(16, 24, 40, 0.08),
+            0px 2.3px 3.45px -1.15px rgba(16, 24, 40, 0.03);
+        }
+        .actionButtons {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          .p-button-link {
+            padding: 0px;
+            .p-button-label {
+              font-family: "Inter";
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: 20px;
+            }
+            &.CTA {
+              .p-button-label {
+                color: $red-primary;
+              }
+            }
+          }
+        }
+      }
+      .userProfileInfo,
+      .socialLogins,
+      .newsAndupdates,
+      .dangerZone {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        align-self: stretch;
+        .info,
+        .connectedAccount {
+          display: flex;
+          padding: 16px 20px;
+          justify-content: space-between;
+          align-items: center;
+          align-self: stretch;
+          border-radius: 8px;
+          background: rgba(245, 242, 242, 0.6);
+          height: 74px;
+          .input {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            .p-inputtext {
+              border: none;
+              background: transparent;
+              box-shadow: none;
+              padding-left: 0;
+              padding-top: 0;
+              font-family: "Inter";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: 24px;
+              color: $fontColorDark;
+            }
+            .p-component:disabled {
+              opacity: 1 !important;
+            }
+            span {
+              font-family: "Inter";
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 18px;
+              color: $grey;
+            }
+          }
+          .icon {
+            width: 24px;
+            :hover {
+              cursor: pointer;
+              box-shadow: 0px 6.9px 9.2px -2.3px rgba(16, 24, 40, 0.08),
+                0px 2.3px 3.45px -1.15px rgba(16, 24, 40, 0.03);
+              transition: 0.3s all ease-in-out;
+            }
+          }
+          .account {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            span {
+              font-family: "Inter";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 18px;
+              color: $grey;
+            }
+            .accountLinked {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              .ifConnected {
+                font-family: "Inter";
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 24px;
+                color: $red-primary;
+              }
+            }
+          }
+          .p-button-link {
+            .p-button-label {
+              font-size: 14px !important;
+              font-weight: 600 !important;
+              line-height: 20px !important;
+              color: $grey !important;
+            }
+          }
+          .titleAndIcon {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            span {
+              font-family: "Inter";
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: 20px;
+              color: $grey;
+            }
+          }
+        }
+        .deleteButton {
+          .p-button {
+            &.p-button-link {
+              padding-left: 0;
+              padding-top: 0;
+              .p-button-label {
+                font-family: "Inter"!important;
+                font-size: 16px!important;
+                font-style: normal!important;
+                font-weight: 400!important;
+                line-height: 20px!important;
+                color: $error !important;
+              }
+            }
+          }
+        }
+      }
+    }
   }
-  
-  .round-image img {
-    width: 100%; /* Ensures the image covers the span */
-    height: auto; /* Maintains aspect ratio */
-    display: block; /* Removes space below the image */
-  }
+}
