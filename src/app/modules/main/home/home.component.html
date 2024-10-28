@@ -1,6 +1,6 @@
 <app-location-filter />
 
-<div id="placesSection" class="col-12 flex-column md:flex-row ">
+<div id="placesSection" class="col-12 flex-column md:flex-row">
   <div class="filter col-12 md:col-3">
     <app-filters></app-filters>
   </div>
@@ -22,13 +22,13 @@
           </ng-template>
           <div class="cardHeader">
             <img
-              class="restaurantLogo"
-              src="../../assets/images/restaurant-image.svg"
+              class="placeLogo"
+              src="../../assets/images/place-image.svg"
               alt=""
             />
-            <div class="restaurantInfo">
-              <h5 class="restaurantName">Burger King</h5>
-              <p class="restaurantAddress">231 Main Street</p>
+            <div class="placeInfo">
+              <h5 class="placeName">Burger King</h5>
+              <p class="placeAddress">231 Main Street</p>
             </div>
             <div class="icons">
               <em class="delivery"></em>
@@ -67,13 +67,13 @@
           </ng-template>
           <div class="cardHeader">
             <img
-              class="restaurantLogo"
-              src="../../assets/images/restaurant-image.svg"
+              class="placeLogo"
+              src="../../assets/images/place-image.svg"
               alt=""
             />
-            <div class="restaurantInfo">
-              <h5 class="restaurantName">Burger King</h5>
-              <p class="restaurantAddress">231 Main Street</p>
+            <div class="placeInfo">
+              <h5 class="placeName">Burger King</h5>
+              <p class="placeAddress">231 Main Street</p>
             </div>
             <div class="icons">
               <em class="delivery"></em>
@@ -112,13 +112,13 @@
           </ng-template>
           <div class="cardHeader">
             <img
-              class="restaurantLogo"
-              src="../../assets/images/restaurant-image.svg"
+              class="placeLogo"
+              src="../../assets/images/place-image.svg"
               alt=""
             />
-            <div class="restaurantInfo">
-              <h5 class="restaurantName">Burger King</h5>
-              <p class="restaurantAddress">231 Main Street</p>
+            <div class="placeInfo">
+              <h5 class="placeName">Burger King</h5>
+              <p class="placeAddress">231 Main Street</p>
             </div>
             <div class="icons">
               <em class="delivery"></em>
@@ -154,7 +154,7 @@
     <div class="halalPlaces mt-5">
       <div class="flex flex-column gap-4">
         <div class="header">
-          <h4>{{totalRestaurants}} halal places near you</h4>
+          <h4>{{ totalRestaurants }} halal places near you</h4>
         </div>
         <div class="foodCategories">
           <div class="category">
@@ -220,18 +220,25 @@
                 <!-- <p-chip label="New" class="success"></p-chip> -->
                 <em class="likeHeartFilled"></em>
               </div>
-              <img alt="Restaurant Cover" [src]="item.coverImageWebUrl"  (error)="onCoverImageError(item)" />
+              <div class="coverImage">
+                <img
+                  alt="place Cover"
+                  [src]="item.coverImageWebUrl"
+                  (error)="onCoverImageError(item)"
+                />
+              </div>
             </ng-template>
             <div class="cardHeader">
-              <img
-                class="restaurantLogo"
-                [src]="item.iconImageWebUrl"
-                (error)="onLogoImageError(item)"
-                alt="Restaurant logo"
-              />
-              <div class="restaurantInfo">
-                <h5 class="restaurantName">{{item.name}}</h5>
-                <p class="restaurantAddress">{{item.address}}</p>
+              <div class="placeLogo">
+                <img
+                  [src]="item.iconImageWebUrl"
+                  (error)="onLogoImageError(item)"
+                  alt="place logo"
+                />
+              </div>
+              <div class="placeInfo">
+                <h5 class="placeName">{{ item.name }}</h5>
+                <p class="placeAddress">{{ item.address }}</p>
               </div>
               <div class="icons">
                 <em *ngIf="item.offersDelivery" class="delivery"></em>
@@ -242,18 +249,22 @@
               <div class="left">
                 <div class="ratings">
                   <em class="ratingStarFilled"></em
-                  ><span class="orange">{{item.averageRating}}</span>
+                  ><span class="orange">{{ item.averageRating }}</span>
                 </div>
                 <div class="ratings">
-                  <em class="comment"></em><span>{{item.totalReviews}}</span>
+                  <em class="comment"></em><span>{{ item.totalReviews }}</span>
                 </div>
                 <div class="ratings">
-                  <em class="repeat"></em><span>{{item.willReturnPercentage}}%</span>
+                  <em class="repeat"></em
+                  ><span>{{ item.willReturnPercentage }}%</span>
                 </div>
-                <div class="ratings"><em class="image"></em><span>{{item.totalPhotos}}</span></div>
+                <div class="ratings">
+                  <em class="image"></em><span>{{ item.totalPhotos }}</span>
+                </div>
               </div>
               <div class="right">
-                <em class="routing"></em><span>{{item.distance?.distance | number: "1.0-0"}}m</span>
+                <em class="routing"></em
+                ><span>{{ item.distance?.distance | number : "1.0-0" }}m</span>
               </div>
             </div>
             <!-- <div class="cardFooter">
@@ -263,13 +274,16 @@
             </div> -->
           </p-card>
         </div>
-        <p-button label="View More" class="viewMoreButton text-center"></p-button>
+        <p-button
+          label="View More"
+          class="viewMoreButton text-center"
+        ></p-button>
       </div>
     </div>
     <div class="prayerPlaces mt-5">
       <div class="flex flex-column gap-4">
         <div class="header">
-          <h4>{{totalMosques}} prayer spaces near you</h4>
+          <h4>{{ totalMosques }} prayer spaces near you</h4>
         </div>
         <div class="cards">
           <p-card *ngFor="let item of mosques" [style]="{ width: '296px' }">
@@ -278,18 +292,25 @@
                 <!-- <p-chip label="New" class="success"></p-chip> -->
                 <em class="likeHeartFilled"></em>
               </div>
-              <img alt="Mosque Cover" [src]="item.coverImageWebUrl" (error)="onCoverImageError(item)" />
+              <div class="coverImage">
+                <img
+                  alt="Mosque Cover"
+                  [src]="item.coverMosqueImageUrl"
+                  (error)="onMosqueImageError(item)"
+                />
+              </div>
             </ng-template>
             <div class="cardHeader">
-              <img
-                class="restaurantLogo"
-                [src]="item.iconImageWebUrl"
-                (error)="onLogoImageError(item)" 
-                alt="Mosque Logo"
-              />
-              <div class="restaurantInfo">
-                <h5 class="restaurantName">{{item.name}}</h5>
-                <p class="restaurantAddress">{{item.address}}</p>
+              <div class="placeInfo">
+                <h5 class="placeName"  pTooltip="{{ item.name }}"
+                tooltipPosition="top">{{ item.name }}</h5>
+                <p
+                  class="placeAddress"
+                  pTooltip="{{ item.address }}"
+                  tooltipPosition="top"
+                >
+                  {{ item.address }}
+                </p>
               </div>
               <div class="icons">
                 <em *ngIf="item.offersDelivery" class="delivery"></em>
@@ -300,18 +321,22 @@
               <div class="left">
                 <div class="ratings">
                   <em class="ratingStarFilled"></em
-                  ><span class="orange">{{item.averageRating}}</span>
+                  ><span class="orange">{{ item.averageRating }}</span>
                 </div>
                 <div class="ratings">
-                  <em class="comment"></em><span>{{item.totalReviews}}</span>
+                  <em class="comment"></em><span>{{ item.totalReviews }}</span>
                 </div>
                 <div class="ratings">
-                  <em class="repeat"></em><span>{{item.willReturnPercentage}}%</span>
+                  <em class="repeat"></em
+                  ><span>{{ item.willReturnPercentage }}%</span>
                 </div>
-                <div class="ratings"><em class="image"></em><span>{{item.totalPhotos}}</span></div>
+                <div class="ratings">
+                  <em class="image"></em><span>{{ item.totalPhotos }}</span>
+                </div>
               </div>
               <div class="right">
-                <em class="routing"></em><span>{{item.distance?.distance | number: "1.0-0"}}m</span>
+                <em class="routing"></em
+                ><span>{{ item.distance?.distance | number : "1.0-0" }}m</span>
               </div>
             </div>
             <!-- <div class="cardFooter">
@@ -321,7 +346,10 @@
             </div> -->
           </p-card>
         </div>
-        <p-button label="View More" class="viewMoreButton text-center"></p-button>
+        <p-button
+          label="View More"
+          class="viewMoreButton text-center"
+        ></p-button>
       </div>
     </div>
   </div>

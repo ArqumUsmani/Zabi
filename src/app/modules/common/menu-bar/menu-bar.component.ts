@@ -9,6 +9,7 @@ import { ToastService } from 'src/app/common/services/toast.service';
 import { Utils } from 'src/app/common/Helper/utility';
 import { UserService } from 'src/app/common/services/user.service';
 import { fallbackImageUrl, localStorageKeys } from 'src/app/common/constants/constants';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-menu-bar',
@@ -34,7 +35,7 @@ export class MenuBarComponent {
   @ViewChild(SignupComponent) signupComponent!: SignupComponent;
 
   constructor(private primengConfig: PrimeNGConfig, private toastService: ToastService,
-    private userService: UserService
+    private userService: UserService,private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -73,7 +74,29 @@ export class MenuBarComponent {
     this.profileItems = [
       {
         label: 'Your Profile',
-        icon: 'home',
+        icon:`<svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <circle
+                      cx="12"
+                      cy="6"
+                      r="4"
+                      stroke="#990001"
+                      stroke-width="1.5"
+                    />
+                    <ellipse
+                      cx="12"
+                      cy="17"
+                      rx="7"
+                      ry="4"
+                      stroke="#990001"
+                      stroke-width="1.5"
+                    />
+                  </svg>`,
         routerLink: 'settings', 
       },
       {

@@ -1,5 +1,6 @@
 @import "../../../../styles.scss";
 @import "../../../../colors.scss";
+:host ::ng-deep{
 #placesSection {
   margin-top: 48px;
   display: flex;
@@ -50,6 +51,7 @@
               color: $fontColorLight;
             }
           }
+
         }
         .p-card-body {
           padding: 12px 12px;
@@ -64,19 +66,19 @@
               align-items: flex-start;
               width: 100%;
               gap: 8px;
-              .restaurantLogo {
+              .placeLogo {
                 height: 42px;
               }
-              .restaurantInfo {
+              .placeInfo {
                 flex: 1;
-                .restaurantName {
+                .placeName {
                   font-family: "Inter";
                   font-size: 16px;
                   font-weight: 600;
                   margin-top: 0px !important;
                   margin-bottom: 3px !important;
                 }
-                .restaurantAddress {
+                .placeAddress {
                   font-family: "Inter";
                   font-size: 13px;
                   font-weight: 400;
@@ -86,7 +88,7 @@
                   white-space: nowrap;
                   overflow: hidden;
                   text-overflow: ellipsis;
-                  width: 8rem;
+                  width: 14rem;
                 }
               }
               .icons {
@@ -166,7 +168,7 @@
       }
     }
 
-    .halalPlaces, .prayerPlaces {
+    .prayerPlaces {
       .foodCategories {
         display: inline-flex;
         gap: 8px;
@@ -196,6 +198,18 @@
       .cards {
         .p-card {
           .p-card-header {
+            .coverImage {
+              display: flex;
+              justify-content: center;
+              width: 296px;
+              height: 190px;
+              background-color: aquamarine;
+              border-radius: 8px 8px 0px 0px;
+              background: #f9d6d0;
+              img {
+                width: 30%;
+              }
+            }
             .cardHeaderCta {
               .success{
                 .p-chip {
@@ -208,4 +222,5 @@
       }
     }
   }
+}
 }

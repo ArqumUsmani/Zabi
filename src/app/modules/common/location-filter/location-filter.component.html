@@ -1,50 +1,71 @@
 <div id="heroSection">
-    <!-- <img class="backgroundImg" src="../../assets/food-texture-header-bg.svg" alt="" /> -->
-    <div class="mainContent">
-        <div class="headerContent">
-            <h5 class="subHeading">
-                The original & world's largest guide to Halal restaurants & markets
-            </h5>
-            <h3 class="mainHeading">
-                Serving <span class="highlightedText">Halal foodies</span> for over 20
-                years
-            </h3>
-        </div>
-        <div class="filterSection">
-            <div class="inputFields col-12 flex-column md:flex-row" style="width: 100%;">
-                <span class="p-input-icon-left">
-                    <i class="location"></i>
-                    <div class="autocomplete-container">
-                        <input #searchInput pInputText type="text" class="form-control"
-                            placeholder="Search for nearby restaurants..." />
-                    </div>
-                </span>
-                <span class="p-input-icon-left">
-                    <i class="search"></i>
-                    <input [(ngModel)]="keyword" type="text" pInputText placeholder="Filter results" />
-                </span>
-                <button (click)="setLocationFilter(selectedPlace, keyword)" pButton pRipple label="GO" class="p-button-success"></button>
-            </div>
-            <div class="locationChips">
-                <p-chip label="Near me"></p-chip>
-                <p-chip label="USA"></p-chip>
-                <p-chip label="Canada"></p-chip>
-                <p-chip label="UK"></p-chip>
-                <p-chip label="Eurasia"></p-chip>
-                <p-chip label="Asia Pacific"></p-chip>
-                <p-chip label="Mideast"></p-chip>
-                <p-chip label="Americas"></p-chip>
-                <p-chip label="Africa"></p-chip>
-                <p-chip label="South Asia"></p-chip>
-            </div>
-        </div>
-        <div class="downloadAppSection">
-            <img src="../../assets/appstore-download-img.svg" alt="" />
-            <img src="../../assets/playstore-download-img.svg" alt="" />
-        </div>
+  <!-- <img class="backgroundImg" src="../../assets/food-texture-header-bg.svg" alt="" /> -->
+  <div class="mainContent">
+    <div class="headerContent">
+      <h5 class="subHeading">
+        The original & world's largest guide to Halal restaurants & markets
+      </h5>
+      <h3 class="mainHeading">
+        Serving <span class="highlightedText">Halal foodies</span> for over 20
+        years
+      </h3>
     </div>
-    <div class="bottomSection">
-        <img class="bottomRightImage" src="../../assets/people-img-header.svg" alt="" />
-        <hr class="greenBar" />
+    <div class="filterSection">
+      <div
+        class="inputFields col-12 flex-column md:flex-row"
+        style="width: 100%"
+      >
+        <span class="p-input-icon-left autocomplete-container">
+          <i class="location" style="top: 20px;"></i>
+          <input
+            #searchInput
+            pInputText
+            type="text"
+            class="form-control"
+            placeholder="Search for nearby restaurants..."
+          />
+        </span>
+        <span class="p-input-icon-left">
+          <i class="search"></i>
+          <input
+            [(ngModel)]="keyword"
+            type="text"
+            pInputText
+            placeholder="Filter results"
+          />
+        </span>
+        <button
+          (click)="setLocationFilter(selectedPlace, keyword)"
+          pButton
+          pRipple
+          label="GO"
+          class="p-button-success"
+        ></button>
+      </div>
+      <div class="locationChips">
+        <p-chip label="Near me"></p-chip>
+        <p-chip label="USA"></p-chip>
+        <p-chip label="Canada"></p-chip>
+        <p-chip label="UK"></p-chip>
+        <p-chip label="Eurasia"></p-chip>
+        <p-chip label="Asia Pacific"></p-chip>
+        <p-chip label="Mideast"></p-chip>
+        <p-chip label="Americas"></p-chip>
+        <p-chip label="Africa"></p-chip>
+        <p-chip label="South Asia"></p-chip>
+      </div>
     </div>
+    <div class="downloadAppSection">
+      <img src="../../assets/appstore-download-img.svg" alt="" />
+      <img src="../../assets/playstore-download-img.svg" alt="" />
+    </div>
+  </div>
+  <div class="bottomSection">
+    <img
+      class="bottomRightImage"
+      src="../../assets/people-img-header.svg"
+      alt=""
+    />
+    <hr class="greenBar" />
+  </div>
 </div>

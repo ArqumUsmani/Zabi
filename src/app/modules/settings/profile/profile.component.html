@@ -6,6 +6,7 @@
         <img
           [src]="user.profilePictureWebUrl"
           (error)="onProfileImageError(user)"
+          style="width: 50%;"
         />
       </p-avatar>
       <div class="actionButtons">
@@ -317,8 +318,35 @@
         <p-button
           label="Permanently delete my account"
           styleClass="p-button-link"
+          (click)="showDeleteModal()"
         ></p-button>
       </div>
     </div>
   </div>
 </div>
+<p-dialog
+  header=""
+  [(visible)]="deleteModal"
+  [modal]="true"
+  [style]="{ width: '502px' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <ng-template pTemplate="header">
+    <span class="">Delete my account</span>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <h5>Are you sure you want to delete your account?</h5>
+    <p>
+      This will permanently remove your personal data, preferences, and reviews.
+    </p>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button
+      (click)="visible = false"
+      label="Cancel"
+      styleClass="p-button-outlined"
+    ></p-button>
+    <p-button label="Yes, delete my account" class="CTA"></p-button>
+  </ng-template>
+</p-dialog>

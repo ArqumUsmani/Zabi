@@ -4,7 +4,7 @@
   display: flex;
   padding: 48px 116px;
   width: fit-content;
-  .filter{
+  .filter {
     height: fit-content;
     width: fit-content;
   }
@@ -47,7 +47,7 @@
           position: relative;
           .cardHeaderCta {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             position: absolute;
             padding: 8px;
             width: 100%;
@@ -73,19 +73,34 @@
               align-items: flex-start;
               width: 100%;
               gap: 8px;
-              .restaurantLogo {
-                height: 42px;
+              .placeLogo {
+                background-color: $grey-border;
+                display: flex;
+                border-radius: 100%;
+                padding: 8.5px;
+                overflow: hidden;
+                position: relative;
+                justify-content: center;
+                align-items: center;
+                img {
+                  max-width: 100%;
+                  max-height: 100%;
+                  width: 22px;
+                }
               }
-              .restaurantInfo {
-                flex: 1;
-                .restaurantName {
+              .placeInfo {
+                width: 14rem;
+                .placeName {
                   font-family: "Inter";
                   font-size: 16px;
                   font-weight: 600;
                   margin-top: 0px !important;
                   margin-bottom: 3px !important;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
                 }
-                .restaurantAddress {
+                .placeAddress {
                   font-family: "Inter";
                   font-size: 13px;
                   font-weight: 400;
@@ -194,7 +209,7 @@
       .foodCategories {
         display: inline-flex;
         gap: 8px;
-        flex-wrap: wrap ;
+        flex-wrap: wrap;
         .category {
           display: flex;
           flex-direction: column;
@@ -221,6 +236,18 @@
       .cards {
         .p-card {
           .p-card-header {
+            .coverImage {
+              display: flex;
+              justify-content: center;
+              width: 296px;
+              height: 190px;
+              background-color: aquamarine;
+              border-radius: 8px 8px 0px 0px;
+              background: #f9d6d0;
+              img {
+                width: 30%;
+              }
+            }
             .cardHeaderCta {
               .success {
                 .p-chip {
@@ -236,11 +263,11 @@
 }
 
 @media (max-width: 412px) and (min-width: 376px) {
-  #placesSection{
-    padding-left: 0px!important;
-    padding-right: 0px!important;
+  #placesSection {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
-  .p-card{
-    width: 96vw!important;
+  .p-card {
+    width: 96vw !important;
   }
 }

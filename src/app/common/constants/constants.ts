@@ -1,4 +1,7 @@
-export const fallbackImageUrl = '../../assets/images/image-placeholder.svg'
+export const fallbackImageUrl = '../../assets/icons/restaurant_placeholder.svg'
+export const logoImageUrl = '../../assets/icons/restaurant_logo.svg'
+export const mosqueImageUrl = '../../assets/icons/mosque_placeholder.svg'
+export const profileImageUrl = '../../assets/images/defaultProfileImage.png'
 
 export const localStorageKeys = {
     accessToken: 'ACCESS_TOKEN',
