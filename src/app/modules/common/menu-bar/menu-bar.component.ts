@@ -10,6 +10,7 @@ import { Utils } from 'src/app/common/Helper/utility';
 import { UserService } from 'src/app/common/services/user.service';
 import { fallbackImageUrl, localStorageKeys } from 'src/app/common/constants/constants';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CommonPubSubService } from 'src/app/common/Helper/common-pub-sub.service';
 
 @Component({
   selector: 'app-menu-bar',
@@ -35,7 +36,8 @@ export class MenuBarComponent {
   @ViewChild(SignupComponent) signupComponent!: SignupComponent;
 
   constructor(private primengConfig: PrimeNGConfig, private toastService: ToastService,
-    private userService: UserService,private sanitizer: DomSanitizer
+    private userService: UserService,private sanitizer: DomSanitizer,
+    private commonPubSubService: CommonPubSubService,
   ) { }
 
   ngOnInit() {
@@ -132,15 +134,18 @@ export class MenuBarComponent {
   }
 
   fetchUserInfo() {
-    this.userService.getUser().subscribe({
-      next: (response) => {
-        this.user = Utils.applyDefaults<User>(response, defaultUser);
-        localStorage.setItem(localStorageKeys.user, JSON.stringify(this.user))
-      },
-      error: (error) => { 
-        console.error('err', error);
-      }
-    })
+    if(localStorage.getItem(localStorageKeys.accessToken)) {
+      this.userService.getUser().subscribe({
+        next: (response) => {
+          this.user = Utils.applyDefaults<User>(response, defaultUser);
+          this.commonPubSubService.setUserInfo(this.user)
+          localStorage.setItem(localStorageKeys.user, JSON.stringify(this.user))
+        },
+        error: (error) => { 
+          console.error('err', error);
+        }
+      })
+    }
   }
 
   showSignInDialog() {

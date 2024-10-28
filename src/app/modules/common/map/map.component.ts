@@ -64,7 +64,7 @@ export class MapComponent implements OnInit, OnDestroy {
         this.getAddressFromLatLng(this.lat, this.lng);
       },
       error: (error) => {
-        this.toastService.showError(errorMessages.GET_CURRENT_LOCATION)
+        this.getAddressFromLatLng(this.lat, this.lng);
         console.error(error)
       }
     })

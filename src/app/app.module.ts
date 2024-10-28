@@ -36,6 +36,7 @@ import { SideMenuComponent } from './modules/settings/side-menu/side-menu.compon
 import { AddAddressComponent } from './modules/settings/addresses/add-address/add-address.component';
 import { MapComponent } from './modules/common/map/map.component';
 import { AgmCoreModule } from '@agm/core';
+import { MainComponent } from './modules/main/main/main.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { AgmCoreModule } from '@agm/core';
     SideMenuComponent,
     AddAddressComponent,
     MapComponent,
+    MainComponent,
     NumericDirective
   ],
   imports: [

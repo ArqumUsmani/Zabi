@@ -32,7 +32,10 @@ export class LocationFilterComponent implements AfterViewInit {
     this.autocomplete.addListener('place_changed', () => {
       const place = this.autocomplete.getPlace();
       if (place.geometry && place.geometry.location) {
-        this.selectedPlace = { name: place.name, lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }
+        this.selectedPlace = {
+          name: place.name, latitude: place.geometry.location.lat(),
+          longitude: place.geometry.location.lng()
+        }
       } else {
         console.error("No details available for the input: '" + place.name + "'");
       }

@@ -1,7 +1,7 @@
 export interface Location {
-    name: string,
-    lat: number,
-    lng: number
+    name?: string,
+    latitude: number,
+    longitude: number
 }
 
 export interface locationsOpts {
@@ -14,4 +14,20 @@ export interface Country {
     iso2: string;
     dialCode: string;
     flag: string;
+}
+
+export interface Restaurant {
+    location: Location,
+    page?: number | null,
+    pageSize?: number | null,
+    keyword?: string,
+    cuisine?: string | null,
+    orderBy?: string,
+    sortOrder?: string
+}
+
+export interface Cuisine {
+    placeLocation: Location,
+    orderBy?: string,
+    sortOrder?: string
 }

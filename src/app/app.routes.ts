@@ -7,18 +7,27 @@ import { PrayerSpacesComponent } from './modules/main/prayer-spaces/prayer-space
 import { SettingsComponent } from './modules/settings/settings/settings.component';
 import { ProfileComponent } from './modules/settings/profile/profile.component';
 import { AddressesComponent } from './modules/settings/addresses/addresses.component';
+import { MainComponent } from './modules/main/main/main.component';
+import { Routes } from '@angular/router';
 
-export const routes = [
-    { path: '', component: SettingsComponent },
-    { path: 'home', component: HomeComponent },
-    { path: 'hilal-food', component: HilalFoodComponent },
-    { path: 'pickup-and-delivery', component: PickupAndDeliveryComponent },
-    { path: 'prayer-spaces', component: PrayerSpacesComponent },
-    { path: 'settings', component: SettingsComponent,
+export const routes: Routes = [
+    {
+        path: '', component: MainComponent,
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' }, 
+            { path: 'home', component: HomeComponent },
+            { path: 'hilal-food', component: HilalFoodComponent },
+            { path: 'pickup-and-delivery', component: PickupAndDeliveryComponent },
+            { path: 'prayer-spaces', component: PrayerSpacesComponent },
+        ]
+    },
+    {
+        path: 'settings', component: SettingsComponent,
         children: [
             { path: 'profile', component: ProfileComponent },
             { path: 'addresses', component: AddressesComponent }
         ]
-     },
+    },
     { path: 'login', component: LoginComponent },
+    // { path: '**', redirectTo: '' } 
 ];

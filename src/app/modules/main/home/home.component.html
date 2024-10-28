@@ -1,358 +1,69 @@
-<app-location-filter />
+<div>
+  <div class="halalPlaces">
+    <div class="flex flex-column gap-4">
+      <div class="header">
+        <h4>Featured near you</h4>
+        <p-button label="Map View" icon="map" class="viewStyleButton"></p-button>
+      </div>
 
-<div id="placesSection" class="col-12 flex-column md:flex-row">
-  <div class="filter col-12 md:col-3">
-    <app-filters></app-filters>
-  </div>
-  <div class="placesCards col-12 md:col-9">
-    <!-- <div class="flex flex-column gap-4">
-    <div class="header">
-      <h4>Featured halal delivery near you</h4>
-      <p-button label="Map View" icon="map" class="viewStyleButton"></p-button>
-    </div>
-    
       <div class="cards">
-        <p-card [style]="{ width: '296px' }">
+        <p-card *ngFor="let item of featuredRestaurants" [style]="{ width: '296px' }">
           <ng-template pTemplate="header">
             <div class="cardHeaderCta">
-              <p-chip label="Order Now"></p-chip>
+              <!-- <p-chip label="New" class="success"></p-chip> -->
               <em class="likeHeartFilled"></em>
             </div>
-            <img alt="Card" src="../../assets/images/food-image-2.svg" />
+            <div class="coverImage">
+              <img alt="place Cover" [src]="item.coverImageWebUrl" (error)="onCoverImageError(item)" />
+            </div>
           </ng-template>
           <div class="cardHeader">
-            <img
-              class="placeLogo"
-              src="../../assets/images/place-image.svg"
-              alt=""
-            />
+            <div class="placeLogo">
+              <img [src]="item.iconImageWebUrl" (error)="onLogoImageError(item)" alt="place logo" />
+            </div>
             <div class="placeInfo">
-              <h5 class="placeName">Burger King</h5>
-              <p class="placeAddress">231 Main Street</p>
+              <h5 class="placeName">{{ item.name }}</h5>
+              <p class="placeAddress">{{ item.address }}</p>
             </div>
             <div class="icons">
-              <em class="delivery"></em>
+              <em *ngIf="item.offersDelivery" class="delivery"></em>
               <em class="phoneOutlined"></em>
             </div>
           </div>
           <div class="cardBody">
             <div class="left">
               <div class="ratings">
-                <em class="ratingStarFilled"></em
-                ><span class="orange">4.8</span>
+                <em class="ratingStarFilled"></em><span class="orange">{{ item.averageRating }}</span>
               </div>
               <div class="ratings">
-                <em class="comment"></em><span>56</span>
+                <em class="comment"></em><span>{{ item.totalReviews }}</span>
               </div>
               <div class="ratings">
-                <em class="repeat"></em><span>56%</span>
-              </div>
-              <div class="ratings"><em class="image"></em><span>5</span></div>
-            </div>
-            <div class="right"><em class="routing"></em><span>700m</span></div>
-          </div>
-          <div class="cardFooter">
-            <p-chip label="American"></p-chip>
-            <p-chip label="Middle Eastern"></p-chip>
-            <p-chip label="Deli"></p-chip>
-          </div>
-        </p-card>
-        <p-card [style]="{ width: '296px' }">
-          <ng-template pTemplate="header">
-            <div class="cardHeaderCta">
-              <p-chip label="Order Now"></p-chip>
-              <em class="likeHeartFilled"></em>
-            </div>
-            <img alt="Card" src="../../assets/images/food-image-1.svg" />
-          </ng-template>
-          <div class="cardHeader">
-            <img
-              class="placeLogo"
-              src="../../assets/images/place-image.svg"
-              alt=""
-            />
-            <div class="placeInfo">
-              <h5 class="placeName">Burger King</h5>
-              <p class="placeAddress">231 Main Street</p>
-            </div>
-            <div class="icons">
-              <em class="delivery"></em>
-              <em class="phoneOutlined"></em>
-            </div>
-          </div>
-          <div class="cardBody">
-            <div class="left">
-              <div class="ratings">
-                <em class="ratingStarFilled"></em
-                ><span class="orange">4.8</span>
+                <em class="repeat"></em><span>{{ item.willReturnPercentage }}%</span>
               </div>
               <div class="ratings">
-                <em class="comment"></em><span>56</span>
-              </div>
-              <div class="ratings">
-                <em class="repeat"></em><span>56%</span>
-              </div>
-              <div class="ratings"><em class="image"></em><span>5</span></div>
-            </div>
-            <div class="right"><em class="routing"></em><span>700m</span></div>
-          </div>
-          <div class="cardFooter">
-            <p-chip label="American"></p-chip>
-            <p-chip label="Middle Eastern"></p-chip>
-            <p-chip label="Deli"></p-chip>
-          </div>
-        </p-card>
-        <p-card [style]="{ width: '296px' }">
-          <ng-template pTemplate="header">
-            <div class="cardHeaderCta">
-              <p-chip label="Order Now"></p-chip>
-              <em class="likeHeartFilled"></em>
-            </div>
-            <img alt="Card" src="../../assets/images/food-image-1.svg" />
-          </ng-template>
-          <div class="cardHeader">
-            <img
-              class="placeLogo"
-              src="../../assets/images/place-image.svg"
-              alt=""
-            />
-            <div class="placeInfo">
-              <h5 class="placeName">Burger King</h5>
-              <p class="placeAddress">231 Main Street</p>
-            </div>
-            <div class="icons">
-              <em class="delivery"></em>
-              <em class="phoneOutlined"></em>
-            </div>
-          </div>
-          <div class="cardBody">
-            <div class="left">
-              <div class="ratings">
-                <em class="ratingStarFilled"></em
-                ><span class="orange">4.8</span>
-              </div>
-              <div class="ratings">
-                <em class="comment"></em><span>56</span>
-              </div>
-              <div class="ratings">
-                <em class="repeat"></em><span>56%</span>
-              </div>
-              <div class="ratings"><em class="image"></em><span>5</span></div>
-            </div>
-            <div class="right"><em class="routing"></em><span>700m</span></div>
-          </div>
-          <div class="cardFooter">
-            <p-chip label="American"></p-chip>
-            <p-chip label="Middle Eastern"></p-chip>
-            <p-chip label="Deli"></p-chip>
-          </div>
-        </p-card>
-      </div>
-      <p-button label="View More" class="viewMoreButton text-center"></p-button>
-    </div> -->
-
-    <div class="halalPlaces mt-5">
-      <div class="flex flex-column gap-4">
-        <div class="header">
-          <h4>{{ totalRestaurants }} halal places near you</h4>
-        </div>
-        <div class="foodCategories">
-          <div class="category">
-            <p-image
-              src="../../assets/images/food-image-2.svg"
-              alt="Image"
-              width="100"
-            ></p-image>
-            <!-- <div class="img">
-            <img src="../../assets/images/food-image-2.svg" alt="" />
-          </div> -->
-            <span class="title">Pakistani</span>
-          </div>
-          <div class="category">
-            <p-image
-              src="../../assets/images/food-image-2.svg"
-              alt="Image"
-              width="100"
-            ></p-image>
-            <!-- <div class="img">
-            <img src="../../assets/images/food-image-2.svg" alt="" />
-          </div> -->
-            <span class="title">Turkish</span>
-          </div>
-          <div class="category">
-            <p-image
-              src="../../assets/images/food-image-2.svg"
-              alt="Image"
-              width="100"
-            ></p-image>
-            <!-- <div class="img">
-            <img src="../../assets/images/food-image-2.svg" alt="" />
-          </div> -->
-            <span class="title">Chinese</span>
-          </div>
-          <div class="category">
-            <p-image
-              src="../../assets/images/food-image-2.svg"
-              alt="Image"
-              width="100"
-            ></p-image>
-            <!-- <div class="img">
-            <img src="../../assets/images/food-image-2.svg" alt="" />
-          </div> -->
-            <span class="title">Middle Eastern</span>
-          </div>
-          <div class="category">
-            <p-image
-              src="../../assets/images/food-image-2.svg"
-              alt="Image"
-              width="100"
-            ></p-image>
-            <!-- <div class="img">
-            <img src="../../assets/images/food-image-2.svg" alt="" />
-          </div> -->
-            <span class="title">Steak</span>
-          </div>
-        </div>
-        <div class="cards">
-          <p-card *ngFor="let item of restaurants" [style]="{ width: '296px' }">
-            <ng-template pTemplate="header">
-              <div class="cardHeaderCta">
-                <!-- <p-chip label="New" class="success"></p-chip> -->
-                <em class="likeHeartFilled"></em>
-              </div>
-              <div class="coverImage">
-                <img
-                  alt="place Cover"
-                  [src]="item.coverImageWebUrl"
-                  (error)="onCoverImageError(item)"
-                />
-              </div>
-            </ng-template>
-            <div class="cardHeader">
-              <div class="placeLogo">
-                <img
-                  [src]="item.iconImageWebUrl"
-                  (error)="onLogoImageError(item)"
-                  alt="place logo"
-                />
-              </div>
-              <div class="placeInfo">
-                <h5 class="placeName">{{ item.name }}</h5>
-                <p class="placeAddress">{{ item.address }}</p>
-              </div>
-              <div class="icons">
-                <em *ngIf="item.offersDelivery" class="delivery"></em>
-                <em class="phoneOutlined"></em>
+                <em class="image"></em><span>{{ item.totalPhotos }}</span>
               </div>
             </div>
-            <div class="cardBody">
-              <div class="left">
-                <div class="ratings">
-                  <em class="ratingStarFilled"></em
-                  ><span class="orange">{{ item.averageRating }}</span>
-                </div>
-                <div class="ratings">
-                  <em class="comment"></em><span>{{ item.totalReviews }}</span>
-                </div>
-                <div class="ratings">
-                  <em class="repeat"></em
-                  ><span>{{ item.willReturnPercentage }}%</span>
-                </div>
-                <div class="ratings">
-                  <em class="image"></em><span>{{ item.totalPhotos }}</span>
-                </div>
-              </div>
-              <div class="right">
-                <em class="routing"></em
-                ><span>{{ item.distance?.distance | number : "1.0-0" }}m</span>
-              </div>
+            <div class="right">
+              <em class="routing"></em><span>{{ item.distance?.distance | number : "1.0-0" }}m</span>
             </div>
-            <!-- <div class="cardFooter">
+          </div>
+          <!-- <div class="cardFooter">
               <p-chip label="American"></p-chip>
               <p-chip label="Middle Eastern"></p-chip>
               <p-chip label="Deli"></p-chip>
             </div> -->
-          </p-card>
-        </div>
-        <p-button
-          label="View More"
-          class="viewMoreButton text-center"
-        ></p-button>
+        </p-card>
       </div>
     </div>
-    <div class="prayerPlaces mt-5">
-      <div class="flex flex-column gap-4">
-        <div class="header">
-          <h4>{{ totalMosques }} prayer spaces near you</h4>
-        </div>
-        <div class="cards">
-          <p-card *ngFor="let item of mosques" [style]="{ width: '296px' }">
-            <ng-template pTemplate="header">
-              <div class="cardHeaderCta">
-                <!-- <p-chip label="New" class="success"></p-chip> -->
-                <em class="likeHeartFilled"></em>
-              </div>
-              <div class="coverImage">
-                <img
-                  alt="Mosque Cover"
-                  [src]="item.coverMosqueImageUrl"
-                  (error)="onMosqueImageError(item)"
-                />
-              </div>
-            </ng-template>
-            <div class="cardHeader">
-              <div class="placeInfo">
-                <h5 class="placeName"  pTooltip="{{ item.name }}"
-                tooltipPosition="top">{{ item.name }}</h5>
-                <p
-                  class="placeAddress"
-                  pTooltip="{{ item.address }}"
-                  tooltipPosition="top"
-                >
-                  {{ item.address }}
-                </p>
-              </div>
-              <div class="icons">
-                <em *ngIf="item.offersDelivery" class="delivery"></em>
-                <em class="phoneOutlined"></em>
-              </div>
-            </div>
-            <div class="cardBody">
-              <div class="left">
-                <div class="ratings">
-                  <em class="ratingStarFilled"></em
-                  ><span class="orange">{{ item.averageRating }}</span>
-                </div>
-                <div class="ratings">
-                  <em class="comment"></em><span>{{ item.totalReviews }}</span>
-                </div>
-                <div class="ratings">
-                  <em class="repeat"></em
-                  ><span>{{ item.willReturnPercentage }}%</span>
-                </div>
-                <div class="ratings">
-                  <em class="image"></em><span>{{ item.totalPhotos }}</span>
-                </div>
-              </div>
-              <div class="right">
-                <em class="routing"></em
-                ><span>{{ item.distance?.distance | number : "1.0-0" }}m</span>
-              </div>
-            </div>
-            <!-- <div class="cardFooter">
-              <p-chip label="American"></p-chip>
-              <p-chip label="Middle Eastern"></p-chip>
-              <p-chip label="Deli"></p-chip>
-            </div> -->
-          </p-card>
-        </div>
-        <p-button
-          label="View More"
-          class="viewMoreButton text-center"
-        ></p-button>
-      </div>
-    </div>
+  </div>
+  <div class="halalPlaces mt-5 flex flex-column">
+    <app-hilal-food></app-hilal-food>
+    <p-button label="View More" (onClick)="navigateToUrl('hilal-food')" class="viewMoreButton text-center mt-5"></p-button>
+  </div>
+  <div class="prayerPlaces mt-5 flex flex-column">
+    <app-prayer-spaces></app-prayer-spaces>
+    <p-button label="View More" (onClick)="navigateToUrl('prayer-spaces')" class="viewMoreButton text-center mt-5"></p-button>
   </div>
 </div>
-
-<app-recently-added />

@@ -8,6 +8,7 @@ import { OtpRequest } from 'src/app/common/models/otpRequest';
 import { SignInOptions } from 'src/app/common/constants/enums';
 import { ToastService } from 'src/app/common/services/toast.service';
 import { localStorageKeys } from 'src/app/common/constants/constants';
+import { CommonPubSubService } from 'src/app/common/Helper/common-pub-sub.service';
 
 @Component({
   selector: 'app-verify-otp',
@@ -32,7 +33,8 @@ export class VerifyOtpComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private commonPubService: CommonPubSubService
   ) { }
 
   ngOnInit() {
@@ -97,6 +99,7 @@ export class VerifyOtpComponent implements OnInit {
       next: (response: User) => {
         if (response) {
           this.sendUserData.emit(Utils.applyDefaults<User>(response, defaultUser))
+          this.commonPubService.setUserInfo(Utils.applyDefaults<User>(response, defaultUser))
           localStorage.setItem(localStorageKeys.user, JSON.stringify(response))
         }
       },

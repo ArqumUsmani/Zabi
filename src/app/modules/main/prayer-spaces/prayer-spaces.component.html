@@ -1,152 +1,65 @@
-<div id="placesSection" class="col-12">
-  <div class="filter col-3">
-    <app-filters></app-filters>
-  </div>
-  <div class="placesCards col-9">
-    <div class="prayerPlaces">
-      <div class="header">
-        <h4>12 prayer spaces near you</h4>
+<div class="placesCards">
+  <div class="flex flex-column gap-4">
+    <div class="header">
+      <h4>{{ totalMosques }} prayer spaces near you</h4>
+    </div>
+    <div class="foodCategories">
+      <div *ngFor="let item of cusines" class="category" (click)="getMosques(selectedLocation, keyword, item.name)">
+        <p-image [src]="item.iconImageWebUrl" (error)="onCoverImageError(item)" alt="Cuisine Image"
+          width="100"></p-image>
+        <span class="title">{{item.name}}</span>
       </div>
-      <div class="cards">
-        <p-card [style]="{ width: '296px' }">
-          <ng-template pTemplate="header">
-            <div class="cardHeaderCta">
-              <p-chip label="New" class="success"></p-chip>
-              <em class="likeHeartFilled"></em>
+    </div>
+    <div class="cards">
+      <p-card *ngFor="let item of mosques" [style]="{ width: '296px' }">
+        <ng-template pTemplate="header">
+          <div class="cardHeaderCta">
+            <!-- <p-chip label="New" class="success"></p-chip> -->
+            <em class="likeHeartFilled"></em>
+          </div>
+          <div class="coverImage">
+            <img alt="Mosque Cover" [src]="item.coverMosqueImageUrl" (error)="onMosqueImageError(item)" />
+          </div>
+        </ng-template>
+        <div class="cardHeader">
+          <div class="placeInfo">
+            <h5 class="placeName" pTooltip="{{ item.name }}" tooltipPosition="top">
+              {{ item.name }}
+            </h5>
+            <p class="placeAddress" pTooltip="{{ item.address }}" tooltipPosition="top">
+              {{ item.address }}
+            </p>
+          </div>
+          <div class="icons">
+            <em *ngIf="item.offersDelivery" class="delivery"></em>
+            <em class="phoneOutlined"></em>
+          </div>
+        </div>
+        <div class="cardBody">
+          <div class="left">
+            <div class="ratings">
+              <em class="ratingStarFilled"></em><span class="orange">{{ item.averageRating }}</span>
             </div>
-            <div class="coverImage">
-              <img alt="Card" src="../../assets/icons/mosque_placeholder.svg" />
+            <div class="ratings">
+              <em class="comment"></em><span>{{ item.totalReviews }}</span>
             </div>
-          </ng-template>
-          <div class="cardHeader">
-            <div class="placeInfo">
-              <h5 class="placeName">Dar al-Hijrah Masjid</h5>
-              <p
-                class="placeAddress"
-                pTooltip="11234 Broad Street, Falls Church, VA"
-                tooltipPosition="top"
-              >
-                11234 Broad Street, Falls Church, VA
-              </p>
+            <div class="ratings">
+              <em class="repeat"></em><span>{{ item.willReturnPercentage }}%</span>
             </div>
-            <div class="icons">
-              <!-- <em class="delivery"></em> -->
-              <em class="phoneOutlined"></em>
+            <div class="ratings">
+              <em class="image"></em><span>{{ item.totalPhotos }}</span>
             </div>
           </div>
-          <div class="cardBody">
-            <div class="left">
-              <div class="ratings">
-                <em class="ratingStarFilled"></em
-                ><span class="orange">4.8</span>
-              </div>
-              <div class="ratings">
-                <em class="comment"></em><span>56</span>
-              </div>
-              <div class="ratings">
-                <em class="repeat"></em><span>56%</span>
-              </div>
-              <div class="ratings"><em class="image"></em><span>5</span></div>
-            </div>
-            <div class="right"><em class="routing"></em><span>700m</span></div>
+          <div class="right">
+            <em class="routing"></em><span>{{ item.distance?.distance | number : "1.0-0" }}m</span>
           </div>
-          <div class="cardFooter">
-            <p-chip label="Sunni (Traditional)"></p-chip>
-          </div>
-        </p-card>
-        <p-card [style]="{ width: '296px' }">
-          <ng-template pTemplate="header">
-            <div class="cardHeaderCta">
-              <p-chip label="Closed" class=""></p-chip>
-              <em class="likeHeartFilled"></em>
-            </div>
-            <div class="coverImage">
-              <img alt="Card" src="../../assets/icons/mosque_placeholder.svg" />
-            </div>
-          </ng-template>
-          <div class="cardHeader">
-            <div class="placeInfo">
-              <h5 class="placeName">Dar al-Hijrah Masjid</h5>
-              <p
-                class="placeAddress"
-                pTooltip="11234 Broad Street, Falls Church, VA"
-                tooltipPosition="top"
-              >
-                11234 Broad Street, Falls Church, VA
-              </p>
-            </div>
-            <div class="icons">
-              <!-- <em class="delivery"></em> -->
-              <em class="phoneOutlined"></em>
-            </div>
-          </div>
-          <div class="cardBody">
-            <div class="left">
-              <div class="ratings">
-                <em class="ratingStarFilled"></em
-                ><span class="orange">4.8</span>
-              </div>
-              <div class="ratings">
-                <em class="comment"></em><span>56</span>
-              </div>
-              <div class="ratings">
-                <em class="repeat"></em><span>56%</span>
-              </div>
-              <div class="ratings"><em class="image"></em><span>5</span></div>
-            </div>
-            <div class="right"><em class="routing"></em><span>700m</span></div>
-          </div>
-          <div class="cardFooter">
-            <p-chip label="Sunni (Traditional)"></p-chip>
-          </div>
-        </p-card>
-        <p-card [style]="{ width: '296px' }">
-          <ng-template pTemplate="header">
-            <div class="cardHeaderCta">
-              <p-chip label="Closed" class=""></p-chip>
-              <em class="likeHeartFilled"></em>
-            </div>
-            <div class="coverImage">
-              <img alt="Card" src="../../assets/icons/mosque_placeholder.svg" />
-            </div>
-          </ng-template>
-          <div class="cardHeader">
-            <div class="placeInfo">
-              <h5 class="placeName">Dar al-Hijrah Masjid</h5>
-              <p
-                class="placeAddress"
-                pTooltip="11234 Broad Street, Falls Church, VA"
-                tooltipPosition="top"
-              >
-                11234 Broad Street, Falls Church, VA
-              </p>
-            </div>
-            <div class="icons">
-              <!-- <em class="delivery"></em> -->
-              <em class="phoneOutlined"></em>
-            </div>
-          </div>
-          <div class="cardBody">
-            <div class="left">
-              <div class="ratings">
-                <em class="ratingStarFilled"></em
-                ><span class="orange">4.8</span>
-              </div>
-              <div class="ratings">
-                <em class="comment"></em><span>56</span>
-              </div>
-              <div class="ratings">
-                <em class="repeat"></em><span>56%</span>
-              </div>
-              <div class="ratings"><em class="image"></em><span>5</span></div>
-            </div>
-            <div class="right"><em class="routing"></em><span>700m</span></div>
-          </div>
-          <div class="cardFooter">
-            <p-chip label="Sunni (Traditional)"></p-chip>
-          </div>
-        </p-card>
-      </div>
+        </div>
+        <!-- <div class="cardFooter">
+            <p-chip label="American"></p-chip>
+            <p-chip label="Middle Eastern"></p-chip>
+            <p-chip label="Deli"></p-chip>
+          </div> -->
+      </p-card>
     </div>
   </div>
 </div>

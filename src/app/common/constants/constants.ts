@@ -16,3 +16,11 @@ export const errorMessages = {
 } 
 
 export const successMessages = {} 
+
+export const defaultCoordinates = {
+    lat: 40.730610, // Default latitude (New York)
+    lng: -73.935242 // Default longitude (New York)
+}
+
+export const defaultPageSize = 5;
+
