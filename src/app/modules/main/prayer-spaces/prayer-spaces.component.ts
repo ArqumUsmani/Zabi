@@ -9,7 +9,8 @@ import { MosqueService } from 'src/app/common/services/mosque.service';
 @Component({
   selector: 'app-prayer-spaces',
   templateUrl: './prayer-spaces.component.html',
-  styleUrls: ['./prayer-spaces.component.scss']
+  styleUrls: ['./prayer-spaces.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PrayerSpacesComponent {
   totalMosques: number | null = null;

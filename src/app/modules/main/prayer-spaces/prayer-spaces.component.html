@@ -1,5 +1,5 @@
 <div class="placesCards">
-  <div class="flex flex-column gap-4">
+  <div class="prayerPlaces flex flex-column gap-4">
     <div class="header">
       <h4>{{ totalMosques }} prayer spaces near you</h4>
     </div>
@@ -23,10 +23,10 @@
         </ng-template>
         <div class="cardHeader">
           <div class="placeInfo">
-            <h5 class="placeName" pTooltip="{{ item.name }}" tooltipPosition="top">
+            <h5 class="placeName mosque" pTooltip="{{ item.name }}" tooltipPosition="top">
               {{ item.name }}
             </h5>
-            <p class="placeAddress" pTooltip="{{ item.address }}" tooltipPosition="top">
+            <p class="placeAddress mosque" pTooltip="{{ item.address }}" tooltipPosition="top">
               {{ item.address }}
             </p>
           </div>

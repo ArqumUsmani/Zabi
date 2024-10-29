@@ -60,7 +60,7 @@
           padding: 0;
           .cardHeader {
             display: inline-flex;
-            justify-content: space-between;
+            // justify-content: space-between;
             align-items: flex-start;
             width: 100%;
             gap: 8px;
@@ -80,7 +80,7 @@
               }
             }
             .placeInfo {
-              width: 14rem;
+              width: 9rem;
               .placeName {
                 font-family: "Inter";
                 font-size: 16px;
@@ -108,6 +108,7 @@
               display: flex;
               gap: 8px;
               justify-content: flex-end;
+              flex: 1;
               .delivery,
               .phoneOutlined {
                 padding: 5px;
@@ -195,8 +196,7 @@
     }
   }
 
-  .halalPlaces,
-  .prayerPlaces {
+  .halalPlaces{
     .foodCategories {
       display: inline-flex;
       gap: 8px;
@@ -213,6 +213,11 @@
             border-radius: 18px;
             box-shadow: 0px 2.89px 5.77px -2.89px rgba(16, 24, 40, 0.06);
             box-shadow: 0px 5.77px 11.54px -2.89px rgba(16, 24, 40, 0.1);
+            transition: .3s all ease-in-out;
+            &:hover{
+              cursor: pointer;
+              box-shadow: none;
+            }
           }
         }
         .title {

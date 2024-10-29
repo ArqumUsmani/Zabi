@@ -1,11 +1,11 @@
 <div class="placesCards">
-  <div class="flex flex-column gap-4">
+  <div class="halalPlaces flex flex-column gap-4">
     <div class="header">
       <h4>{{ totalRestaurants }} halal places near you</h4>
     </div>
     <div class="foodCategories">
       <div *ngFor="let item of cusines" class="category" (click)="getRestaurants(selectedLocation, keyword, item.name)">
-        <p-image [src]="item.iconImageWebUrl" (error)="onCoverImageError(item)" alt="Cuisine Image"
+        <p-image [src]="item.iconImageWebUrl" (error)="onCuisineImageError(item)" alt="Cuisine Image"
           width="100"></p-image>
         <span class="title">{{item.name}}</span>
       </div>
@@ -26,8 +26,8 @@
             <img [src]="item.iconImageWebUrl" (error)="onLogoImageError(item)" alt="place logo" />
           </div>
           <div class="placeInfo">
-            <h5 class="placeName">{{ item.name }}</h5>
-            <p class="placeAddress">{{ item.address }}</p>
+            <h5 class="placeName" pTooltip="{{ item.name }}" tooltipPosition="top">{{ item.name }}</h5>
+            <p class="placeAddress" pTooltip="{{ item.address }}" tooltipPosition="top">{{ item.address }}</p>
           </div>
           <div class="icons">
             <em *ngIf="item.offersDelivery" class="delivery"></em>
