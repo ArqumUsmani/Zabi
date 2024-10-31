@@ -12,6 +12,7 @@
 body {
   background-color: $bg-white;
   margin: 0;
+  width: 99vw;
 }
 p,
 h1,
@@ -26,6 +27,10 @@ h5 {
 
 .pac-container {
   z-index: 10000 !important;  /* Make sure it's higher than your dialog box's z-index */
+  border-radius: 10px;
+  .pac-item{
+    padding: 10px;
+  }
 }
 
 .w-100 {
@@ -63,6 +68,11 @@ a {
     font-size: 18px;
     text-decoration: none!important;
   }
+  &.p-button-link{
+    &:focus{
+      box-shadow: none!important;
+    }
+  }
   // &:hover {
   //   border-color: $red-primary !important;
   // }
@@ -71,6 +81,9 @@ a {
 .p-button-success {
   background: $green-primary !important;
   border: none !important;
+  &:focus{
+    box-shadow: none!important;
+  }
   .p-button-label {
     color: $white !important;
   }

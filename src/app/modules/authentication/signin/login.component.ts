@@ -5,7 +5,7 @@ import { SignInOptions } from 'src/app/common/constants/enums';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent {
   signInOptions = SignInOptions;
