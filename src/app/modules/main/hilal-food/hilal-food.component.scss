@@ -196,25 +196,61 @@
     }
   }
 
-  .halalPlaces{
+  .halalPlaces {
     .foodCategories {
       display: inline-flex;
       gap: 8px;
       flex-wrap: wrap;
+      .p-carousel-container {
+        width: 66vw;
+        margin-left: -30px;
+        .p-carousel-items-content {
+          .p-carousel-items-container {
+            // gap: 13px;
+
+            .p-carousel-item {
+              // flex: 1!important;
+              // flex-basis:0!important;
+              display: flex;
+              justify-content: center;
+              // flex: 1!important;
+            }
+          }
+        }
+        .p-carousel-prev,
+        .p-carousel-next {
+          background-color: #ffffff;
+          top: -10px;
+          z-index: 2;
+          &:focus {
+            box-shadow: none;
+          }
+        }
+        .p-carousel-prev {
+          left: 45px;
+        }
+        .p-carousel-next {
+          left: -45px;
+        }
+      }
+      .p-carousel-indicators {
+        display: none;
+      }
       .category {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 5.7px;
-        padding-bottom: 16px;
+        // padding-bottom: 16px;
+        width: fit-content;
         .p-image {
           img {
             border: 3px solid rgba(255, 255, 255, 1);
             border-radius: 18px;
             box-shadow: 0px 2.89px 5.77px -2.89px rgba(16, 24, 40, 0.06);
             box-shadow: 0px 5.77px 11.54px -2.89px rgba(16, 24, 40, 0.1);
-            transition: .3s all ease-in-out;
-            &:hover{
+            transition: 0.3s all ease-in-out;
+            &:hover {
               cursor: pointer;
               box-shadow: none;
             }

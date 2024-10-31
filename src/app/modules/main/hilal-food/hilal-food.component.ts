@@ -1,5 +1,12 @@
-import {Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { fallbackImageUrl, logoImageUrl, mosqueImageUrl, defaultCoordinates, defaultPageSize } from 'src/app/common/constants/constants';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  fallbackImageUrl,
+  logoImageUrl,
+  mosqueImageUrl,
+  defaultCoordinates,
+  defaultPageSize,
+  cuisinePlaceholderImage,
+} from 'src/app/common/constants/constants';
 import { Location } from 'src/app/common/constants/interfaces';
 import { OrderBy } from 'src/app/common/constants/restaurant.enum';
 import { CommonPubSubService } from 'src/app/common/Helper/common-pub-sub.service';
@@ -22,9 +29,10 @@ export class HilalFoodComponent {
   selectedLocation: Location | undefined;
   keyword: string = '';
 
-  constructor(private commonPubSubService: CommonPubSubService,
+  constructor(
+    private commonPubSubService: CommonPubSubService,
     private restaurantService: RestaurantService,
-    private geoLocation: GeolocationService,
+    private geoLocation: GeolocationService
   ) {
     //To be triggered when user signs in
     this.commonPubSubService.userInfo$.subscribe({
@@ -34,31 +42,31 @@ export class HilalFoodComponent {
           this.commonPubSubService.locationFilterOpts$.subscribe({
             next: (response) => {
               this.getHomeData(response?.location, response?.keyword);
-            }
-          })
+            },
+          });
         }
-      }
-    })
+      },
+    });
   }
 
   ngOnInit() {
     this.responsiveOptions = [
       {
-        breakpoint: '1199px',
-        numVisible: 1,
-        numScroll: 1,
+          breakpoint: '1400px',
+          numVisible: 3,
+          numScroll: 3
       },
       {
-        breakpoint: '991px',
-        numVisible: 2,
-        numScroll: 1,
+          breakpoint: '1220px',
+          numVisible: 2,
+          numScroll: 2
       },
       {
-        breakpoint: '767px',
-        numVisible: 1,
-        numScroll: 1,
-      },
-    ];
+          breakpoint: '1100px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
   }
 
   onCoverImageError(item: any) {
@@ -68,55 +76,87 @@ export class HilalFoodComponent {
   onLogoImageError(item: any) {
     item.iconImageWebUrl = logoImageUrl; // Change to the fallback image if the main image fails to load
   }
-  onCuisineImageError(item:any){
-    item.iconImageWebUrl = logoImageUrl; // Change to the fallback image if the main image fails to load  
+  onCuisineImageError(item: any) {
+    item.iconImageWebUrl = cuisinePlaceholderImage; // Change to the fallback image if the main image fails to load
   }
 
   private getHomeData(location: Location | undefined, keyword: string = '') {
     if (location) {
       //Get location selected in header
-      this.getRestaurants(location, keyword)
-      this.getCuisines(location)
+      this.getRestaurants(location, keyword);
+      this.getCuisines(location);
     } else {
       //Show data for current location
       this.geoLocation.getCurrentLatLng().subscribe({
         next: (response) => {
-          this.getRestaurants({ latitude: response.latitude, longitude: response.longitude, name: '' })
-          this.getCuisines({ latitude: response.latitude, longitude: response.longitude, name: '' })
+          this.getRestaurants({
+            latitude: response.latitude,
+            longitude: response.longitude,
+            name: '',
+          });
+          this.getCuisines({
+            latitude: response.latitude,
+            longitude: response.longitude,
+            name: '',
+          });
         },
         error: (error) => {
           //Show data for new york if user has not given location access
-          this.getRestaurants({ latitude: defaultCoordinates.lat, longitude: defaultCoordinates.lng, name: '' })
-          this.getCuisines({ latitude: defaultCoordinates.lat, longitude: defaultCoordinates.lng, name: '' })
-        }
-      })
+          this.getRestaurants({
+            latitude: defaultCoordinates.lat,
+            longitude: defaultCoordinates.lng,
+            name: '',
+          });
+          this.getCuisines({
+            latitude: defaultCoordinates.lat,
+            longitude: defaultCoordinates.lng,
+            name: '',
+          });
+        },
+      });
     }
   }
 
-  private getRestaurants(selectedPlace: Location | undefined, keyword: string = '', cuisine = null) {
+  private getRestaurants(
+    selectedPlace: Location | undefined,
+    keyword: string = '',
+    cuisine = null
+  ) {
     this.selectedLocation = selectedPlace;
     this.keyword = keyword;
-    this.restaurantService.searchRestaurants(selectedPlace?.latitude, selectedPlace?.longitude, keyword,
-      OrderBy.LOCATION, cuisine).subscribe({
+    this.restaurantService
+      .searchRestaurants(
+        selectedPlace?.latitude,
+        selectedPlace?.longitude,
+        keyword,
+        OrderBy.LOCATION,
+        cuisine
+      )
+      .subscribe({
         next: (response) => {
           this.restaurants = response.items;
           this.totalRestaurants = response.totalRecords;
         },
         error: (error) => {
-          console.error('Error getting restaurants list')
-        }
-      })
+          console.error('Error getting restaurants list');
+        },
+      });
   }
 
-  private getCuisines(selectedPlace: Location | undefined,) {
-    this.restaurantService.searchRestaurantCuisines(selectedPlace?.latitude, selectedPlace?.longitude,
-      OrderBy.LOCATION).subscribe({
+  private getCuisines(selectedPlace: Location | undefined) {
+    this.restaurantService
+      .searchRestaurantCuisines(
+        selectedPlace?.latitude,
+        selectedPlace?.longitude,
+        OrderBy.LOCATION
+      )
+      .subscribe({
         next: (response) => {
           this.cusines = response;
         },
         error: (error) => {
-          console.error('Error getting restaurant cuisines list')
-        }
-      })
+          console.error('Error getting restaurant cuisines list');
+        },
+      });
   }
 }
