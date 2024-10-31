@@ -90,7 +90,7 @@ export class HomeComponent {
 
   private getFeaturedRestaurants(selectedPlace: Location | undefined, keyword: string = '') {
     this.restaurantService.searchRestaurants(selectedPlace?.latitude,  selectedPlace?.longitude,
-       keyword, OrderBy.RATING_AND_LOCATION).subscribe({
+       keyword, OrderBy.RATING_AND_LOCATION, null, 0, 10).subscribe({
       next: (response) => {
         this.featuredRestaurants = response.items;
       },

@@ -23,5 +23,5 @@ export const defaultCoordinates = {
     lng: -73.935242 // Default longitude (New York)
 }
 
-export const defaultPageSize = 5;
+export const defaultPageSize = 20;
 

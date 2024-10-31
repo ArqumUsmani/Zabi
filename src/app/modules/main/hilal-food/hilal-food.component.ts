@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   fallbackImageUrl,
   logoImageUrl,
@@ -10,6 +11,7 @@ import {
 import { Location } from 'src/app/common/constants/interfaces';
 import { OrderBy } from 'src/app/common/constants/restaurant.enum';
 import { CommonPubSubService } from 'src/app/common/Helper/common-pub-sub.service';
+import { Utils } from 'src/app/common/Helper/utility';
 import { GeolocationService } from 'src/app/common/services/geolocation.service';
 import { RestaurantService } from 'src/app/common/services/restaurants.service';
 
@@ -32,9 +34,9 @@ export class HilalFoodComponent {
   constructor(
     private commonPubSubService: CommonPubSubService,
     private restaurantService: RestaurantService,
-    private geoLocation: GeolocationService
-  ) {
-    //To be triggered when user signs in
+    private geoLocation: GeolocationService,
+    private router: Router
+  ) { //To be triggered when user signs in
     this.commonPubSubService.userInfo$.subscribe({
       next: (user) => {
         if (user) {
@@ -84,7 +86,7 @@ export class HilalFoodComponent {
     if (location) {
       //Get location selected in header
       this.getRestaurants(location, keyword);
-      this.getCuisines(location);
+      // this.getCuisines(location);
     } else {
       //Show data for current location
       this.geoLocation.getCurrentLatLng().subscribe({
@@ -94,11 +96,11 @@ export class HilalFoodComponent {
             longitude: response.longitude,
             name: '',
           });
-          this.getCuisines({
-            latitude: response.latitude,
-            longitude: response.longitude,
-            name: '',
-          });
+          // this.getCuisines({
+          //   latitude: response.latitude,
+          //   longitude: response.longitude,
+          //   name: '',
+          // });
         },
         error: (error) => {
           //Show data for new york if user has not given location access
@@ -107,11 +109,11 @@ export class HilalFoodComponent {
             longitude: defaultCoordinates.lng,
             name: '',
           });
-          this.getCuisines({
-            latitude: defaultCoordinates.lat,
-            longitude: defaultCoordinates.lng,
-            name: '',
-          });
+          // this.getCuisines({
+          //   latitude: defaultCoordinates.lat,
+          //   longitude: defaultCoordinates.lng,
+          //   name: '',
+          // });
         },
       });
     }
@@ -136,6 +138,11 @@ export class HilalFoodComponent {
         next: (response) => {
           this.restaurants = response.items;
           this.totalRestaurants = response.totalRecords;
+          this.restaurants.forEach((element: any) => {
+            const cusines = element.cuisines;
+            this.cusines = [...this.cusines, ...cusines]
+          });
+          this.cusines = Utils.getDistinctArray(this.cusines)
         },
         error: (error) => {
           console.error('Error getting restaurants list');
@@ -159,4 +166,9 @@ export class HilalFoodComponent {
         },
       });
   }
+
+  navigateToUrl(url: string) {
+    this.router.navigateByUrl(url)
+  }
+
 }

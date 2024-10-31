@@ -6,7 +6,7 @@
     <div class="foodCategories">
       <div *ngFor="let item of cusines" class="category" (click)="getMosques(selectedLocation, keyword, item.name)">
         <p-image [src]="item.iconImageWebUrl" (error)="onCoverImageError(item)" alt="Cuisine Image"
-          width="100"></p-image>
+          width="100" (click)="navigateToUrl('prayer-spaces')"></p-image>
         <span class="title">{{item.name}}</span>
       </div>
     </div>

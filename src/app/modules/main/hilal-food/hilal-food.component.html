@@ -7,7 +7,8 @@
       <p-carousel [value]="cusines" [numVisible]="8" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
         <ng-template pTemplate="item" let-item>
           <div class="category" (click)="getRestaurants(selectedLocation, keyword, item.name)">
-            <p-image [src]="  item.iconImageWebUrl" (error)="onCuisineImageError(item)" alt="Cuisine Image" width="100"></p-image>
+            <p-image [src]="item.iconImageWebUrl" (error)="onCuisineImageError(item)" alt="Cuisine Image" width="100"
+            (click)="navigateToUrl('hilal-food')"></p-image>
             <span class="title">{{ item.name }}</span>
           </div>
         </ng-template>

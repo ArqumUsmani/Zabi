@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { defaultCoordinates } from '../constants/constants';
+import { defaultCoordinates, defaultPageSize } from '../constants/constants';
 import { OrderBy, SortOrder } from '../constants/restaurant.enum';
 import { Cuisine } from '../constants/interfaces';
 
@@ -15,7 +15,7 @@ export class MosqueService {
     constructor(private http: HttpClient) { }
 
     searchMosques(lat: number = defaultCoordinates.lat, lng: number = defaultCoordinates.lng, keyword: string,
-        cuisine: string | null = null, page: number = 0, pageSize: number = 10): Observable<any> {
+        cuisine: string | null = null, page: number = 0, pageSize: number = defaultPageSize): Observable<any> {
         const payload = {
             keyword: keyword,
             location: {

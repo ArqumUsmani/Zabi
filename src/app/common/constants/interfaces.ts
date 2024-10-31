@@ -24,6 +24,8 @@ export interface Restaurant {
     cuisine?: string | null,
     orderBy?: string,
     sortOrder?: string
+    excludeRestaurantType? : string[],
+    parts?: string[],
 }
 
 export interface Cuisine {

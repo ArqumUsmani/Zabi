@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { fallbackImageUrl, logoImageUrl, mosqueImageUrl, defaultCoordinates } from 'src/app/common/constants/constants';
 import { Location } from 'src/app/common/constants/interfaces';
 import { OrderBy } from 'src/app/common/constants/restaurant.enum';
@@ -24,6 +25,7 @@ export class PrayerSpacesComponent {
   constructor(private commonPubSubService: CommonPubSubService,
     private mosqueService: MosqueService,
     private geoLocation: GeolocationService,
+    private router: Router,
   ) {
     //To be triggered when user signs in
     this.commonPubSubService.userInfo$.subscribe({
@@ -42,6 +44,10 @@ export class PrayerSpacesComponent {
 
   onMosqueImageError(item: any) {
     item.coverMosqueImageUrl = mosqueImageUrl;
+  }
+
+  navigateToUrl(url: string) {
+    this.router.navigateByUrl(url)
   }
 
   private getHomeData(location: Location | undefined, keyword: string = '') {
