@@ -31,11 +31,13 @@
     }
     .p-carousel {
       .p-carousel-content {
+        overflow: hidden;
+        width: fit-content;
         .p-carousel-indicators {
           display: none;
         }
         .p-carousel-container {
-          width: 60vw;
+          width: calc(100vw - 600px);
           margin-left: 0px;
           position: relative;
           .p-carousel-prev,
@@ -57,6 +59,7 @@
 
           .p-carousel-items-content {
             .p-carousel-items-container {
+              gap: 16px;
               .p-carousel-item {
                 .cards {
                   display: flex;

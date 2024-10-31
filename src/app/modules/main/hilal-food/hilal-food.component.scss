@@ -219,7 +219,7 @@
       gap: 8px;
       flex-wrap: wrap;
       .p-carousel-container {
-        width: 62vw;
+        width: calc(100vw - 600px);
         margin-left: -18px;
         position: relative;
         .p-carousel-items-content {
