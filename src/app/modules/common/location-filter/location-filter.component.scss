@@ -1,14 +1,12 @@
 @import "../../../../colors.scss";
 
 #heroSection {
-  background-color: $red-primary;
+  background-color: $red-login!important;
   text-align: center;
   align-items: center;
   display: flex;
   position: relative;
-  background-image: url("../../../../assets/food-texture-header-bg.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: url("../../../../assets/food-texture-header-bg.svg") lightgray 50% / cover no-repeat;
   flex-direction: column;
 
   .mainContent {
@@ -104,36 +102,35 @@
   }
 }
 
-  @media screen and (min-width: 376px) {
-    .p-inputtext {
-        width: 350px!important;
-      }
+@media screen and (min-width: 376px) {
+  .p-inputtext {
+    width: 350px !important;
   }
+}
 
-  .autocomplete-container {
-    position: relative;
-    // width: 100%;
-  }
-  
-  .autocomplete-dropdown {
-    position: absolute;
-    top: 40px;
-    width: 100%;
-    max-height: 200px;
-    overflow-y: auto;
-    background-color: white;
-    border: 1px solid #ccc;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .autocomplete-dropdown li {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .autocomplete-dropdown li:hover {
-    background-color: #f0f0f0;
-  }
-  
+.autocomplete-container {
+  position: relative;
+  // width: 100%;
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.autocomplete-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-dropdown li:hover {
+  background-color: #f0f0f0;
+}

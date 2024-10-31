@@ -2,7 +2,7 @@ export const fallbackImageUrl = '../../assets/icons/restaurant_placeholder.svg'
 export const logoImageUrl = '../../assets/icons/restaurant_logo.svg'
 export const mosqueImageUrl = '../../assets/icons/mosque_placeholder.svg'
 export const profileImageUrl = '../../assets/images/defaultProfileImage.png'
-export const cuisinePlaceholderImage = '../../assets/images/defaultProfileImage.png'
+export const cuisinePlaceholderImage = '../../assets/icons/cuisine-default-placeholder.svg'
 
 export const localStorageKeys = {
     accessToken: 'ACCESS_TOKEN',

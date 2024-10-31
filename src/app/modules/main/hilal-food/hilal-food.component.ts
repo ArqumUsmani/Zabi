@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { fallbackImageUrl, logoImageUrl, mosqueImageUrl, defaultCoordinates, defaultPageSize, cuisinePlaceholderImage } from 'src/app/common/constants/constants';
+import { fallbackImageUrl, logoImageUrl, mosqueImageUrl, defaultCoordinates, defaultPageSize } from 'src/app/common/constants/constants';
 import { Location } from 'src/app/common/constants/interfaces';
 import { OrderBy } from 'src/app/common/constants/restaurant.enum';
 import { CommonPubSubService } from 'src/app/common/Helper/common-pub-sub.service';
@@ -69,7 +69,7 @@ export class HilalFoodComponent {
     item.iconImageWebUrl = logoImageUrl; // Change to the fallback image if the main image fails to load
   }
   onCuisineImageError(item:any){
-    item.iconImageWebUrl = cuisinePlaceholderImage; // Change to the fallback image if the main image fails to load  
+    item.iconImageWebUrl = logoImageUrl; // Change to the fallback image if the main image fails to load  
   }
 
   private getHomeData(location: Location | undefined, keyword: string = '') {
