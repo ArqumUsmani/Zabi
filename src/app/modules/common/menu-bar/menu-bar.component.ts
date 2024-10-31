@@ -8,15 +8,17 @@ import { SignupComponent } from '../../authentication/signup/signup.component';
 import { ToastService } from 'src/app/common/services/toast.service';
 import { Utils } from 'src/app/common/Helper/utility';
 import { UserService } from 'src/app/common/services/user.service';
-import { fallbackImageUrl, localStorageKeys } from 'src/app/common/constants/constants';
+import {
+  fallbackImageUrl,
+  localStorageKeys,
+} from 'src/app/common/constants/constants';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CommonPubSubService } from 'src/app/common/Helper/common-pub-sub.service';
 
 @Component({
   selector: 'app-menu-bar',
   templateUrl: './menu-bar.component.html',
   styleUrls: ['./menu-bar.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MenuBarComponent {
   title = 'Zabihah';
@@ -35,10 +37,12 @@ export class MenuBarComponent {
   @ViewChild(VerifySignInComponent) requestOtpComponent!: VerifySignInComponent;
   @ViewChild(SignupComponent) signupComponent!: SignupComponent;
 
-  constructor(private primengConfig: PrimeNGConfig, private toastService: ToastService,
-    private userService: UserService,private sanitizer: DomSanitizer,
-    private commonPubSubService: CommonPubSubService,
-  ) { }
+  constructor(
+    private primengConfig: PrimeNGConfig,
+    private toastService: ToastService,
+    private userService: UserService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
     this.fetchUserInfo();
@@ -75,38 +79,71 @@ export class MenuBarComponent {
     };
     this.profileItems = [
       {
-        label: 'Your Profile',
-        icon:`<svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <circle
-                      cx="12"
-                      cy="6"
-                      r="4"
-                      stroke="#990001"
-                      stroke-width="1.5"
-                    />
-                    <ellipse
-                      cx="12"
-                      cy="17"
-                      rx="7"
-                      ry="4"
-                      stroke="#990001"
-                      stroke-width="1.5"
-                    />
-                  </svg>`,
-        routerLink: 'settings', 
+        items: [
+          {
+            label: 'Your Profile',
+            icon: 'user-red',
+            routerLink: 'settings/profile',
+          },
+          {
+            label: 'Your Address',
+            icon: 'location-red',
+            routerLink: 'settings/addresses',
+          },
+        ],
       },
       {
-        label: 'Your Address',
-        icon: 'home',
-        routerLink: 'settings', 
+        separator: true,
+      },
+      {
+        label: 'Others',
+        items: [
+          {
+            label: 'Your payment methods',
+            icon: 'payment-red',
+            routerLink: 'settings',
+          },
+          {
+            label: 'Your reviews',
+            icon: 'reviews-red',
+            routerLink: 'settings',
+          },
+          {
+            label: 'Your favorite places',
+            icon: 'heart-red',
+            routerLink: 'settings',
+          },
+          {
+            label: 'Buy it again',
+            icon: 'buy-again-red',
+            routerLink: 'settings',
+          },
+          {
+            separator: true,
+          },
+          {
+            label: 'Logout',
+            icon: 'logout-red',
+            routerLink: 'settings',
+          },
+        ],
+      },
+      {
+        separator: true,
+      },
+      {
+        label:'About zabihah',
+        routerLink:''
+      },
+      {
+        label:'Privacy policy',
+        routerLink:''
+      },
+      {
+        label:'Frequently asked questions',
+        routerLink:''
       }
-    ]
+    ];
 
     this.items = [
       {
@@ -117,13 +154,13 @@ export class MenuBarComponent {
       {
         label: 'Find hilal food',
         icon: 'hilalFood',
-        routerLink: 'hilal-food'
+        routerLink: 'hilal-food',
       },
       {
         label: 'Pickup & delivery',
         icon: 'pickup',
         routerLink: 'pickup-and-delivery',
-        disabled:true
+        disabled: true,
       },
       {
         label: 'Prayer spaces',
@@ -134,18 +171,15 @@ export class MenuBarComponent {
   }
 
   fetchUserInfo() {
-    if(localStorage.getItem(localStorageKeys.accessToken)) {
-      this.userService.getUser().subscribe({
-        next: (response) => {
-          this.user = Utils.applyDefaults<User>(response, defaultUser);
-          this.commonPubSubService.setUserInfo(this.user)
-          localStorage.setItem(localStorageKeys.user, JSON.stringify(this.user))
-        },
-        error: (error) => { 
-          console.error('err', error);
-        }
-      })
-    }
+    this.userService.getUser().subscribe({
+      next: (response) => {
+        this.user = Utils.applyDefaults<User>(response, defaultUser);
+        localStorage.setItem(localStorageKeys.user, JSON.stringify(this.user));
+      },
+      error: (error) => {
+        console.error('err', error);
+      },
+    });
   }
 
   showSignInDialog() {
@@ -172,50 +206,56 @@ export class MenuBarComponent {
   getUserData(userData: User) {
     this.user = userData;
     this.verifyOtpDialog = false;
-    if (!userData.isPhoneVerified || !userData.isEmailVerified || !userData.firstName)
+    if (
+      !userData.isPhoneVerified ||
+      !userData.isEmailVerified ||
+      !userData.firstName
+    )
       this.signUpDialog = true;
-    else if (userData.isPhoneVerified && userData.isEmailVerified && !userData.firstName)
-     this.signupComponent.updateUser(this.user)
+    else if (
+      userData.isPhoneVerified &&
+      userData.isEmailVerified &&
+      !userData.firstName
+    )
+      this.signupComponent.updateUser(this.user);
   }
 
-  getResendOtpEvent(event: OtpRequest){
-    if(this.otpRequest)
-      this.requestOtpComponent?.sendVerificationCode(this.otpRequest)
-    else
-      this.requestOtpComponent?.sendVerificationCode()
+  getResendOtpEvent(event: OtpRequest) {
+    if (this.otpRequest)
+      this.requestOtpComponent?.sendVerificationCode(this.otpRequest);
+    else this.requestOtpComponent?.sendVerificationCode();
   }
 
-  getRequestOptEvent(event: {signinOption: string, userData: User}) {
+  getRequestOptEvent(event: { signinOption: string; userData: User }) {
     this.signUpDialog = false;
     this.user = event.userData;
-    this.signInOption
+    this.signInOption;
     this.otpRequest = {
       type: event.signinOption,
     };
-    if(event.signinOption === SignInOptions.EMAIL) 
-      this.otpRequest.email = event.userData.email
-    if(event.signinOption === SignInOptions.PHONE) 
-      this.otpRequest.phone = event.userData.phone
+    if (event.signinOption === SignInOptions.EMAIL)
+      this.otpRequest.email = event.userData.email;
+    if (event.signinOption === SignInOptions.PHONE)
+      this.otpRequest.phone = event.userData.phone;
     this.verifyOtpDialog = true;
-    this.requestOtpComponent?.sendVerificationCode(this.otpRequest)
+    this.requestOtpComponent?.sendVerificationCode(this.otpRequest);
   }
 
   opSignUpForm() {
-    this.signUpDialog = true
+    this.signUpDialog = true;
     this.userService.getUser().subscribe({
       next: (response: User) => {
         if (response) {
-          this.user = Utils.applyDefaults<User>(response, defaultUser)
+          this.user = Utils.applyDefaults<User>(response, defaultUser);
         }
       },
       error: (error) => {
-          this.toastService.showError('Error fetching user info')
-      }
-    })
+        this.toastService.showError('Error fetching user info');
+      },
+    });
   }
 
   onCoverImageError(user: User | undefined) {
-    if(user)
-      user.profilePictureWebUrl = fallbackImageUrl; // Change to the fallback image if the main image fails to load
+    if (user) user.profilePictureWebUrl = fallbackImageUrl; // Change to the fallback image if the main image fails to load
   }
 }

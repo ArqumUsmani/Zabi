@@ -75,9 +75,96 @@
         color: $fontColorLight;
       }
     }
+    .p-menu{
+      width: 332px;
+      border-radius: 12px;
+      padding: 20px 8px;
+      ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        align-self: stretch;
+    
+        li:not(.p-menu-separator){
+          display: flex;
+          padding: 10px 12px;
+          gap: 12px;
+          align-self: stretch;
+          border-radius: 10px;
+          transition: 0.3s all ease-in-out;
+          // padding-left: 0;
+          &:first-of-type{
+            display: none!important;
+          }
+          &.p-submenu-header {
+            align-items: flex-start;
+          }
+          &:hover:not(.extraLinks, .p-submenu-header) {
+            background: #99000126;
+            a {
+              color: $white;
+              svg {
+                circle,
+                ellipse {
+                  stroke: $white;
+                }
+                path {
+                  fill: $white;
+                }
+              }
+            }
+          }
+          a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1 0 0;
+            color: #364152;
+            padding-left: 0;
+            span {
+              font-family: "Inter";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: 20px;
+            }
+            &:hover{
+              background-color: transparent;
+            }
+            &:focus{
+              box-shadow: none;
+            }
+          }
+          &.active {
+            background: #990001;
+            a {
+              color: $white;
+              svg {
+                circle,
+                ellipse {
+                  stroke: $white;
+                }
+                path {
+                  fill: $white;
+                }
+              }
+            }
+          }
+        }
+    
+        .seperator {
+          border: 1px solid #e3e8ef;
+          width: 100%;
+          margin: 0;
+        }
+      }
+    }
   }
 }
-
+.p-menu-separator{
+  width: 100%;
+}
 .round-image {
   display: inline-block;
   overflow: hidden;
